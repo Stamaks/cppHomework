@@ -80,17 +80,6 @@ install/local/fast: preinstall/fast
 	/opt/clion-2018.2/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/clion-2018.2/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -101,6 +90,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/opt/clion-2018.2/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install
 install: preinstall
@@ -157,19 +157,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/CMakeFiles/xipoint_main.dir/rule:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/xipoint_main.dir/rule
-.PHONY : src/CMakeFiles/xipoint_main.dir/rule
+src/CMakeFiles/core.dir/rule:
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/core.dir/rule
+.PHONY : src/CMakeFiles/core.dir/rule
 
 # Convenience name for target.
-xipoint_main: src/CMakeFiles/xipoint_main.dir/rule
+core: src/CMakeFiles/core.dir/rule
 
-.PHONY : xipoint_main
+.PHONY : core
 
 # fast build rule for target.
-xipoint_main/fast:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/build
-.PHONY : xipoint_main/fast
+core/fast:
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/build
+.PHONY : core/fast
 
 main.o: main.cpp.o
 
@@ -177,7 +177,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/main.cpp.o
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -186,7 +186,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/main.cpp.i
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -195,7 +195,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/main.cpp.s
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 xipoint.o: xipoint.cpp.o
@@ -204,7 +204,7 @@ xipoint.o: xipoint.cpp.o
 
 # target to build an object file
 xipoint.cpp.o:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/xipoint.cpp.o
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/xipoint.cpp.o
 .PHONY : xipoint.cpp.o
 
 xipoint.i: xipoint.cpp.i
@@ -213,7 +213,7 @@ xipoint.i: xipoint.cpp.i
 
 # target to preprocess a source file
 xipoint.cpp.i:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/xipoint.cpp.i
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/xipoint.cpp.i
 .PHONY : xipoint.cpp.i
 
 xipoint.s: xipoint.cpp.s
@@ -222,7 +222,7 @@ xipoint.s: xipoint.cpp.s
 
 # target to generate assembly for a file
 xipoint.cpp.s:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/xipoint.cpp.s
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/xipoint.cpp.s
 .PHONY : xipoint.cpp.s
 
 # Help Target
@@ -233,10 +233,10 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... xipoint_main"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... install"
+	@echo "... core"
 	@echo "... list_install_components"
 	@echo "... main.o"
 	@echo "... main.i"

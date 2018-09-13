@@ -591,32 +591,32 @@ ContinuousUpdate/fast:
 	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/ContinuousUpdate.dir/build.make tests/CMakeFiles/ContinuousUpdate.dir/build
 .PHONY : ContinuousUpdate/fast
 
-point_test.o: point_test.cpp.o
+point_array_test.o: point_array_test.cpp.o
 
-.PHONY : point_test.o
+.PHONY : point_array_test.o
 
 # target to build an object file
-point_test.cpp.o:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runUnitTests.dir/build.make tests/CMakeFiles/runUnitTests.dir/point_test.cpp.o
-.PHONY : point_test.cpp.o
+point_array_test.cpp.o:
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runUnitTests.dir/build.make tests/CMakeFiles/runUnitTests.dir/point_array_test.cpp.o
+.PHONY : point_array_test.cpp.o
 
-point_test.i: point_test.cpp.i
+point_array_test.i: point_array_test.cpp.i
 
-.PHONY : point_test.i
+.PHONY : point_array_test.i
 
 # target to preprocess a source file
-point_test.cpp.i:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runUnitTests.dir/build.make tests/CMakeFiles/runUnitTests.dir/point_test.cpp.i
-.PHONY : point_test.cpp.i
+point_array_test.cpp.i:
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runUnitTests.dir/build.make tests/CMakeFiles/runUnitTests.dir/point_array_test.cpp.i
+.PHONY : point_array_test.cpp.i
 
-point_test.s: point_test.cpp.s
+point_array_test.s: point_array_test.cpp.s
 
-.PHONY : point_test.s
+.PHONY : point_array_test.s
 
 # target to generate assembly for a file
-point_test.cpp.s:
-	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runUnitTests.dir/build.make tests/CMakeFiles/runUnitTests.dir/point_test.cpp.s
-.PHONY : point_test.cpp.s
+point_array_test.cpp.s:
+	cd /home/stamaks/CLionProjects/Inst/point/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runUnitTests.dir/build.make tests/CMakeFiles/runUnitTests.dir/point_array_test.cpp.s
+.PHONY : point_array_test.cpp.s
 
 # Help Target
 help:
@@ -659,9 +659,9 @@ help:
 	@echo "... ExperimentalSubmit"
 	@echo "... ContinuousStart"
 	@echo "... ContinuousUpdate"
-	@echo "... point_test.o"
-	@echo "... point_test.i"
-	@echo "... point_test.s"
+	@echo "... point_array_test.o"
+	@echo "... point_array_test.i"
+	@echo "... point_array_test.s"
 .PHONY : help
 
 

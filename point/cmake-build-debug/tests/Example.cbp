@@ -322,7 +322,7 @@
 		<Unit filename="/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/googletest-src/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/Inst/point/tests/point_test.cpp">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/point/tests/point_array_test.cpp">
 			<Option target="runUnitTests"/>
 		</Unit>
 		<Unit filename="/home/stamaks/CLionProjects/Inst/point/CMakeLists.txt">

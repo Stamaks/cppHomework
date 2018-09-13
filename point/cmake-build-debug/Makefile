@@ -157,17 +157,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named xipoint_main
+# Target rules for targets named core
 
 # Build rule for target.
-xipoint_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 xipoint_main
-.PHONY : xipoint_main
+core: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 core
+.PHONY : core
 
 # fast build rule for target.
-xipoint_main/fast:
-	$(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/build
-.PHONY : xipoint_main/fast
+core/fast:
+	$(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/build
+.PHONY : core/fast
 
 #=============================================================================
 # Target rules for targets named runUnitTests
@@ -610,7 +610,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... list_install_components"
 	@echo "... install"
-	@echo "... xipoint_main"
+	@echo "... core"
 	@echo "... runUnitTests"
 	@echo "... ContinuousSubmit"
 	@echo "... ContinuousCoverage"

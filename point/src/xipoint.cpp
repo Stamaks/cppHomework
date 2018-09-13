@@ -60,7 +60,8 @@ namespace xi {
 
 
     PointArray::PointArray(){
-        this->_arr = new Point[0];
+        this->_arr = nullptr;
+        this->_size = 0;
     }
 
     PointArray::PointArray(const Point *points, PointArray::Uint size) {
@@ -69,6 +70,8 @@ namespace xi {
         for (int i = 0; i < size; ++i) {
             this->_arr[i] = points[i];
         }
+
+        this->_size = size;
     }
 
     PointArray::PointArray(const PointArray &pv) {
@@ -77,17 +80,22 @@ namespace xi {
         for (Uint i = 0; i < pv.getSize(); ++i) {
             this->_arr[i] = *pv.get(i);
         }
+
+        this->_size = pv.getSize();
     }
 
     PointArray::~PointArray() {
         delete [] this->_arr;
         this->_arr = nullptr;
+        this->_size = 0;
     }
 
     void PointArray::append(const Point &pt) {
         this->resize(this->getSize());
 
         this->_arr[this->getSize() - 1] = pt;
+
+        this->_size++;
     }
 
     void PointArray::insert(const Point &pt, PointArray::Uint pos) {
@@ -99,6 +107,8 @@ namespace xi {
                 this->_arr[i-1] = this->_arr[i];
             }
             this->_arr[pos] = pt;
+
+            this->_size++;
         }
     }
 

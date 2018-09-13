@@ -19,7 +19,7 @@
 #include <gtest/gtest.h>
 
 
-#include "xipoint.h"
+#include "../src/xipoint.h"
 
 TEST(XiPointArray, simplest)
 {
@@ -148,3 +148,7 @@ TEST(XiPointArray, computePath)
     EXPECT_EQ(4, ar1.computePath());
 }
 
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}

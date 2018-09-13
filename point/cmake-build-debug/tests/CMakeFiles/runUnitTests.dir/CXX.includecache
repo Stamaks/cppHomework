@@ -8,7 +8,7 @@
 
 /home/stamaks/CLionProjects/Inst/point/src/xipoint.h
 
-/home/stamaks/CLionProjects/Inst/point/tests/point_test.cpp
+/home/stamaks/CLionProjects/Inst/point/tests/point_array_test.cpp
 gtest/gtest.h
 -
 ../src/xipoint.h

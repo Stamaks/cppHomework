@@ -77,11 +77,11 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="xipoint_main">
-				<Option output="/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/xipoint_main" prefix_auto="0" extension_auto="0"/>
+			<Target title="core">
+				<Option output="/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/libcore.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src"/>
 				<Option object_output="./"/>
-				<Option type="1"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/usr/include/c++/7"/>
@@ -94,17 +94,17 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 xipoint_main"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 core"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="xipoint_main/fast">
-				<Option output="/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/xipoint_main" prefix_auto="0" extension_auto="0"/>
+			<Target title="core/fast">
+				<Option output="/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/libcore.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src"/>
 				<Option object_output="./"/>
-				<Option type="1"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/usr/include/c++/7"/>
@@ -117,7 +117,7 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 xipoint_main/fast"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 core/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
@@ -429,15 +429,15 @@
 			<Option target="gtest_main"/>
 		</Unit>
 		<Unit filename="/home/stamaks/CLionProjects/Inst/point/src/main.cpp">
-			<Option target="xipoint_main"/>
+			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/stamaks/CLionProjects/Inst/point/src/xipoint.cpp">
-			<Option target="xipoint_main"/>
+			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/stamaks/CLionProjects/Inst/point/src/xipoint.h">
-			<Option target="xipoint_main"/>
+			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/Inst/point/tests/point_test.cpp">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/point/tests/point_array_test.cpp">
 			<Option target="runUnitTests"/>
 		</Unit>
 		<Unit filename="/home/stamaks/CLionProjects/Inst/point/CMakeLists.txt">

@@ -68,12 +68,12 @@ CMAKE_BINARY_DIR = /home/stamaks/CLionProjects/Inst/point/cmake-build-debug
 # Directory level rules for directory src
 
 # Convenience name for "all" pass in the directory.
-src/all: src/CMakeFiles/xipoint_main.dir/all
+src/all: src/CMakeFiles/core.dir/all
 
 .PHONY : src/all
 
 # Convenience name for "clean" pass in the directory.
-src/clean: src/CMakeFiles/xipoint_main.dir/clean
+src/clean: src/CMakeFiles/core.dir/clean
 
 .PHONY : src/clean
 
@@ -83,39 +83,39 @@ src/preinstall:
 .PHONY : src/preinstall
 
 #=============================================================================
-# Target rules for target src/CMakeFiles/xipoint_main.dir
+# Target rules for target src/CMakeFiles/core.dir
 
 # All Build rule for target.
-src/CMakeFiles/xipoint_main.dir/all:
-	$(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/depend
-	$(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=11,12,13 "Built target xipoint_main"
-.PHONY : src/CMakeFiles/xipoint_main.dir/all
+src/CMakeFiles/core.dir/all:
+	$(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/depend
+	$(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target core"
+.PHONY : src/CMakeFiles/core.dir/all
 
 # Include target in all.
-all: src/CMakeFiles/xipoint_main.dir/all
+all: src/CMakeFiles/core.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-src/CMakeFiles/xipoint_main.dir/rule: cmake_check_build_system
+src/CMakeFiles/core.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/xipoint_main.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/core.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles 0
-.PHONY : src/CMakeFiles/xipoint_main.dir/rule
+.PHONY : src/CMakeFiles/core.dir/rule
 
 # Convenience name for target.
-xipoint_main: src/CMakeFiles/xipoint_main.dir/rule
+core: src/CMakeFiles/core.dir/rule
 
-.PHONY : xipoint_main
-
-# clean rule for target.
-src/CMakeFiles/xipoint_main.dir/clean:
-	$(MAKE) -f src/CMakeFiles/xipoint_main.dir/build.make src/CMakeFiles/xipoint_main.dir/clean
-.PHONY : src/CMakeFiles/xipoint_main.dir/clean
+.PHONY : core
 
 # clean rule for target.
-clean: src/CMakeFiles/xipoint_main.dir/clean
+src/CMakeFiles/core.dir/clean:
+	$(MAKE) -f src/CMakeFiles/core.dir/build.make src/CMakeFiles/core.dir/clean
+.PHONY : src/CMakeFiles/core.dir/clean
+
+# clean rule for target.
+clean: src/CMakeFiles/core.dir/clean
 
 .PHONY : clean
 
@@ -171,11 +171,12 @@ tests/preinstall: googletest-build/preinstall
 # Target rules for target tests/CMakeFiles/runUnitTests.dir
 
 # All Build rule for target.
+tests/CMakeFiles/runUnitTests.dir/all: src/CMakeFiles/core.dir/all
 tests/CMakeFiles/runUnitTests.dir/all: googletest-build/googlemock/CMakeFiles/gmock.dir/all
 tests/CMakeFiles/runUnitTests.dir/all: googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f tests/CMakeFiles/runUnitTests.dir/build.make tests/CMakeFiles/runUnitTests.dir/depend
 	$(MAKE) -f tests/CMakeFiles/runUnitTests.dir/build.make tests/CMakeFiles/runUnitTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=9,10 "Built target runUnitTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=12,13 "Built target runUnitTests"
 .PHONY : tests/CMakeFiles/runUnitTests.dir/all
 
 # Include target in all.
@@ -185,7 +186,7 @@ all: tests/CMakeFiles/runUnitTests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/runUnitTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/runUnitTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles 0
 .PHONY : tests/CMakeFiles/runUnitTests.dir/rule
@@ -1149,7 +1150,7 @@ googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: googletest-build/goog
 googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make googletest-build/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=6,7 "Built target gmock_main"
 .PHONY : googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1181,7 +1182,7 @@ clean: googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean
 googletest-build/googlemock/CMakeFiles/gmock.dir/all: googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f googletest-build/googlemock/CMakeFiles/gmock.dir/build.make googletest-build/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f googletest-build/googlemock/CMakeFiles/gmock.dir/build.make googletest-build/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=4,5 "Built target gmock"
 .PHONY : googletest-build/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1233,7 +1234,7 @@ googletest-build/googlemock/gtest/preinstall:
 googletest-build/googlemock/gtest/CMakeFiles/gtest_main.dir/all: googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f googletest-build/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make googletest-build/googlemock/gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f googletest-build/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make googletest-build/googlemock/gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=10,11 "Built target gtest_main"
 .PHONY : googletest-build/googlemock/gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1265,7 +1266,7 @@ clean: googletest-build/googlemock/gtest/CMakeFiles/gtest_main.dir/clean
 googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/build.make googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/build.make googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/CMakeFiles --progress-num=8,9 "Built target gtest"
 .PHONY : googletest-build/googlemock/gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.

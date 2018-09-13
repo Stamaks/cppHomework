@@ -16,7 +16,7 @@
 /// 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 
 #include "../src/xipoint.h"
@@ -28,6 +28,15 @@ TEST(XiPoint, simplest)
     Point p1;
     Point p2(1, 1);
 }
+//
+//TEST_CASE(){
+//    using namespace xi;
+//
+//    Point p1;
+//    Point p2(1, 1);
+//
+//    REQUIRE(p2.getX() == 1);
+//}
 
 
 TEST(XiPoint, constructorDef)
@@ -98,5 +107,10 @@ TEST(XiPoint, dist)
     EXPECT_EQ(3, p1.dist(p2));
     EXPECT_EQ(4, p1.dist(p3));
     EXPECT_EQ(5, p2.dist(p3));
+}
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
 

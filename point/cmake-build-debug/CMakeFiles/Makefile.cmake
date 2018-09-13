@@ -81,7 +81,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "src/CMakeFiles/xipoint_main.dir/DependInfo.cmake"
+  "src/CMakeFiles/core.dir/DependInfo.cmake"
   "tests/CMakeFiles/runUnitTests.dir/DependInfo.cmake"
   "tests/CMakeFiles/ContinuousSubmit.dir/DependInfo.cmake"
   "tests/CMakeFiles/ContinuousCoverage.dir/DependInfo.cmake"
