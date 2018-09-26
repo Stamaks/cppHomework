@@ -1,0 +1,1 @@
+/usr/bin/c++         -std=gnu++11 -DWINVER=0x0500 -g  -rdynamic CMakeFiles/safe_array_main.dir/main.cpp.o CMakeFiles/safe_array_main.dir/subject.cpp.o  -o safe_array_main 
