@@ -35,8 +35,13 @@ std::ostream& operator<<(std::ostream& outs, const Subject& subj)
 
 std::istream& operator>>(std::istream& ins, Subject& subj)
 {
-    // TODO: здесь необходимо дописать реализацию метода
-
+    for (int i = 0; i < 10; ++i) {
+        ins >> subj.description[i];
+        if (subj.description[i] == "")
+        {
+            break;
+        }
+    }
 
     return ins;
 }
