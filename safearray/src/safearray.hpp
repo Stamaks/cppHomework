@@ -60,7 +60,7 @@ namespace xi {
     T &SafeArray<T>::operator[](size_t k)
     {
         checkBounds(k);
-        return *this->_storage[k];
+        return &this->_storage[k];
     }
 
     template<typename T>

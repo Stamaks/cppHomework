@@ -37,6 +37,7 @@ std::istream& operator>>(std::istream& ins, Subject& subj)
 {
     // TODO: здесь необходимо дописать реализацию метода
 
+
     return ins;
 }
 
