@@ -30,9 +30,27 @@ namespace xi {
         this->_capacity = cap;
     }
 
+    template <typename T>
+    SafeArray<T>::SafeArray(const SafeArray &arr)
+    {
+        //TODO: delete
+        std::cout << "Вызван конструктор копирования";
+
+        this->_storage = new T[arr.getCapacity()];
+        this->_capacity = arr.getCapacity();
+
+        for (int i = 0; i < arr.getCapacity(); i++)
+        {
+            this->_storage[i] = arr[i];
+        }
+    }
+
     template<typename T>
     SafeArray<T>::~SafeArray()
     {
+        //TODO: delete
+        std::cout << "Вызван десруктор";
+
         delete [] this->_storage;
         this->_storage = nullptr;
         this->_capacity = 0;
@@ -41,21 +59,29 @@ namespace xi {
     template<typename T>
     T &SafeArray<T>::operator[](size_t k)
     {
-        if (k >= _capacity)
-            throw std::out_of_range("Out of range exception.");
+        checkBounds(k);
         return *this->_storage[k];
     }
 
     template<typename T>
     const T &SafeArray<T>::operator[](size_t k) const
     {
-        if (k >= _capacity)
-            throw std::out_of_range("Out of range exception.");
+       checkBounds(k);
         return &this->_storage;
     }
 
+    template<typename T>
+    size_t SafeArray<T>::getCapacity() const
+    {
+        return this->_capacity;
+    }
 
+    template<typename T>
+    void SafeArray<T>::checkBounds(size_t index) const
+    {
+        if (index >= this->_capacity)
+            throw std::out_of_range("Out of range exception.");
+    }
 
-// TODO: реализуйте остальные методы по образцу выше
 
 } // namespace xi

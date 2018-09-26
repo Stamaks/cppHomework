@@ -47,7 +47,9 @@ public:
      * \param[in] cap Размер (емкость) массива.
      */
     SafeArray(size_t cap);
-    
+
+
+    SafeArray(const SafeArray &arr);
 
     // TODO: не забудьте про конструктор копирования и еще кое-что!
     
