@@ -49,7 +49,7 @@ public:
     SafeArray(size_t cap);
 
 
-    SafeArray(const SafeArray &arr);
+    SafeArray(const SafeArray& arr);
 
     // TODO: не забудьте про конструктор копирования и еще кое-что! (Оператор присвивания? Своп?)
     
@@ -68,12 +68,17 @@ public:
      * генерируется исключительная ситуация \c std::out_of_range.
      * \return Возвращает ссылку на \a k -тый элемент массива.
      */
-    T& operator[] (size_t k); 
+    T& operator[] (size_t k);
+
+    SafeArray<T>& operator= (const SafeArray<T>&  obj);
+
+    template <typename T1>
+    friend void swap(SafeArray<T1>& first, SafeArray<T1>& second);
 
 
     /** \brief Константная перегруженная версия метода Safearray::operator[].
      *
-     *  Возвращает константную ссылку на элемент, которая может находиться только в позиции \a rhv.
+     *  Возвращает константную  ссылку на элемент, которая может находиться только в позиции \a rhv.
      */
     const T& operator[] (size_t k) const;
 

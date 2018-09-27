@@ -24,9 +24,12 @@ int main()
     cout << "Hello, World!" << endl;
 
     // Simple safearray
-    SafeArray<int> sa;
+    SafeArray<int> sa(6);
 
     //system("pause");
+    SafeArray<int> sa2(6);
+
+    sa = sa2;
 
     return 0;
 }

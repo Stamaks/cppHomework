@@ -60,14 +60,14 @@ namespace xi {
     T &SafeArray<T>::operator[](size_t k)
     {
         checkBounds(k);
-        return &this->_storage[k];
+        return this->_storage[k];
     }
 
     template<typename T>
     const T &SafeArray<T>::operator[](size_t k) const
     {
-       checkBounds(k);
-        return &this->_storage;
+        checkBounds(k);
+        return this->_storage[k];
     }
 
     template<typename T>
@@ -83,5 +83,26 @@ namespace xi {
             throw std::out_of_range("Out of range exception.");
     }
 
+    template<typename T>
+    void swap(SafeArray<T>& first, SafeArray<T>& second)
+    {
+        //TODO: delete
+        std::cout << "swap" << std::endl;
+
+        std::swap(first._capacity, second._capacity);
+        std::swap(first._storage, second._storage);
+    }
+
+
+    template<typename T>
+    SafeArray<T>& SafeArray<T>::operator=(const SafeArray<T>& obj)
+    {
+        std::cout << "=" << std::endl;
+
+        SafeArray<T> temp(obj);
+        xi::swap(*this, temp);
+
+        return *this;
+    }
 
 } // namespace xi
