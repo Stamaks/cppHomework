@@ -233,10 +233,10 @@ class GTEST_API_ KilledBySignal {
 //
 // #ifdef NDEBUG
 //   // opt-mode has sideeffect visible.
-//   EXPECT_EQ(12, sideeffect);
+//   cout << (12, sideeffect);
 // #else
 //   // dbg-mode no visible sideeffect.
-//   EXPECT_EQ(0, sideeffect);
+//   cout << (0, sideeffect);
 // #endif
 // }
 //
@@ -250,7 +250,7 @@ class GTEST_API_ KilledBySignal {
 // EXPECT_DEBUG_DEATH({
 //   // Side-effects here will have an effect after this statement in
 //   // opt mode, but none in debug mode.
-//   EXPECT_EQ(12, DieInDebugOr12(&sideeffect));
+//   cout << (12, DieInDebugOr12(&sideeffect));
 // }, "death");
 //
 # ifdef NDEBUG

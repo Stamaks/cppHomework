@@ -33,9 +33,6 @@ namespace xi {
     template <typename T>
     SafeArray<T>::SafeArray(const SafeArray &arr)
     {
-        //TODO: delete
-        std::cout << "Вызван конструктор копирования";
-
         this->_storage = new T[arr.getCapacity()];
         this->_capacity = arr.getCapacity();
 
@@ -48,9 +45,6 @@ namespace xi {
     template<typename T>
     SafeArray<T>::~SafeArray()
     {
-        //TODO: delete
-        std::cout << "Вызван десруктор";
-
         delete [] this->_storage;
         this->_storage = nullptr;
         this->_capacity = 0;
@@ -86,9 +80,6 @@ namespace xi {
     template<typename T>
     void swap(SafeArray<T>& first, SafeArray<T>& second)
     {
-        //TODO: delete
-        std::cout << "swap" << std::endl;
-
         std::swap(first._capacity, second._capacity);
         std::swap(first._storage, second._storage);
     }
@@ -97,8 +88,6 @@ namespace xi {
     template<typename T>
     SafeArray<T>& SafeArray<T>::operator=(const SafeArray<T>& obj)
     {
-        std::cout << "=" << std::endl;
-
         SafeArray<T> temp(obj);
         xi::swap(*this, temp);
 

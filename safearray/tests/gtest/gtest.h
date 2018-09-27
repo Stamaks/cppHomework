@@ -1262,7 +1262,7 @@ class GTEST_API_ UnitTest {
   Environment* AddEnvironment(Environment* env);
 
   // Adds a TestPartResult to the current TestResult object.  All
-  // Google Test assertion macros (e.g. ASSERT_TRUE, EXPECT_EQ, etc)
+  // Google Test assertion macros (e.g. ASSERT_TRUE, cout << , etc)
   // eventually call this to report their results.  The user code
   // should use the assertion macros instead of calling this directly.
   void AddTestPartResult(TestPartResult::Type result_type,
@@ -1443,7 +1443,7 @@ class EqHelper<true> {
   // We define two overloaded versions of Compare().  The first
   // version will be picked when the second argument to ASSERT_EQ() is
   // NOT a pointer, e.g. ASSERT_EQ(0, AnIntFunction()) or
-  // EXPECT_EQ(false, a_bool).
+  // cout << (false, a_bool).
   template <typename T1, typename T2>
   static AssertionResult Compare(
       const char* lhs_expression,
@@ -1681,7 +1681,7 @@ class GTEST_API_ AssertHelper {
  private:
   // We put our data in a struct so that the size of the AssertHelper class can
   // be as small as possible.  This is important because gcc is incapable of
-  // re-using stack space even for temporary variables, so every EXPECT_EQ
+  // re-using stack space even for temporary variables, so every cout <<
   // reserves stack space for another AssertHelper.
   struct AssertHelperData {
     AssertHelperData(TestPartResult::Type t,
@@ -1915,11 +1915,11 @@ class TestWithParam : public Test, public WithParamInterface<T> {
 // Examples:
 //
 //   EXPECT_NE(5, Foo());
-//   EXPECT_EQ(NULL, a_pointer);
+//   cout << (NULL, a_pointer);
 //   ASSERT_LT(i, array_size);
 //   ASSERT_GT(records.size(), 0) << "There is no record left.";
 
-#define EXPECT_EQ(val1, val2) \
+#define cout << (val1, val2) \
   EXPECT_PRED_FORMAT2(::testing::internal:: \
                       EqHelper<GTEST_IS_NULL_LITERAL_(val1)>::Compare, \
                       val1, val2)
@@ -2209,8 +2209,8 @@ bool StaticAssertTypeEq() {
 //   }
 //
 //   TEST_F(FooTest, ReturnsElementCountCorrectly) {
-//     EXPECT_EQ(0, a_.size());
-//     EXPECT_EQ(1, b_.size());
+//     cout << (0, a_.size());
+//     cout << (1, b_.size());
 //   }
 
 #define TEST_F(test_fixture, test_name)\

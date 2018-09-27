@@ -6,26 +6,25 @@
       <config projectName="Point" targetName="ContinuousSubmit" />
       <config projectName="Point" targetName="NightlyConfigure" />
       <config projectName="Point" targetName="ExperimentalMemCheck" />
+      <config projectName="Point" targetName="NightlySubmit" />
       <config projectName="Point" targetName="ContinuousStart" />
       <config projectName="Point" targetName="NightlyMemCheck" />
       <config projectName="Point" targetName="ExperimentalUpdate" />
       <config projectName="Point" targetName="ContinuousMemCheck" />
       <config projectName="Point" targetName="gtest" />
-      <config projectName="Point" targetName="ExperimentalSubmit" />
       <config projectName="Point" targetName="ExperimentalTest" />
-      <config projectName="Point" targetName="gmock" />
-      <config projectName="Point" targetName="NightlyStart" />
+      <config projectName="Point" targetName="Nightly" />
+      <config projectName="Point" targetName="ExperimentalSubmit" />
       <config projectName="Point" targetName="NightlyBuild" />
       <config projectName="Point" targetName="NightlyCoverage" />
       <config projectName="Point" targetName="Continuous" />
       <config projectName="Point" targetName="ExperimentalStart" />
+      <config projectName="Point" targetName="gmock" />
       <config projectName="Point" targetName="ExperimentalCoverage" />
       <config projectName="Point" targetName="ContinuousCoverage" />
-      <config projectName="Point" targetName="Nightly" />
-      <config projectName="Point" targetName="NightlySubmit" />
+      <config projectName="Point" targetName="Experimental" />
       <config projectName="Point" targetName="ContinuousTest" />
       <config projectName="Point" targetName="ExperimentalBuild" />
-      <config projectName="Point" targetName="Experimental" />
       <config projectName="Point" targetName="ContinuousUpdate" />
       <config projectName="Point" targetName="NightlyTest" />
       <config projectName="Point" targetName="NightlyUpdate" />
@@ -33,6 +32,7 @@
       <config projectName="Point" targetName="ExperimentalConfigure" />
       <config projectName="Point" targetName="runUnitTests" />
       <config projectName="Point" targetName="gmock_main" />
+      <config projectName="Point" targetName="NightlyStart" />
       <config projectName="Point" targetName="NightlyMemoryCheck" />
       <config projectName="Point" targetName="core" />
       <config projectName="Point" targetName="gtest_main" />
@@ -46,6 +46,7 @@
   <component name="ChangeListManager">
     <list default="true" id="69ba6fb4-bd4f-4c42-917b-8dbad1f6b1a3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../safearray/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../safearray/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,12 +60,14 @@
     <session id="1517306414">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.34" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -101,7 +104,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
@@ -113,10 +116,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/xipoint.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="865">
+            <state relative-caret-position="3895">
               <caret line="205" column="28" selection-start-line="205" selection-start-column="28" selection-end-line="205" selection-end-column="28" />
               <folding>
                 <element signature="e#475#495#0" expanded="true" />
@@ -202,6 +205,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -241,7 +245,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -491,17 +494,18 @@
       <workItem from="1536756170551" duration="5845000" />
       <workItem from="1536815633587" duration="5437000" />
       <workItem from="1537518538581" duration="81000" />
+      <workItem from="1538062108738" duration="7000" />
+      <workItem from="1538062144277" duration="13000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30921000" />
+    <option name="totallyTimeSpent" value="30941000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25815368" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2642344" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -630,6 +634,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/xipoint.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3895">
+          <caret line="205" column="28" selection-start-line="205" selection-start-column="28" selection-end-line="205" selection-end-column="28" />
+          <folding>
+            <element signature="e#475#495#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/xipoint.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2166">
@@ -654,16 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xipoint.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="205" column="28" selection-start-line="205" selection-start-column="28" selection-end-line="205" selection-end-column="28" />
-          <folding>
-            <element signature="e#475#495#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

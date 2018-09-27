@@ -180,7 +180,7 @@
 //                            define themselves.
 //   GTEST_USES_SIMPLE_RE   - our own simple regex is used;
 //                            the above two are mutually exclusive.
-//   GTEST_CAN_COMPARE_NULL - accepts untyped NULL in EXPECT_EQ().
+//   GTEST_CAN_COMPARE_NULL - accepts untyped NULL in cout << ().
 
 // Misc public macros
 // ------------------
@@ -1856,12 +1856,12 @@ class ThreadWithParam : public ThreadWithParamBase {
 //
 //   // Thread 2
 //   tl.set(150);  // Changes the value for thread 2 only.
-//   EXPECT_EQ(150, tl.get());
+//   cout << (150, tl.get());
 //
 //   // Thread 1
-//   EXPECT_EQ(100, tl.get());  // In thread 1, tl has the original value.
+//   cout << (100, tl.get());  // In thread 1, tl has the original value.
 //   tl.set(200);
-//   EXPECT_EQ(200, tl.get());
+//   cout << (200, tl.get());
 //
 // The template type argument T must have a public copy constructor.
 // In addition, the default ThreadLocal constructor requires T to have

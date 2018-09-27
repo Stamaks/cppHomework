@@ -4130,7 +4130,7 @@ Environment* UnitTest::AddEnvironment(Environment* env) {
 }
 
 // Adds a TestPartResult to the current TestResult object.  All Google Test
-// assertion macros (e.g. ASSERT_TRUE, EXPECT_EQ, etc) eventually call
+// assertion macros (e.g. ASSERT_TRUE, cout << , etc) eventually call
 // this to report their results.  The user code should use the
 // assertion macros instead of calling this directly.
 void UnitTest::AddTestPartResult(
