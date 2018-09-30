@@ -9,7 +9,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/stamaks/CLionProjects/Inst/stackmachine/tests/gtest/gtest-all.cc" "/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.o"
   "/home/stamaks/CLionProjects/Inst/stackmachine/tests/gtest/gtest_main.cc" "/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.o"
   "/home/stamaks/CLionProjects/Inst/stackmachine/tests/int_stack_test.cpp" "/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests/CMakeFiles/tests.dir/int_stack_test.cpp.o"
-  "/home/stamaks/CLionProjects/Inst/stackmachine/tests/stack_machine_test.cpp" "/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests/CMakeFiles/tests.dir/stack_machine_test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

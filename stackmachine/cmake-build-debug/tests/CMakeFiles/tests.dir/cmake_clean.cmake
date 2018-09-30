@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tests.dir/int_stack_test.cpp.o"
-  "CMakeFiles/tests.dir/stack_machine_test.cpp.o"
   "CMakeFiles/tests.dir/__/src/int_stack.cpp.o"
   "CMakeFiles/tests.dir/__/src/stack_machine.cpp.o"
   "CMakeFiles/tests.dir/gtest/gtest-all.cc.o"

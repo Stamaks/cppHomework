@@ -162,9 +162,6 @@
 		<Unit filename="/home/stamaks/CLionProjects/Inst/stackmachine/tests/int_stack_test.cpp">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/Inst/stackmachine/tests/stack_machine_test.cpp">
-			<Option target="tests"/>
-		</Unit>
 		<Unit filename="/home/stamaks/CLionProjects/Inst/stackmachine/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

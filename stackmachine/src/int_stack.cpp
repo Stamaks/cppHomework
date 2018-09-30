@@ -74,7 +74,7 @@ namespace xi {
 
     bool IntStack::isFull() const
     {
-        return this->_head != 0;
+        return this->_head == this->_ssize;
     }
 
 

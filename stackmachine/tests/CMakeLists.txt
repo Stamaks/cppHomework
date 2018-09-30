@@ -5,7 +5,7 @@ include_directories(.)
 add_executable(tests
     # test sources
     int_stack_test.cpp
-    stack_machine_test.cpp
+#    stack_machine_test.cpp
     # task sources
     ../src/int_stack.cpp
     ../src/int_stack.h

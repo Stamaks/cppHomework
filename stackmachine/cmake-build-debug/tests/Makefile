@@ -260,33 +260,6 @@ int_stack_test.cpp.s:
 	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/int_stack_test.cpp.s
 .PHONY : int_stack_test.cpp.s
 
-stack_machine_test.o: stack_machine_test.cpp.o
-
-.PHONY : stack_machine_test.o
-
-# target to build an object file
-stack_machine_test.cpp.o:
-	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/stack_machine_test.cpp.o
-.PHONY : stack_machine_test.cpp.o
-
-stack_machine_test.i: stack_machine_test.cpp.i
-
-.PHONY : stack_machine_test.i
-
-# target to preprocess a source file
-stack_machine_test.cpp.i:
-	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/stack_machine_test.cpp.i
-.PHONY : stack_machine_test.cpp.i
-
-stack_machine_test.s: stack_machine_test.cpp.s
-
-.PHONY : stack_machine_test.s
-
-# target to generate assembly for a file
-stack_machine_test.cpp.s:
-	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/stack_machine_test.cpp.s
-.PHONY : stack_machine_test.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -311,9 +284,6 @@ help:
 	@echo "... int_stack_test.o"
 	@echo "... int_stack_test.i"
 	@echo "... int_stack_test.s"
-	@echo "... stack_machine_test.o"
-	@echo "... stack_machine_test.i"
-	@echo "... stack_machine_test.s"
 .PHONY : help
 
 

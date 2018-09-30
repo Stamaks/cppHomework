@@ -1,0 +1,3 @@
+/home/stamaks/CLionProjects/Inst/stackmachine/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/stamaks/CLionProjects/Inst/stackmachine/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/stamaks/CLionProjects/Inst/stackmachine/src/cmake-build-debug/CMakeFiles/stack_machine_main.dir

@@ -70,22 +70,9 @@ tests/CMakeFiles/tests.dir/int_stack_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/int_stack_test.cpp.s"
 	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stamaks/CLionProjects/Inst/stackmachine/tests/int_stack_test.cpp -o CMakeFiles/tests.dir/int_stack_test.cpp.s
 
-tests/CMakeFiles/tests.dir/stack_machine_test.cpp.o: tests/CMakeFiles/tests.dir/flags.make
-tests/CMakeFiles/tests.dir/stack_machine_test.cpp.o: ../tests/stack_machine_test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/tests.dir/stack_machine_test.cpp.o"
-	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/stack_machine_test.cpp.o -c /home/stamaks/CLionProjects/Inst/stackmachine/tests/stack_machine_test.cpp
-
-tests/CMakeFiles/tests.dir/stack_machine_test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/stack_machine_test.cpp.i"
-	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stamaks/CLionProjects/Inst/stackmachine/tests/stack_machine_test.cpp > CMakeFiles/tests.dir/stack_machine_test.cpp.i
-
-tests/CMakeFiles/tests.dir/stack_machine_test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/stack_machine_test.cpp.s"
-	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stamaks/CLionProjects/Inst/stackmachine/tests/stack_machine_test.cpp -o CMakeFiles/tests.dir/stack_machine_test.cpp.s
-
 tests/CMakeFiles/tests.dir/__/src/int_stack.cpp.o: tests/CMakeFiles/tests.dir/flags.make
 tests/CMakeFiles/tests.dir/__/src/int_stack.cpp.o: ../src/int_stack.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/tests.dir/__/src/int_stack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/tests.dir/__/src/int_stack.cpp.o"
 	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/__/src/int_stack.cpp.o -c /home/stamaks/CLionProjects/Inst/stackmachine/src/int_stack.cpp
 
 tests/CMakeFiles/tests.dir/__/src/int_stack.cpp.i: cmake_force
@@ -98,7 +85,7 @@ tests/CMakeFiles/tests.dir/__/src/int_stack.cpp.s: cmake_force
 
 tests/CMakeFiles/tests.dir/__/src/stack_machine.cpp.o: tests/CMakeFiles/tests.dir/flags.make
 tests/CMakeFiles/tests.dir/__/src/stack_machine.cpp.o: ../src/stack_machine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/tests.dir/__/src/stack_machine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/tests.dir/__/src/stack_machine.cpp.o"
 	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/__/src/stack_machine.cpp.o -c /home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.cpp
 
 tests/CMakeFiles/tests.dir/__/src/stack_machine.cpp.i: cmake_force
@@ -111,7 +98,7 @@ tests/CMakeFiles/tests.dir/__/src/stack_machine.cpp.s: cmake_force
 
 tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.o: tests/CMakeFiles/tests.dir/flags.make
 tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.o: ../tests/gtest/gtest-all.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.o"
 	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/gtest/gtest-all.cc.o -c /home/stamaks/CLionProjects/Inst/stackmachine/tests/gtest/gtest-all.cc
 
 tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.i: cmake_force
@@ -124,7 +111,7 @@ tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.s: cmake_force
 
 tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.o: tests/CMakeFiles/tests.dir/flags.make
 tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.o: ../tests/gtest/gtest_main.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.o"
 	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/gtest/gtest_main.cc.o -c /home/stamaks/CLionProjects/Inst/stackmachine/tests/gtest/gtest_main.cc
 
 tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.i: cmake_force
@@ -138,7 +125,6 @@ tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.s: cmake_force
 # Object files for target tests
 tests_OBJECTS = \
 "CMakeFiles/tests.dir/int_stack_test.cpp.o" \
-"CMakeFiles/tests.dir/stack_machine_test.cpp.o" \
 "CMakeFiles/tests.dir/__/src/int_stack.cpp.o" \
 "CMakeFiles/tests.dir/__/src/stack_machine.cpp.o" \
 "CMakeFiles/tests.dir/gtest/gtest-all.cc.o" \
@@ -148,14 +134,13 @@ tests_OBJECTS = \
 tests_EXTERNAL_OBJECTS =
 
 tests/tests: tests/CMakeFiles/tests.dir/int_stack_test.cpp.o
-tests/tests: tests/CMakeFiles/tests.dir/stack_machine_test.cpp.o
 tests/tests: tests/CMakeFiles/tests.dir/__/src/int_stack.cpp.o
 tests/tests: tests/CMakeFiles/tests.dir/__/src/stack_machine.cpp.o
 tests/tests: tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.o
 tests/tests: tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.o
 tests/tests: tests/CMakeFiles/tests.dir/build.make
 tests/tests: tests/CMakeFiles/tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable tests"
 	cd /home/stamaks/CLionProjects/Inst/stackmachine/cmake-build-debug/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
