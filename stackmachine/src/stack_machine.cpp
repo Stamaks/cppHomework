@@ -45,11 +45,68 @@ IOperation::Arity PlusOp::getArity() const
 
 
 //==============================================================================
+// class MultOp
+//==============================================================================
+
+
+int MultOp::operation(char op, int a, int b, int /*c*/)
+{
+    if(op != '*')
+        throw std::logic_error("Operation other than Mult (*) are not supported");
+
+    return a * b;
+}
+
+IOperation::Arity MultOp::getArity() const
+{
+    return arDue;
+}
+
+//==============================================================================
+// class MultOp
+//==============================================================================
+
+
+int ChoiceOp::operation(char op, int a, int b, int c)
+{
+    if(op != '?')
+        throw std::logic_error("Operation other than Mult (*) are not supported");
+
+    return a ? b : c;
+}
+
+IOperation::Arity ChoiceOp::getArity() const
+{
+    return arTre;
+}
+
+
+//==============================================================================
+// class MultOp
+//==============================================================================
+
+
+int SigChangeOp::operation(char op, int a, int /*b*/, int /*c*/)
+{
+    if(op != '!')
+        throw std::logic_error("Operation other than Mult (*) are not supported");
+
+    return -a;
+}
+
+IOperation::Arity SigChangeOp::getArity() const
+{
+    return arUno;
+}
+
+
+//==============================================================================
 // class StackMachine
 //==============================================================================
 
 
-// TODO: put StackMachine methods implementation here
+void StackMachine::registerOperation(char symb, IOperation *oper)
+{
 
-
+}
 } // namespace xi

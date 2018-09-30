@@ -103,8 +103,10 @@ class MinusOp : public IOperation {
 
 #ifdef MULT_OP
 class MultOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
-};
+public:
+    virtual int operation(char op, int a, int b, int c) override;
+    virtual Arity getArity() const override;
+}; // class MultOp
 #endif
 
 #ifdef DIV_OP
@@ -115,8 +117,10 @@ class DivOp : public IOperation {
 
 #ifdef CHOICE_OP
 class ChoiceOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
-};
+public:
+    virtual int operation(char op, int a, int b, int c) override;
+    virtual Arity getArity() const override;
+}; // class ChoiceOp
 #endif
 
 #ifdef ASSIGN_OP
@@ -127,8 +131,10 @@ class AssignOp : public IOperation {
 
 #ifdef SIG_CHANGE_OP
 class SigChangeOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
-};
+public:
+    virtual int operation(char op, int a, int b, int c) override;
+    virtual Arity getArity() const override;
+}; // class SigChangeOp
 #endif
 
 #ifdef INVER_OP
