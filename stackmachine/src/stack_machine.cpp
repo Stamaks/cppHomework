@@ -189,6 +189,10 @@ int StackMachine::calculate(const std::string &expr, bool clearStack)
                     break;
             }
         }
+        else
+        {
+            throw std::logic_error("Something wrong!");
+        }
     }
 
     return _s.top();
@@ -197,13 +201,19 @@ int StackMachine::calculate(const std::string &expr, bool clearStack)
 
 bool StackMachine::castToInt(std::string &token, int &out)
 {
-    try
+    for (int i = 0; i < token.length(); i++)
     {
-        out = std::stoi(token);
-    } catch (std::invalid_argument)
-    {
-        return false;
+        try
+        {
+            std::stoi(token[i] + "");
+        }
+        catch (std::invalid_argument)
+        {
+            return false;
+        }
     }
+
+    out = std::stoi(token);
 
     return true;
 }

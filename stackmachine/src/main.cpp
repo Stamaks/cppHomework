@@ -58,7 +58,11 @@ void testStack()
     }
     assert(exc);
 
-    //int b = 0;
+    assert(s.top() == xi::IntStack::STACK_SIZE-1);
+    assert(s.isFull());
+    s.clear();
+    assert(s.isEmpty());
+
 }
 
 void testStackMachine()
@@ -77,10 +81,13 @@ void testStackMachine()
     xi::ChoiceOp co;
     sm.registerOperation('?', &co);
 
+    cout << sm.calculate("7 #");
+
+
     //int res = sm.calculate("15 10 +");
-    int res = sm.calculate("7 ! 8 10 ");
+    int res = sm.calculate("7 8 7 8 ? +");
     int r1 = sm.getStack().top();
-    int test = 73;
+    int test = 14;
     assert(res == test);
     assert(r1 == test);
 #endif // PLUS_OP
