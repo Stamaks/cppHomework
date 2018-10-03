@@ -12,6 +12,7 @@
 #include "stack_machine.h"
 
 #include <vector>
+#include <list>
 #include <sstream>
 #include <iostream>
 #include <stdlib.h>
@@ -70,7 +71,7 @@ IOperation::Arity MultOp::getArity() const
 int ChoiceOp::operation(char op, int a, int b, int c)
 {
     if(op != '?')
-        throw std::logic_error("Operation other than Mult (*) are not supported");
+        throw std::logic_error("Operation other than ChoiceOp (?) are not supported");
 
     return a ? b : c;
 }
@@ -89,7 +90,7 @@ IOperation::Arity ChoiceOp::getArity() const
 int SigChangeOp::operation(char op, int a, int /*b*/, int /*c*/)
 {
     if(op != '!')
-        throw std::logic_error("Operation other than Mult (*) are not supported");
+        throw std::logic_error("Operation other than SigChangeOp (!) are not supported");
 
     return -a;
 }
@@ -107,6 +108,72 @@ IOperation::Arity SigChangeOp::getArity() const
 
 void StackMachine::registerOperation(char symb, IOperation *oper)
 {
+    SymbolToOperMapConstIter iter = _opers.find(symb);
+    if (iter != _opers.end())
+        throw std::logic_error("An operation is already registered!");
 
+    _opers[symb] = oper;
+}
+
+IOperation *StackMachine::getOperation(char symb)
+{
+    SymbolToOperMapConstIter iter = _opers.find(symb);
+    if (iter == _opers.end())
+        return nullptr;
+
+    return _opers[symb];
+}
+
+int StackMachine::calculate(const std::string &expr, bool clearStack)
+{
+    std::string current = "";
+    std::list<std::string> tokens;
+    for (int i = 0; i < expr.length(); ++i)
+    {
+        if (expr[i] == ' ')
+        {
+            if (current != "")
+                tokens.push_back(current);
+            current = "";
+        }
+        else
+        {
+            current += expr[i];
+        }
+    }
+    if (current != "")
+        tokens.push_back(current);
+
+    std::string currentToken = "";
+    int currentNumber;
+    for (int i = 0; i < tokens.size(); ++i)
+    {
+        currentToken = tokens.front();
+
+        if (castToInt(currentToken, currentNumber))
+        {
+            _s.push(currentNumber);
+        }
+        else if (getOperation(currentToken[0]) != nullptr)
+        {
+            // Достаем операцию и операнды
+            if (getOperation(currentToken[0])->getArity() == 0)
+        }
+
+    }
+
+}
+
+bool StackMachine::castToInt(std::string &token, int &out)
+{
+    try
+    {
+        out = std::stoi("");
+    } catch (std::invalid_argument)
+    {
+        return false;
+    }
+
+    return true;
 }
 } // namespace xi

@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stamaks/CLionProjects/Inst/stackmachine/src/int_stack.h
+stddef.h
+-
+
+/home/stamaks/CLionProjects/Inst/stackmachine/src/main.cpp
+iostream
+-
+assert.h
+-
+stdexcept
+-
+int_stack.h
+/home/stamaks/CLionProjects/Inst/stackmachine/src/int_stack.h
+stack_machine.h
+/home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.h
+
+/home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.cpp
+stack_machine.h
+/home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.h
+vector
+-
+list
+-
+sstream
+-
+iostream
+-
+stdlib.h
+-
+
+/home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.h
+map
+-
+int_stack.h
+/home/stamaks/CLionProjects/Inst/stackmachine/src/int_stack.h
+

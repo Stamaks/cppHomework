@@ -78,11 +78,20 @@ void testStackMachine()
 
 int main()
 {
-    cout << "Hello, World!" << endl;
-
-    testStack();
-    testStackMachine();
+//    cout << "Hello, World!" << endl;
+//
+//    testStack();
+//    testStackMachine();
 
     //_getch();
+    int t;
+    try
+    {
+        t = std::stoi("");
+    } catch (std::invalid_argument)
+    {
+        cout << "caught";
+    }
+    cout << t;
     return 0;
 }

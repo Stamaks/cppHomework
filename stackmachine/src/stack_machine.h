@@ -97,7 +97,6 @@ public:
 
 #ifdef MINUS_OP
 class MinusOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
 };
 #endif
 
@@ -201,6 +200,8 @@ public:
      *  an exception is thrown.
      */
     int calculate(const std::string& expr, bool clearStack = true);
+
+    bool castToInt(std::string &token, int &out);
 public:
 
     // sets/gets
