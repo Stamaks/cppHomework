@@ -126,6 +126,9 @@ IOperation *StackMachine::getOperation(char symb)
 
 int StackMachine::calculate(const std::string &expr, bool clearStack)
 {
+    if (clearStack)
+        _s.clear();
+
     std::string current = "";
     std::list<std::string> tokens;
     for (int i = 0; i < expr.length(); ++i)
@@ -146,9 +149,10 @@ int StackMachine::calculate(const std::string &expr, bool clearStack)
 
     std::string currentToken = "";
     int currentNumber;
-    for (int i = 0; i < tokens.size(); ++i)
+    while (tokens.size() > 0)
     {
         currentToken = tokens.front();
+        tokens.pop_front();
 
         if (castToInt(currentToken, currentNumber))
         {
@@ -156,11 +160,38 @@ int StackMachine::calculate(const std::string &expr, bool clearStack)
         }
         else if (getOperation(currentToken[0]) != nullptr)
         {
-            // Достаем операцию и операнды
-            if (getOperation(currentToken[0])->getArity() == 0)
+            // Находим операцию, достаем нужное кол-во элементов из стека, penpineappleapplepen
+            switch (getOperation(currentToken[0])->getArity())
+            {
+                case 0: //arUno
+                {
+                    _s.push(getOperation(currentToken[0])->operation(currentToken[0], _s.pop()));
+                    break;
+                }
+                case 1: //arDue
+                {
+                    // a b - == a - b
+                    int second = _s.pop();
+                    int first = _s.pop();
+                    _s.push(getOperation(currentToken[0])->operation(currentToken[0], first, second));
+                    break;
+                }
+                case 2: //arTre
+                {
+                    // a b c ? == a ? b : c
+                    int third = _s.pop();
+                    int second = _s.pop();
+                    int first = _s.pop();
+                    _s.push(getOperation(currentToken[0])->operation(currentToken[0], first, second, third));
+                    break;
+                }
+                default:
+                    break;
+            }
         }
-
     }
+
+    return _s.top();
 
 }
 
@@ -168,7 +199,7 @@ bool StackMachine::castToInt(std::string &token, int &out)
 {
     try
     {
-        out = std::stoi("");
+        out = std::stoi(token);
     } catch (std::invalid_argument)
     {
         return false;

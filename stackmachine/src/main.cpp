@@ -68,30 +68,30 @@ void testStackMachine()
     xi::PlusOp plusop;
     sm.registerOperation('+', &plusop);
 
+    xi::MultOp mo;
+    sm.registerOperation('*', &mo);
+
+    xi::SigChangeOp sco;
+    sm.registerOperation('!', &sco);
+
+    xi::ChoiceOp co;
+    sm.registerOperation('?', &co);
+
     //int res = sm.calculate("15 10 +");
-    int res = sm.calculate("7 8 10 + +");
+    int res = sm.calculate("7 ! 8 10 ");
     int r1 = sm.getStack().top();
-    assert(res == 25);
-    assert(r1 == 25);
+    int test = 73;
+    assert(res == test);
+    assert(r1 == test);
 #endif // PLUS_OP
 }
 
 int main()
 {
-//    cout << "Hello, World!" << endl;
-//
-//    testStack();
-//    testStackMachine();
+    cout << "Hello, World!" << endl;
 
-    //_getch();
-    int t;
-    try
-    {
-        t = std::stoi("");
-    } catch (std::invalid_argument)
-    {
-        cout << "caught";
-    }
-    cout << t;
-    return 0;
+//    testStack();
+    testStackMachine();
+
+
 }

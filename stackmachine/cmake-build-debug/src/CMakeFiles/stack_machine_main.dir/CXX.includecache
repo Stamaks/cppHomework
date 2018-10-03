@@ -22,20 +22,6 @@ int_stack.h
 stack_machine.h
 /home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.h
 
-/home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.cpp
-stack_machine.h
-/home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.h
-vector
--
-list
--
-sstream
--
-iostream
--
-stdlib.h
--
-
 /home/stamaks/CLionProjects/Inst/stackmachine/src/stack_machine.h
 map
 -
