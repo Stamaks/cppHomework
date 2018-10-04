@@ -81,7 +81,7 @@ void testStackMachine()
     xi::ChoiceOp co;
     sm.registerOperation('?', &co);
 
-    cout << sm.calculate("7 #");
+//    cout << sm.calculate("7 *");
 
 
     //int res = sm.calculate("15 10 +");

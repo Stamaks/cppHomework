@@ -203,14 +203,8 @@ bool StackMachine::castToInt(std::string &token, int &out)
 {
     for (int i = 0; i < token.length(); i++)
     {
-        try
-        {
-            std::stoi(token[i] + "");
-        }
-        catch (std::invalid_argument)
-        {
+        if (!isdigit(token[i]))
             return false;
-        }
     }
 
     out = std::stoi(token);
