@@ -85,9 +85,9 @@ void testStackMachine()
 
 
     //int res = sm.calculate("15 10 +");
-    int res = sm.calculate("7 8 7 8 ? +");
+    int res = sm.calculate("7 8 -7 8 ? +");
     int r1 = sm.getStack().top();
-    int test = 14;
+    int test = 0;
     assert(res == test);
     assert(r1 == test);
 #endif // PLUS_OP

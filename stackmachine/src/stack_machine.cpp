@@ -203,7 +203,8 @@ bool StackMachine::castToInt(std::string &token, int &out)
 {
     for (int i = 0; i < token.length(); i++)
     {
-        if (!isdigit(token[i]))
+        // Проверка на странные символы (кроме минуса) и буквы. Если они есть - это не хорошо :с
+        if (!isdigit(token[i]) && token[i] != '-')
             return false;
     }
 
