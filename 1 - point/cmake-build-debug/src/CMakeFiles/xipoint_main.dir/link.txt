@@ -1,0 +1,1 @@
+/usr/bin/c++         -std=gnu++11 -DWINVER=0x0500 -g  -rdynamic CMakeFiles/xipoint_main.dir/main.cpp.o CMakeFiles/xipoint_main.dir/xipoint.cpp.o  -o xipoint_main 

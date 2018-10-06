@@ -1,0 +1,1 @@
+/usr/bin/c++         -std=gnu++11 -DWINVER=0x0500 -g  -rdynamic CMakeFiles/tests.dir/int_stack_test.cpp.o CMakeFiles/tests.dir/__/src/int_stack.cpp.o CMakeFiles/tests.dir/__/src/stack_machine.cpp.o CMakeFiles/tests.dir/gtest/gtest-all.cc.o CMakeFiles/tests.dir/gtest/gtest_main.cc.o  -o tests -lpthread 

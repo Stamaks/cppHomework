@@ -1,0 +1,1 @@
+/usr/bin/c++         -std=gnu++11 -DWINVER=0x0500 -g  -rdynamic CMakeFiles/stack_machine_main.dir/main.cpp.o CMakeFiles/stack_machine_main.dir/int_stack.cpp.o CMakeFiles/stack_machine_main.dir/stack_machine.cpp.o  -o stack_machine_main 
