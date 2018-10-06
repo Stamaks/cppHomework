@@ -1,3 +1,0 @@
-/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/googletest-download/CMakeFiles/rebuild_cache.dir
-/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/googletest-download/CMakeFiles/edit_cache.dir
-/home/stamaks/CLionProjects/Inst/point/cmake-build-debug/googletest-download/CMakeFiles/googletest-download.dir
