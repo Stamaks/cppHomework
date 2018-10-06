@@ -1,0 +1,1 @@
+/usr/bin/c++         -std=gnu++11 -DWINVER=0x0500 -g  -rdynamic CMakeFiles/nice_main.dir/main.cpp.o  -o nice_main 

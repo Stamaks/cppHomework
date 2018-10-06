@@ -1,0 +1,3 @@
+/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles/tests.dir
