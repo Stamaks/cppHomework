@@ -1,4 +1,4 @@
-# Install script for directory: /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud
+# Install script for directory: /home/stamaks/CLionProjects/Inst/4 - nicequeue
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/src/cmake_install.cmake")
-  include("/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/tests/cmake_install.cmake")
+  include("/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/src/cmake_install.cmake")
+  include("/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/tests/cmake_install.cmake")
 
 endif()
 
@@ -52,5 +52,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

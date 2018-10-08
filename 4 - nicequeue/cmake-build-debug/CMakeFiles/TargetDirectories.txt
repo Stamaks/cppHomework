@@ -1,8 +1,8 @@
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/src/CMakeFiles/edit_cache.dir
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/src/CMakeFiles/nice_main.dir
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/tests/CMakeFiles/edit_cache.dir
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/tests/CMakeFiles/rebuild_cache.dir
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/tests/CMakeFiles/tests.dir
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/src/CMakeFiles/edit_cache.dir
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/src/CMakeFiles/nice_main.dir
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/tests/CMakeFiles/edit_cache.dir
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/tests/CMakeFiles/rebuild_cache.dir
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/tests/CMakeFiles/tests.dir

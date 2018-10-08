@@ -6,5 +6,5 @@ CXX_FLAGS =        -std=gnu++11 -DWINVER=0x0500 -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/../src -I/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/. 
+CXX_INCLUDES = -I"/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/../src" -I"/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/." 
 

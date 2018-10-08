@@ -38,7 +38,8 @@ T NiceQueue<T>::deq()
 
     if (_outStack.size() == 0)
     {
-        for (int i = 0; i < _inStack.size(); i++)
+        size_t currentInStackSize = _inStack.size();
+        for (int i = 0; i < currentInStackSize; i++)
         {
             _outStack.push(_inStack.pop());
         }

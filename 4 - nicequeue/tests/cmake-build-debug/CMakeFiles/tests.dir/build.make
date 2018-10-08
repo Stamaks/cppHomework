@@ -43,10 +43,10 @@ RM = /opt/clion-2018.2/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests
+CMAKE_SOURCE_DIR = "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tests.dir/depend.make
@@ -59,55 +59,55 @@ include CMakeFiles/tests.dir/flags.make
 
 CMakeFiles/tests.dir/nice_stack_test.o: CMakeFiles/tests.dir/flags.make
 CMakeFiles/tests.dir/nice_stack_test.o: ../nice_stack_test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tests.dir/nice_stack_test.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/nice_stack_test.o -c /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_stack_test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tests.dir/nice_stack_test.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/nice_stack_test.o -c "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_stack_test.cpp"
 
 CMakeFiles/tests.dir/nice_stack_test.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/nice_stack_test.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_stack_test.cpp > CMakeFiles/tests.dir/nice_stack_test.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_stack_test.cpp" > CMakeFiles/tests.dir/nice_stack_test.i
 
 CMakeFiles/tests.dir/nice_stack_test.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/nice_stack_test.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_stack_test.cpp -o CMakeFiles/tests.dir/nice_stack_test.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_stack_test.cpp" -o CMakeFiles/tests.dir/nice_stack_test.s
 
 CMakeFiles/tests.dir/nice_queue_test.o: CMakeFiles/tests.dir/flags.make
 CMakeFiles/tests.dir/nice_queue_test.o: ../nice_queue_test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tests.dir/nice_queue_test.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/nice_queue_test.o -c /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_queue_test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tests.dir/nice_queue_test.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/nice_queue_test.o -c "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_queue_test.cpp"
 
 CMakeFiles/tests.dir/nice_queue_test.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/nice_queue_test.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_queue_test.cpp > CMakeFiles/tests.dir/nice_queue_test.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_queue_test.cpp" > CMakeFiles/tests.dir/nice_queue_test.i
 
 CMakeFiles/tests.dir/nice_queue_test.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/nice_queue_test.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_queue_test.cpp -o CMakeFiles/tests.dir/nice_queue_test.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_queue_test.cpp" -o CMakeFiles/tests.dir/nice_queue_test.s
 
 CMakeFiles/tests.dir/gtest/gtest-all.o: CMakeFiles/tests.dir/flags.make
 CMakeFiles/tests.dir/gtest/gtest-all.o: ../gtest/gtest-all.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tests.dir/gtest/gtest-all.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/gtest/gtest-all.o -c /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest-all.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tests.dir/gtest/gtest-all.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/gtest/gtest-all.o -c "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest-all.cc"
 
 CMakeFiles/tests.dir/gtest/gtest-all.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/gtest/gtest-all.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest-all.cc > CMakeFiles/tests.dir/gtest/gtest-all.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest-all.cc" > CMakeFiles/tests.dir/gtest/gtest-all.i
 
 CMakeFiles/tests.dir/gtest/gtest-all.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/gtest/gtest-all.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest-all.cc -o CMakeFiles/tests.dir/gtest/gtest-all.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest-all.cc" -o CMakeFiles/tests.dir/gtest/gtest-all.s
 
 CMakeFiles/tests.dir/gtest/gtest_main.o: CMakeFiles/tests.dir/flags.make
 CMakeFiles/tests.dir/gtest/gtest_main.o: ../gtest/gtest_main.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tests.dir/gtest/gtest_main.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/gtest/gtest_main.o -c /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest_main.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tests.dir/gtest/gtest_main.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/gtest/gtest_main.o -c "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest_main.cc"
 
 CMakeFiles/tests.dir/gtest/gtest_main.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/gtest/gtest_main.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest_main.cc > CMakeFiles/tests.dir/gtest/gtest_main.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest_main.cc" > CMakeFiles/tests.dir/gtest/gtest_main.i
 
 CMakeFiles/tests.dir/gtest/gtest_main.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/gtest/gtest_main.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest_main.cc -o CMakeFiles/tests.dir/gtest/gtest_main.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest_main.cc" -o CMakeFiles/tests.dir/gtest/gtest_main.s
 
 # Object files for target tests
 tests_OBJECTS = \
@@ -125,7 +125,7 @@ tests: CMakeFiles/tests.dir/gtest/gtest-all.o
 tests: CMakeFiles/tests.dir/gtest/gtest_main.o
 tests: CMakeFiles/tests.dir/build.make
 tests: CMakeFiles/tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable tests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -138,6 +138,6 @@ CMakeFiles/tests.dir/clean:
 .PHONY : CMakeFiles/tests.dir/clean
 
 CMakeFiles/tests.dir/depend:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles/tests.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/tests.dir/depend
 

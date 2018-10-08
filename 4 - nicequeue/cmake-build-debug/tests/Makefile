@@ -48,10 +48,10 @@ RM = /opt/clion-2018.2/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud
+CMAKE_SOURCE_DIR = "/home/stamaks/CLionProjects/Inst/4 - nicequeue"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/tests/CMakeFiles/progress.marks
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 tests/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles 0
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/tests/CMakeFiles/progress.marks"
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f CMakeFiles/Makefile2 tests/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 tests/clean
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f CMakeFiles/Makefile2 tests/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 tests/CMakeFiles/tests.dir/rule:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/tests.dir/rule
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/tests.dir/rule
 .PHONY : tests/CMakeFiles/tests.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ tests: tests/CMakeFiles/tests.dir/rule
 
 # fast build rule for target.
 tests/fast:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
 .PHONY : tests/fast
 
 gtest/gtest-all.o: gtest/gtest-all.cc.o
@@ -131,7 +131,7 @@ gtest/gtest-all.o: gtest/gtest-all.cc.o
 
 # target to build an object file
 gtest/gtest-all.cc.o:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.o
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.o
 .PHONY : gtest/gtest-all.cc.o
 
 gtest/gtest-all.i: gtest/gtest-all.cc.i
@@ -140,7 +140,7 @@ gtest/gtest-all.i: gtest/gtest-all.cc.i
 
 # target to preprocess a source file
 gtest/gtest-all.cc.i:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.i
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.i
 .PHONY : gtest/gtest-all.cc.i
 
 gtest/gtest-all.s: gtest/gtest-all.cc.s
@@ -149,7 +149,7 @@ gtest/gtest-all.s: gtest/gtest-all.cc.s
 
 # target to generate assembly for a file
 gtest/gtest-all.cc.s:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.s
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest-all.cc.s
 .PHONY : gtest/gtest-all.cc.s
 
 gtest/gtest_main.o: gtest/gtest_main.cc.o
@@ -158,7 +158,7 @@ gtest/gtest_main.o: gtest/gtest_main.cc.o
 
 # target to build an object file
 gtest/gtest_main.cc.o:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.o
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.o
 .PHONY : gtest/gtest_main.cc.o
 
 gtest/gtest_main.i: gtest/gtest_main.cc.i
@@ -167,7 +167,7 @@ gtest/gtest_main.i: gtest/gtest_main.cc.i
 
 # target to preprocess a source file
 gtest/gtest_main.cc.i:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.i
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.i
 .PHONY : gtest/gtest_main.cc.i
 
 gtest/gtest_main.s: gtest/gtest_main.cc.s
@@ -176,7 +176,7 @@ gtest/gtest_main.s: gtest/gtest_main.cc.s
 
 # target to generate assembly for a file
 gtest/gtest_main.cc.s:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.s
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/gtest/gtest_main.cc.s
 .PHONY : gtest/gtest_main.cc.s
 
 nice_queue_test.o: nice_queue_test.cpp.o
@@ -185,7 +185,7 @@ nice_queue_test.o: nice_queue_test.cpp.o
 
 # target to build an object file
 nice_queue_test.cpp.o:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_queue_test.cpp.o
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_queue_test.cpp.o
 .PHONY : nice_queue_test.cpp.o
 
 nice_queue_test.i: nice_queue_test.cpp.i
@@ -194,7 +194,7 @@ nice_queue_test.i: nice_queue_test.cpp.i
 
 # target to preprocess a source file
 nice_queue_test.cpp.i:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_queue_test.cpp.i
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_queue_test.cpp.i
 .PHONY : nice_queue_test.cpp.i
 
 nice_queue_test.s: nice_queue_test.cpp.s
@@ -203,7 +203,7 @@ nice_queue_test.s: nice_queue_test.cpp.s
 
 # target to generate assembly for a file
 nice_queue_test.cpp.s:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_queue_test.cpp.s
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_queue_test.cpp.s
 .PHONY : nice_queue_test.cpp.s
 
 nice_stack_test.o: nice_stack_test.cpp.o
@@ -212,7 +212,7 @@ nice_stack_test.o: nice_stack_test.cpp.o
 
 # target to build an object file
 nice_stack_test.cpp.o:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_stack_test.cpp.o
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_stack_test.cpp.o
 .PHONY : nice_stack_test.cpp.o
 
 nice_stack_test.i: nice_stack_test.cpp.i
@@ -221,7 +221,7 @@ nice_stack_test.i: nice_stack_test.cpp.i
 
 # target to preprocess a source file
 nice_stack_test.cpp.i:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_stack_test.cpp.i
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_stack_test.cpp.i
 .PHONY : nice_stack_test.cpp.i
 
 nice_stack_test.s: nice_stack_test.cpp.s
@@ -230,7 +230,7 @@ nice_stack_test.s: nice_stack_test.cpp.s
 
 # target to generate assembly for a file
 nice_stack_test.cpp.s:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_stack_test.cpp.s
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/nice_stack_test.cpp.s
 .PHONY : nice_stack_test.cpp.s
 
 # Help Target
@@ -265,6 +265,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

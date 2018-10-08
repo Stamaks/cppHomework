@@ -34,7 +34,7 @@ CMakeFiles/tests.dir/gtest/gtest-all.o
  .././gtest/src/gtest-test-part.cc
  .././gtest/src/gtest-typed-test.cc
  .././gtest/src/gtest.cc
- /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest-all.cc
+ /home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest-all.cc
 CMakeFiles/tests.dir/gtest/gtest_main.o
  .././gtest/gtest-death-test.h
  .././gtest/gtest-message.h
@@ -58,7 +58,7 @@ CMakeFiles/tests.dir/gtest/gtest_main.o
  .././gtest/internal/gtest-string.h
  .././gtest/internal/gtest-tuple.h
  .././gtest/internal/gtest-type-util.h
- /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest_main.cc
+ /home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest_main.cc
 CMakeFiles/tests.dir/nice_queue_test.o
  ../../src/NiceQueue.h
  ../../src/NiceQueue.hpp
@@ -86,7 +86,7 @@ CMakeFiles/tests.dir/nice_queue_test.o
  .././gtest/internal/gtest-string.h
  .././gtest/internal/gtest-tuple.h
  .././gtest/internal/gtest-type-util.h
- /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_queue_test.cpp
+ /home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_queue_test.cpp
 CMakeFiles/tests.dir/nice_stack_test.o
  ../../src/NiceStack.h
  ../../src/NiceStack.hpp
@@ -112,4 +112,4 @@ CMakeFiles/tests.dir/nice_stack_test.o
  .././gtest/internal/gtest-string.h
  .././gtest/internal/gtest-tuple.h
  .././gtest/internal/gtest-type-util.h
- /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_stack_test.cpp
+ /home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_stack_test.cpp

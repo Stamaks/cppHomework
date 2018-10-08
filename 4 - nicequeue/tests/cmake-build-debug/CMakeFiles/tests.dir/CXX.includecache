@@ -33,6 +33,8 @@ NiceStack.hpp
 ../../src/NiceStack.hpp
 
 ../../src/NiceStack.hpp
+iostream
+-
 
 .././gtest/gtest-death-test.h
 gtest/internal/gtest-death-test-internal.h
@@ -306,15 +308,15 @@ cxxabi.h
 acxx_demangle.h
 -
 
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_queue_test.cpp
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_queue_test.cpp
 gtest/gtest.h
 -
 NiceQueue.h
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/NiceQueue.h
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/NiceQueue.h
 
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_stack_test.cpp
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_stack_test.cpp
 gtest/gtest.h
 -
 NiceStack.h
-/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/NiceStack.h
+/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/NiceStack.h
 

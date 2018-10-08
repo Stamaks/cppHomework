@@ -1,3 +1,5 @@
+#include <iostream>
+
 template<class T>
 NiceStack<T>::NiceStack(size_t capacity)
 {
@@ -24,20 +26,16 @@ void NiceStack<T>::push(const T &newelement)
         throw new std::out_of_range("Index out of range!");
     }
 
-    if (_iHead == 0) {
+    // If queue is empty or new new element is less than current minimum
+    if (_iHead == 0 || newelement < this->_storage[_iHead-1].second)
+    {
         this->_storage[_iHead] = std::make_pair(newelement, newelement);
     }
     else
     {
-        if (newelement < this->_storage[_iHead-1].second)
-        {
-            this->_storage[_iHead] = std::make_pair(newelement, newelement);
-        }
-        else
-        {
-            this->_storage[_iHead] = std::make_pair(newelement, this->_storage[_iHead-1].second);
-        }
+        this->_storage[_iHead] = std::make_pair(newelement, this->_storage[_iHead-1].second);
     }
+    std::cout << "Pushed "  << (_storage[_iHead].first ) << " " <<  (_storage[_iHead].second) << std::endl;
 
     ++this->_iHead;
 }
@@ -57,13 +55,13 @@ T NiceStack<T>::pop()
 template<class T>
 const T &NiceStack<T>::top() const
 {
-    return this->_storage[this->_iHead].first;
+    return this->_storage[this->_iHead - 1].first;
 }
 
 template<class T>
 const T &NiceStack<T>::getMinimum() const
 {
-    return this->_storage[this->_iHead].second;
+    return this->_storage[this->_iHead - 1].second;
 }
 
 

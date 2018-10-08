@@ -1,4 +1,4 @@
-# Install script for directory: /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/src
+# Install script for directory: /home/stamaks/CLionProjects/Inst/4 - nicequeue/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

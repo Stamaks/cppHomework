@@ -42,7 +42,6 @@ TEST(NiceStack, pushAndTop)
     ASSERT_EQ(niceStack.top(), 5);
 }
 
-
 TEST(NiceStack, pop)
 {
     NiceStack<int> niceStack(10);

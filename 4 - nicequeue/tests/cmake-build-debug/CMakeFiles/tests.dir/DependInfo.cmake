@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest-all.cc" "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles/tests.dir/gtest/gtest-all.o"
-  "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest_main.cc" "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles/tests.dir/gtest/gtest_main.o"
-  "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_queue_test.cpp" "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles/tests.dir/nice_queue_test.o"
-  "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_stack_test.cpp" "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/CMakeFiles/tests.dir/nice_stack_test.o"
+  "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest-all.cc" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles/tests.dir/gtest/gtest-all.o"
+  "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest_main.cc" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles/tests.dir/gtest/gtest_main.o"
+  "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_queue_test.cpp" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles/tests.dir/nice_queue_test.o"
+  "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_stack_test.cpp" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles/tests.dir/nice_stack_test.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

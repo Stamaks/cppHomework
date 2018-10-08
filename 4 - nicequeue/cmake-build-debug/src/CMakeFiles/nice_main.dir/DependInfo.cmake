@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/src/main.cpp" "/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/src/CMakeFiles/nice_main.dir/main.cpp.o"
+  "/home/stamaks/CLionProjects/Inst/4 - nicequeue/src/main.cpp" "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/src/CMakeFiles/nice_main.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

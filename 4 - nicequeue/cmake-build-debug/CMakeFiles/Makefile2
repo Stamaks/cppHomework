@@ -59,10 +59,10 @@ RM = /opt/clion-2018.2/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud
+CMAKE_SOURCE_DIR = "/home/stamaks/CLionProjects/Inst/4 - nicequeue"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug"
 
 #=============================================================================
 # Directory level rules for directory src
@@ -89,7 +89,7 @@ src/preinstall:
 src/CMakeFiles/nice_main.dir/all:
 	$(MAKE) -f src/CMakeFiles/nice_main.dir/build.make src/CMakeFiles/nice_main.dir/depend
 	$(MAKE) -f src/CMakeFiles/nice_main.dir/build.make src/CMakeFiles/nice_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target nice_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles" --progress-num=1,2 "Built target nice_main"
 .PHONY : src/CMakeFiles/nice_main.dir/all
 
 # Include target in all.
@@ -99,9 +99,9 @@ all: src/CMakeFiles/nice_main.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/nice_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles" 2
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/nice_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles" 0
 .PHONY : src/CMakeFiles/nice_main.dir/rule
 
 # Convenience name for target.
@@ -144,7 +144,7 @@ tests/preinstall:
 tests/CMakeFiles/tests.dir/all:
 	$(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/depend
 	$(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles --progress-num=3,4,5,6,7 "Built target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles" --progress-num=3,4,5,6,7 "Built target tests"
 .PHONY : tests/CMakeFiles/tests.dir/all
 
 # Include target in all.
@@ -154,9 +154,9 @@ all: tests/CMakeFiles/tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles" 5
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/tests.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/stamaks/CLionProjects/Inst/4 - nicequeue/cmake-build-debug/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/tests.dir/rule
 
 # Convenience name for target.

@@ -8,44 +8,44 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug"/>
+				<Option working_dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug"/>
+				<Option working_dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug"/>
+				<Option working_dir="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="tests">
-				<Option output="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/tests" prefix_auto="0" extension_auto="0"/>
+				<Option output="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/tests" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/../src"/>
-					<Add directory="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/."/>
+					<Add directory="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/../src"/>
+					<Add directory="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/."/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -56,21 +56,21 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 tests"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="tests/fast">
-				<Option output="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/tests" prefix_auto="0" extension_auto="0"/>
+				<Option output="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/tests" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/../src"/>
-					<Add directory="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/."/>
+					<Add directory="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/../src"/>
+					<Add directory="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/."/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -81,38 +81,38 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 tests/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/stamaks/CLionProjects/Inst/4\ -\ nicequeue/tests/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/src/NiceQueue.h">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/src/NiceQueue.h">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/src/NiceQueue.hpp">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/src/NiceQueue.hpp">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/src/NiceStack.h">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/src/NiceStack.h">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/src/NiceStack.hpp">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/src/NiceStack.hpp">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest-all.cc">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest-all.cc">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/gtest/gtest_main.cc">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/gtest/gtest_main.cc">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_queue_test.cpp">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_queue_test.cpp">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/nice_stack_test.cpp">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/nice_stack_test.cpp">
 			<Option target="tests"/>
 		</Unit>
-		<Unit filename="/home/stamaks/CLionProjects/InstGitLab/part1-04-nicequeue-stud/tests/CMakeLists.txt">
+		<Unit filename="/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
