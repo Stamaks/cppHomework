@@ -51,7 +51,23 @@ T NiceQueue<T>::deq()
 template<class T>
 T NiceQueue<T>::getMinimum()
 {
-    return std::min(_inStack.getMinimum(), _outStack.getMinimum());
+    try
+    {
+        return std::min(_inStack.getMinimum(), _outStack.getMinimum());
+    }
+    catch (std::out_of_range e){}
+
+    try
+    {
+        return _inStack.getMinimum();
+    }
+    catch (std::out_of_range e){}
+
+    try
+    {
+        _outStack.getMinimum();
+    }
+    catch (std::out_of_range e){}
 }
 
 

@@ -15,53 +15,58 @@ NiceStack<T>::~NiceStack() {}
 template<class T>
 size_t NiceStack<T>::size() const
 {
-    return this->_iHead;
+    return _iHead;
 }
 
 template<class T>
 void NiceStack<T>::push(const T &newelement)
 {
-    if (this->_iHead == this->_capacity)
+    if (_iHead == _capacity)
     {
         throw new std::out_of_range("Index out of range!");
     }
 
     // If queue is empty or new new element is less than current minimum
-    if (_iHead == 0 || newelement < this->_storage[_iHead-1].second)
+    if (_iHead == 0 || newelement < _storage[_iHead-1].second)
     {
-        this->_storage[_iHead] = std::make_pair(newelement, newelement);
+        _storage[_iHead] = std::make_pair(newelement, newelement);
     }
     else
     {
-        this->_storage[_iHead] = std::make_pair(newelement, this->_storage[_iHead-1].second);
+        _storage[_iHead] = std::make_pair(newelement, _storage[_iHead-1].second);
     }
     std::cout << "Pushed "  << (_storage[_iHead].first ) << " " <<  (_storage[_iHead].second) << std::endl;
 
-    ++this->_iHead;
+    ++_iHead;
 }
 
 template<class T>
 T NiceStack<T>::pop()
 {
-    if (this->_iHead == 0)
+    if (_iHead == 0)
     {
         throw new std::out_of_range("Index out of range!");
     }
 
-    --this->_iHead;     
-    return this->_storage[this->_iHead].first;
+    --_iHead;
+    return _storage[_iHead].first;
 }
 
 template<class T>
 const T &NiceStack<T>::top() const
 {
-    return this->_storage[this->_iHead - 1].first;
+    return _storage[_iHead - 1].first;
 }
 
 template<class T>
 const T &NiceStack<T>::getMinimum() const
 {
-    return this->_storage[this->_iHead - 1].second;
+    if (_iHead == 0)
+        throw std::out_of_range("Can't get min!");
+
+    std::cout << _iHead << std::endl;
+    std::cout << "storage [_iHead - 1]" << _storage[_iHead - 1].second << std::endl;
+    return _storage[_iHead - 1].second;
 }
 
 
