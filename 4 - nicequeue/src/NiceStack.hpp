@@ -23,7 +23,7 @@ void NiceStack<T>::push(const T &newelement)
 {
     if (_iHead == _capacity)
     {
-        throw new std::out_of_range("Index out of range!");
+        throw std::out_of_range("Index out of range!");
     }
 
     // If queue is empty or new new element is less than current minimum
@@ -35,7 +35,6 @@ void NiceStack<T>::push(const T &newelement)
     {
         _storage[_iHead] = std::make_pair(newelement, _storage[_iHead-1].second);
     }
-    std::cout << "Pushed "  << (_storage[_iHead].first ) << " " <<  (_storage[_iHead].second) << std::endl;
 
     ++_iHead;
 }
@@ -64,8 +63,6 @@ const T &NiceStack<T>::getMinimum() const
     if (_iHead == 0)
         throw std::out_of_range("Can't get min!");
 
-    std::cout << _iHead << std::endl;
-    std::cout << "storage [_iHead - 1]" << _storage[_iHead - 1].second << std::endl;
     return _storage[_iHead - 1].second;
 }
 

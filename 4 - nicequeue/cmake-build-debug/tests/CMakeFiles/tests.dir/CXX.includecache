@@ -17,8 +17,6 @@ NiceQueue.hpp
 ../tests/../src/NiceQueue.hpp
 algorithm
 -
-NiceStack.h
-../tests/../src/NiceStack.h
 
 ../tests/../src/NiceStack.h
 string

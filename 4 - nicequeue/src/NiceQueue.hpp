@@ -1,7 +1,5 @@
 #include <algorithm>
 
-#include "NiceStack.h"
-
 template<class T>
 NiceQueue<T>::NiceQueue(size_t capacity) : _inStack(capacity), _outStack(capacity)
 {

@@ -40,6 +40,10 @@ TEST(NiceStack, pushAndTop)
     niceStack.push(5);
     ASSERT_EQ(niceStack.top(), 5);
     ASSERT_EQ(niceStack.top(), 5);
+    niceStack.push(5);
+    ASSERT_EQ(niceStack.top(), 5);
+    niceStack.push(3);
+    ASSERT_EQ(niceStack.top(), 3);
 }
 
 TEST(NiceStack, pop)
@@ -65,6 +69,13 @@ TEST(NiceStack, getMin)
     niceStack.push(5);
     ASSERT_EQ(niceStack.getMinimum(), 5);
 
+    niceStack.push(3);
+    niceStack.push(5);
+    ASSERT_EQ(niceStack.getMinimum(), 3);
+    niceStack.pop();
+    ASSERT_EQ(niceStack.getMinimum(), 3);
+    niceStack.pop();
+    ASSERT_EQ(niceStack.getMinimum(), 5);
 }
 
 TEST(NiceStack, sizeTest)
@@ -76,6 +87,24 @@ TEST(NiceStack, sizeTest)
     niceStack.push(2);
     ASSERT_EQ(niceStack.size(), 2);
     ASSERT_EQ(niceStack.capacity(), 20);
+}
 
+TEST(NiceStack, capacityTest)
+{
+    NiceStack<int> niceStack(5);
+    ASSERT_EQ(niceStack.size(), 0);
+    ASSERT_EQ(niceStack.capacity(), 5);
+
+    for (int i = 0; i < 5; i++)
+    {
+        niceStack.push(i);
+    }
+
+    ASSERT_EQ(niceStack.size(), 5);
+
+    EXPECT_THROW(niceStack.push(3), std::out_of_range);
+    EXPECT_THROW(niceStack.push(3), std::out_of_range);
+
+    ASSERT_EQ(niceStack.size(), 5);
 }
 

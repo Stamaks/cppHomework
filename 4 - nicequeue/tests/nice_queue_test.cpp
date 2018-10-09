@@ -29,6 +29,7 @@ TEST(NiceQueue, create)
 {
     NiceQueue<int> niceQueue(20);
     ASSERT_EQ(niceQueue.capacity(), 20);
+    ASSERT_EQ(niceQueue.size(), 0);
 }
 
 TEST(NiceQueue, enqAndDeq)
@@ -36,11 +37,14 @@ TEST(NiceQueue, enqAndDeq)
     NiceQueue<int> niceQueue(10);
     niceQueue.enq(10);
     ASSERT_EQ(niceQueue.deq(), 10);
+    ASSERT_EQ(niceQueue.size(), 0);
     niceQueue.enq(3);
     niceQueue.enq(5);
     niceQueue.enq(7);
+    ASSERT_EQ(niceQueue.size(), 3);
     ASSERT_EQ(niceQueue.deq(), 3);
     ASSERT_EQ(niceQueue.deq(), 5);
+    ASSERT_EQ(niceQueue.size(), 1);
 
 }
 
