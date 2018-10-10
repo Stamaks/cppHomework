@@ -22,19 +22,13 @@ template<class T>
 void NiceStack<T>::push(const T &newelement)
 {
     if (_iHead == _capacity)
-    {
         throw std::out_of_range("Index out of range!");
-    }
 
-    // If queue is empty or new new element is less than current minimum
+    // If queue is empty or new element is less than current minimum
     if (_iHead == 0 || newelement < _storage[_iHead-1].second)
-    {
         _storage[_iHead] = std::make_pair(newelement, newelement);
-    }
     else
-    {
         _storage[_iHead] = std::make_pair(newelement, _storage[_iHead-1].second);
-    }
 
     ++_iHead;
 }
@@ -43,9 +37,7 @@ template<class T>
 T NiceStack<T>::pop()
 {
     if (_iHead == 0)
-    {
         throw std::out_of_range("Index out of range!");
-    }
 
     --_iHead;
     return _storage[_iHead].first;
@@ -54,6 +46,9 @@ T NiceStack<T>::pop()
 template<class T>
 const T &NiceStack<T>::top() const
 {
+    if (_iHead == 0)
+        throw std::out_of_range("Index out of range!");
+
     return _storage[_iHead - 1].first;
 }
 

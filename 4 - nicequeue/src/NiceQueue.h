@@ -54,7 +54,7 @@ protected:
     NiceStack<T> _inStack;
     /// Выходной стек.
     NiceStack<T> _outStack;
-    /// Вместимость очереди.
+    /// Вместимость очере   ди.
     size_t _capacity;
 };
 

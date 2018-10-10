@@ -14,14 +14,12 @@ size_t NiceQueue<T>::size() const
 {
     return _inStack.size() + _outStack.size();
 }
-
+    
 template<class T>
 void NiceQueue<T>::enq(const T &newElement)
 {
     if (this->size() == this->_capacity)
-    {
         throw std::out_of_range("Index out of range!");
-    }
 
     _inStack.push(newElement);
 }
@@ -30,17 +28,14 @@ template<class T>
 T NiceQueue<T>::deq()
 {
     if (this->size() == 0)
-    {
         throw std::out_of_range("Index out of range!");
-    }
 
     if (_outStack.size() == 0)
     {
         size_t currentInStackSize = _inStack.size();
+
         for (int i = 0; i < currentInStackSize; i++)
-        {
             _outStack.push(_inStack.pop());
-        }
     }
 
     return _outStack.pop();
@@ -63,11 +58,11 @@ T NiceQueue<T>::getMinimum()
 
     try
     {
-        _outStack.getMinimum();
+        return _outStack.getMinimum();
     }
     catch (std::out_of_range e){}
 
-    throw std::out_of_range("");
+    throw std::out_of_range("Can't get min: index out of range!");
 }
 
 
