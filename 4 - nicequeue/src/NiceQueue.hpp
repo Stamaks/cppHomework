@@ -20,7 +20,7 @@ void NiceQueue<T>::enq(const T &newElement)
 {
     if (this->size() == this->_capacity)
     {
-        throw new std::out_of_range("Index out of range!");
+        throw std::out_of_range("Index out of range!");
     }
 
     _inStack.push(newElement);
@@ -31,7 +31,7 @@ T NiceQueue<T>::deq()
 {
     if (this->size() == 0)
     {
-        throw new std::out_of_range("Index out of range!");
+        throw std::out_of_range("Index out of range!");
     }
 
     if (_outStack.size() == 0)
@@ -66,6 +66,8 @@ T NiceQueue<T>::getMinimum()
         _outStack.getMinimum();
     }
     catch (std::out_of_range e){}
+
+    throw std::out_of_range("");
 }
 
 

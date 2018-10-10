@@ -44,7 +44,7 @@ T NiceStack<T>::pop()
 {
     if (_iHead == 0)
     {
-        throw new std::out_of_range("Index out of range!");
+        throw std::out_of_range("Index out of range!");
     }
 
     --_iHead;
