@@ -148,5 +148,20 @@ void LinkedList<T>::deleteNodes(Node <T> *pNodeBefore, Node <T> *pNodeLast)
     deleteNextNode(nodeBeforeCurrentDelete);
 }
 
+template<class T>
+void LinkedList<T>::moveNodeAfter(Node <T> *pNode, Node <T> *pNodeBefore)
+{
+    Node<T>* nodeToMove = pNodeBefore->next;
+
+    // Меняем ссылку на след эл-т у предыдущего узла
+    pNodeBefore->next = nodeToMove->next;
+
+    // Меняем ссылку у нода, чтобы он ссылался на новый список
+    nodeToMove->next = pNode->next;
+
+    // Вставляем нод в новый список
+    pNode->next = nodeToMove;
+}
+
 
 } // namespace xi
