@@ -144,7 +144,7 @@ void LinkedList<T>::deleteNodes(Node <T> *pNodeBefore, Node <T> *pNodeLast)
         deleteNextNode(nodeBeforeCurrentDelete);
     }
 
-    // Удаляем последний NodeLast
+    // Удаляем последний нод - NodeLast
     deleteNextNode(nodeBeforeCurrentDelete);
 }
 
@@ -161,6 +161,23 @@ void LinkedList<T>::moveNodeAfter(Node <T> *pNode, Node <T> *pNodeBefore)
 
     // Вставляем нод в новый список
     pNode->next = nodeToMove;
+}
+
+template<class T>
+void LinkedList<T>::moveNodesAfter(Node <T> *pNode, Node <T> *pNodeBefore, Node <T> *pNodeLast)
+{
+    Node<T>* nodeBeforeCurrentMove = pNodeBefore;
+    Node<T>* currentNodeToInsertAfter = pNode;
+
+    // Пока не натыкаемся на нод, следующий которого последний для перемещения.
+    while(nodeBeforeCurrentMove->next != pNodeLast)
+    {
+        moveNodeAfter(currentNodeToInsertAfter, nodeBeforeCurrentMove);
+        currentNodeToInsertAfter = currentNodeToInsertAfter->next;
+    }
+
+    // Перемещаем nodeLast
+    moveNodeAfter(nodeBeforeCurrentMove, currentNodeToInsertAfter);
 }
 
 
