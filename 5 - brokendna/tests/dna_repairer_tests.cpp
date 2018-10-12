@@ -24,7 +24,7 @@ INSTANTIATE_TEST_CASE_P(DNARepairerTestSuite, DNARepairerTestFixture, ::testing:
                   "a1:T  a2:G  a3:A  a4:G  a5:A  a6:A  \n"
                   "b1:G  \n"
                   "c1:A  \n")
-        
+
         , TestParam("a1:T c2:T a2:C a4:A b3:A b7:G \n"
                     "b1:G a6:G b4:T c4:C b5:C a5:T a3:C \n"
                     "c1:A b6:T c3:G b2:T"
@@ -32,7 +32,7 @@ INSTANTIATE_TEST_CASE_P(DNARepairerTestSuite, DNARepairerTestFixture, ::testing:
                     "a1:T  a2:C  a3:C  a4:A  a5:T  a6:G  \n"
                     "b1:G  b2:T  b3:A  b4:T  b5:C  b6:T  b7:G  \n"
                     "c1:A  c2:T  c3:G  c4:C  \n")
-        
+
         , TestParam("a1:T  c2:T  a2:C  a4:A  d1:A  d2:A  b3:A  b7:G\n"
                     "b1:G  a6:G  b4:T  c4:C  b5:C  d3:T  d4:A  a5:T  a3:C\n"
                     "c1:A  b6:T  c3:G  b2:T  d5:A  d6:A"
@@ -41,7 +41,7 @@ INSTANTIATE_TEST_CASE_P(DNARepairerTestSuite, DNARepairerTestFixture, ::testing:
                     "b1:G  b2:T  b3:A  b4:T  b5:C  b6:T  b7:G  \n"
                     "c1:A  c2:T  c3:G  c4:C  \n"
                     "d1:A  d2:A  d3:T  d4:A  d5:A  d6:A  \n")
-        
+
         , TestParam("d3:A  a1:T  a2:C\n"
                     "a5:T  d4:G"
                     , // output should be sorted alphabetically (not required in DNAStorage)
@@ -54,7 +54,7 @@ INSTANTIATE_TEST_CASE_P(DNARepairerTestSuite, DNARepairerTestFixture, ::testing:
 TEST_P(DNARepairerTestFixture, complex) {
 
     stringstream ssin(GetParam().input);
-    
+
     DNARepairer repairer;
     repairer.readFromStream(ssin);
     repairer.repairDNA();
@@ -63,20 +63,20 @@ TEST_P(DNARepairerTestFixture, complex) {
     cout << endl;
 
     vector<string> chains;
-    
+
     Node<xi::LinkedList<DNAElement>>* it = repairer.getDNAStorage().getPreHead();
     while (it->next) {
         it = it->next;
         chains.push_back(repairer.dnaChainToString(it));
     }
-    
+
     sort(chains.begin(), chains.end());
-    
+
     stringstream ssout;
 
     for (auto&& chain : chains)
         ssout << chain << endl;
-    
+
     cout << "sorted result:\n" << ssout.str() << endl;
     ASSERT_EQ(ssout.str(), GetParam().output);
 }

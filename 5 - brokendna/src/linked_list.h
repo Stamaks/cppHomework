@@ -60,8 +60,14 @@ public:
     /// Деструктор
     ~LinkedList();
 
+    LinkedList(const LinkedList &other);
+
     // TODO: не забыть про конструктор копий и операцию присваивания!
 public:
+
+    LinkedList<T>& operator=(const LinkedList &list);
+
+
     /// Возвращаем псевдо-нулевой элемент PreHead
     Node<T>* getPreHead();
 
@@ -102,6 +108,8 @@ public:
 private:
 
     Node<T> returnLastNode();
+
+    void swap(LinkedList &first, LinkedList &second);
 
 
 protected:

@@ -5,8 +5,8 @@
 // Date:         06.02.2017
 // Copyright (c) The Team of "Algorithms and Data Structures" 2014–2017.
 //
-// This is a part of the course "Algorithms and Data Structures" 
-// provided by  the School of Software Engineering of the Faculty 
+// This is a part of the course "Algorithms and Data Structures"
+// provided by  the School of Software Engineering of the Faculty
 // of Computer Science at the Higher School of Economics.
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -44,7 +44,7 @@ void DNARepairer::repairDNA()
     // Начало примера
     // ВАЖНО! Все содержимое этого метода всего лишь пример.
     // Удалите его и перепишите функцию repairDNA заново.
-    
+
     //Node<DNA>* it = DNAStorage.getPreHead();
     //Node<DNA>* it1 = nullptr;
     //Node<DNA>* it2 = nullptr;
@@ -71,7 +71,7 @@ void DNARepairer::repairDNA()
     //	it3
     //	);
     //// Конец примера
-    
+
     //Write your code here...
 }
 
@@ -83,7 +83,7 @@ void DNARepairer::printDNAStorage()
 string DNARepairer::dnaChainToString(NodeDNAChain* dnaChain)
 {
     stringstream ss;
-    
+
     NodeDNA* it2 = dnaChain->value.getPreHead();
     while (it2->next != nullptr)
     {
@@ -111,10 +111,10 @@ void DNARepairer::printToStream(std::ostream& outStream)
 void DNARepairer::readFile(const string& filename)
 {
     ifstream fin(filename);
-    
+
     if (!fin)
         throw std::runtime_error("Could not open file");
-    
+
     readFromStream(fin);
 }
 
@@ -127,19 +127,19 @@ void DNARepairer::readFromStream(std::istream& inStream)
     while (getline(inStream, line))
     {
         // Создаем узел ДНК на куче
-        NodeDNAChain* pNewNode = new NodeDNAChain;                
+        NodeDNAChain* pNewNode = new NodeDNAChain;
 
         //Создаем строковый поток для разбора
         istringstream istr(line);
-        
+
         string strTmp;
         while (istr >> strTmp)                                  // разбиваем поток на слова
         {
             DNAElement tmpDNAElement(strTmp);                   // каждое слово читаем в DNAElement
-            pNewNode->value.addElementToEnd(tmpDNAElement);     // добавляем полученный DNAElement в ДНК            
+            pNewNode->value.addElementToEnd(tmpDNAElement);     // добавляем полученный DNAElement в ДНК
         }
         it->next = pNewNode;
         it = it->next;
-        
+
     }
 }

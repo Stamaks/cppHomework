@@ -21,18 +21,62 @@ template <class T>
 LinkedList<T>::LinkedList() 
 {
     //Creation of the dummy/sentinel element
-    _preHead = new Node<T>;
+    _preHead = new Node<T>();
     _preHead->next = nullptr;
 }
 
 template <class T> 
 LinkedList<T>::~LinkedList()
 {
-    // TODO: Удалить все ноды
+    Node<T>* currentNode = _preHead;
+    Node<T>* currentNext = _preHead->next;
 
-    delete _preHead;
-    _preHead = nullptr;
-    _preHead->next = nullptr;
+    while (currentNext != nullptr)
+    {
+        delete currentNode;
+        currentNode = currentNext;
+        currentNext = currentNode->next;
+    }
+
+    delete currentNode;
+}
+
+
+template<class T>
+LinkedList<T>::LinkedList(const LinkedList &other)
+{
+    _preHead = new Node<T>();
+
+    // Текущая нода на шаг позади, потому что к ней пристраеваем новый нод
+    Node<T>* currentNode = _preHead;
+    Node<T>* currentOtherNode = other.getPreHead()->next;
+
+    while (currentOtherNode != nullptr)
+    {
+        // Создаем новую ноду
+        Node<T>* newNode = new Node<T>();
+        newNode->value = currentOtherNode->value;
+
+        // Кидаем в конец
+        currentNode->next = newNode;
+        currentNode = currentNode->next;
+        currentOtherNode = currentOtherNode->next;
+    }
+}
+
+template<class T>
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList &list)
+{
+    LinkedList<T> tmp(list);
+    swap(*this, tmp);
+
+    return *this;
+}
+
+template<class T>
+void LinkedList<T>::swap(LinkedList &first, LinkedList &second)
+{
+    std::swap(first.getPreHead(), second.getPreHead());
 }
 
 template<class T>
@@ -68,7 +112,7 @@ int LinkedList<T>::size()
     int k = 0;
     Node<T>* currentNode = _preHead;
 
-    while (currentNode != nullptr)
+    while (currentNode->next != nullptr)
     {
         currentNode = currentNode->next;
         k++;
@@ -80,7 +124,7 @@ int LinkedList<T>::size()
 template<class T>
 void LinkedList<T>::addElementToEnd(T &value)
 {
-    Node<T>* newNode;  // next там изначально nullpointer в конструкторе
+    Node<T>* newNode = new Node<T>();  // next там изначально nullpointer в конструкторе
     newNode->value = value;
 
     Node<T>* currentNode = _preHead;
@@ -98,7 +142,7 @@ void LinkedList<T>::moveNodeToEnd(Node <T> *pNodeBefore)
 {
     Node<T>* nodeToMove = pNodeBefore->next;
 
-    // Удаляем нод из списка, чтобы вставить его в конец
+    // Удаляем нод из списка, чтобы вставить его в конец. Не боимся, потому что мы его запомнили
     deleteNextNode(pNodeBefore);
 
     // Добавляем в конец
@@ -136,16 +180,17 @@ void LinkedList<T>::deleteNextNode(Node <T> *pNodeBefore)
 template<class T>
 void LinkedList<T>::deleteNodes(Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
-    Node<T>* nodeBeforeCurrentDelete = pNodeBefore;
-
     // Пока не натыкаемся на нод, следующий которого последний для удаления.
-    while (nodeBeforeCurrentDelete->next != pNodeLast)
+    while (pNodeBefore->next != pNodeLast)
     {
-        deleteNextNode(nodeBeforeCurrentDelete);
+        if (pNodeBefore->next == nullptr)
+            throw std::out_of_range("Null pointer while deleteNodes");
+
+        deleteNextNode(pNodeBefore);
     }
 
     // Удаляем последний нод - NodeLast
-    deleteNextNode(nodeBeforeCurrentDelete);
+    deleteNextNode(pNodeBefore);
 }
 
 template<class T>
@@ -166,19 +211,34 @@ void LinkedList<T>::moveNodeAfter(Node <T> *pNode, Node <T> *pNodeBefore)
 template<class T>
 void LinkedList<T>::moveNodesAfter(Node <T> *pNode, Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
-    Node<T>* nodeBeforeCurrentMove = pNodeBefore;
     Node<T>* currentNodeToInsertAfter = pNode;
 
     // Пока не натыкаемся на нод, следующий которого последний для перемещения.
-    while(nodeBeforeCurrentMove->next != pNodeLast)
+    while(pNodeBefore->next != pNodeLast)
     {
-        moveNodeAfter(currentNodeToInsertAfter, nodeBeforeCurrentMove);
+        if (pNodeBefore->next == nullptr)
+            throw std::out_of_range("Null pointer while moveNodesAfter");
+
+        moveNodeAfter(currentNodeToInsertAfter, pNodeBefore);
         currentNodeToInsertAfter = currentNodeToInsertAfter->next;
     }
 
     // Перемещаем nodeLast
-    moveNodeAfter(nodeBeforeCurrentMove, currentNodeToInsertAfter);
+    moveNodeAfter(pNodeBefore, currentNodeToInsertAfter);
 }
 
+template<class T>
+void LinkedList<T>::moveNodesToEnd(Node <T> *pNodeBefore, Node <T> *pNodeLast)
+{
+    while (pNodeBefore->next != pNodeLast)
+    {
+        if (pNodeBefore->next == nullptr)
+            throw std::out_of_range("Null pointer while moveNodesToEnd");
+
+        moveNodeToEnd(pNodeBefore);
+    }
+
+    moveNodeToEnd(pNodeBefore);
+}
 
 } // namespace xi
