@@ -80,7 +80,7 @@ int LinkedList<T>::size()
 template<class T>
 void LinkedList<T>::addElementToEnd(T &value)
 {
-    Node<T>* newNode;  // Он там изначально nullpointer в конструкторе
+    Node<T>* newNode;  // next там изначально nullpointer в конструкторе
     newNode->value = value;
 
     Node<T>* currentNode = _preHead;
@@ -131,6 +131,21 @@ void LinkedList<T>::deleteNextNode(Node <T> *pNodeBefore)
 
     // Делаем так, чтобы этот узел уже ни на что не ссылался
     nodeToDelete->next = nullptr;
+}
+
+template<class T>
+void LinkedList<T>::deleteNodes(Node <T> *pNodeBefore, Node <T> *pNodeLast)
+{
+    Node<T>* nodeBeforeCurrentDelete = pNodeBefore;
+
+    // Пока не натыкаемся на нод, следующий которого последний для удаления.
+    while (nodeBeforeCurrentDelete->next != pNodeLast)
+    {
+        deleteNextNode(nodeBeforeCurrentDelete);
+    }
+
+    // Удаляем последний NodeLast
+    deleteNextNode(nodeBeforeCurrentDelete);
 }
 
 
