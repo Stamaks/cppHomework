@@ -34,7 +34,7 @@ public:
 public:
     /**
      * \brief Инициализирует объект на основе переданной строки.
-     *  
+     *
      * Fill the fields id, number, base from a description in the format [name][number]:[type] where
      * [id] - a..z
      * [number] - the number of this element in the DNA sequence a1 a2 a3 a4 a5...

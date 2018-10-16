@@ -180,6 +180,8 @@ void LinkedList<T>::deleteNextNode(Node <T> *pNodeBefore)
 template<class T>
 void LinkedList<T>::deleteNodes(Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
+    // TODO: переписать, чтобы было О(1)?
+
     // Пока не натыкаемся на нод, следующий которого последний для удаления.
     while (pNodeBefore->next != pNodeLast)
     {
@@ -211,6 +213,8 @@ void LinkedList<T>::moveNodeAfter(Node <T> *pNode, Node <T> *pNodeBefore)
 template<class T>
 void LinkedList<T>::moveNodesAfter(Node <T> *pNode, Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
+    // TODO: переписать, чтобы было О(1)
+
     Node<T>* currentNodeToInsertAfter = pNode;
 
     // Пока не натыкаемся на нод, следующий которого последний для перемещения.
@@ -230,15 +234,11 @@ void LinkedList<T>::moveNodesAfter(Node <T> *pNode, Node <T> *pNodeBefore, Node 
 template<class T>
 void LinkedList<T>::moveNodesToEnd(Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
-    while (pNodeBefore->next != pNodeLast)
-    {
-        if (pNodeBefore->next == nullptr)
-            throw std::out_of_range("Null pointer while moveNodesToEnd");
 
-        moveNodeToEnd(pNodeBefore);
-    }
-
+    // TODO: переписать, чтобы было О(1)
     moveNodeToEnd(pNodeBefore);
+    pNodeBefore->next = pNodeLast->next;
+    pNodeLast->next = nullptr;
 }
 
 } // namespace xi

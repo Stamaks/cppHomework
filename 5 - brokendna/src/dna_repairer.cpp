@@ -73,6 +73,16 @@ void DNARepairer::repairDNA()
     //// Конец примера
 
     //Write your code here...
+
+    xi::Node<DNAChain>* currentDNANode = _dnaStorage.getPreHead();
+
+    /* Будем хранить указатели на прехед каждой испорченной цепочки, чтобы за О(1) получать указатель.
+     * Создаем массив этих указателей, но массив делаем из 26 элементов.
+     * Если введенных цепочек больше, потом просто будем по ним пробегаться.
+     * Алгоритм: итерируемся по нодам каждой цепочки
+     */
+
+
 }
 
 void DNARepairer::printDNAStorage()
@@ -127,7 +137,7 @@ void DNARepairer::readFromStream(std::istream& inStream)
     while (getline(inStream, line))
     {
         // Создаем узел ДНК на куче
-        NodeDNAChain* pNewNode = new NodeDNAChain;
+        NodeDNAChain* pNewNode = new NodeDNAChain();
 
         //Создаем строковый поток для разбора
         istringstream istr(line);
@@ -140,6 +150,10 @@ void DNARepairer::readFromStream(std::istream& inStream)
         }
         it->next = pNewNode;
         it = it->next;
-
     }
+}
+
+DNARepairer::ListOfDNAChains &DNARepairer::getDNAStorage()
+{
+    return _dnaStorage;
 }

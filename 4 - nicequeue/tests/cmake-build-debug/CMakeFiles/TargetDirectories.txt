@@ -1,3 +1,0 @@
-/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/stamaks/CLionProjects/Inst/4 - nicequeue/tests/cmake-build-debug/CMakeFiles/tests.dir

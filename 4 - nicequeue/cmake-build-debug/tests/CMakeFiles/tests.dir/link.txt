@@ -1,1 +1,0 @@
-/usr/bin/c++         -std=gnu++11 -DWINVER=0x0500 -g  -rdynamic CMakeFiles/tests.dir/nice_stack_test.cpp.o CMakeFiles/tests.dir/nice_queue_test.cpp.o CMakeFiles/tests.dir/gtest/gtest-all.cc.o CMakeFiles/tests.dir/gtest/gtest_main.cc.o  -o tests -lpthread 
