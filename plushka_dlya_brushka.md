@@ -49,10 +49,10 @@ int MyClass<T>::FooBar(T meow)
 ```
 
 
-6) Создание функции `FooBarFoo`, принимающей объект обобщенного класса:
+6) Создание функции `FooBarFoo`, принимающей по ссылке объект обобщенного класса:
 
 ```template<typename T>
-int MyClass<T>::FooBar(Meow<T> meow)
+int MyClass<T>::FooBar(Meow<T>& meow)
 {
     // ...
 }
