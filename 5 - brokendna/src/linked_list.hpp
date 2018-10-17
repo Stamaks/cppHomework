@@ -23,6 +23,8 @@ LinkedList<T>::LinkedList()
     //Creation of the dummy/sentinel element
     _preHead = new Node<T>();
     _preHead->next = nullptr;
+    _lastElement = _preHead;
+    _lastElement->next = nullptr;
 }
 
 template <class T> 
@@ -62,6 +64,8 @@ LinkedList<T>::LinkedList(const LinkedList &other)
         currentNode = currentNode->next;
         currentOtherNode = currentOtherNode->next;
     }
+
+    _lastElement = currentNode;
 }
 
 template<class T>
@@ -127,14 +131,8 @@ void LinkedList<T>::addElementToEnd(T &value)
     Node<T>* newNode = new Node<T>();  // next там изначально nullpointer в конструкторе
     newNode->value = value;
 
-    Node<T>* currentNode = _preHead;
-
-    while (currentNode->next != nullptr)
-    {
-        currentNode = currentNode->next;
-    }
-
-    currentNode->next = newNode;
+    Node<T>* lastNode = returnLastNode();
+    lastNode->next = newNode;
 }
 
 template<class T>
@@ -142,15 +140,17 @@ void LinkedList<T>::moveNodeToEnd(Node <T> *pNodeBefore)
 {
     Node<T>* nodeToMove = pNodeBefore->next;
 
-    // Удаляем нод из списка, чтобы вставить его в конец. Не боимся, потому что мы его запомнили
-    deleteNextNode(pNodeBefore);
+    // Удаляем нод из списка, чтобы вставить его в конец.
+    pNodeBefore->next = nodeToMove->next;
+
+    nodeToMove->next = nullptr;
 
     // Добавляем в конец
     addElementToEnd(nodeToMove);
 }
 
 template<class T>
-Node<T> LinkedList<T>::returnLastNode()
+Node<T>* LinkedList<T>::returnLastNode()
 {
     Node<T>* currentNode = _preHead;
 
@@ -168,28 +168,30 @@ Node<T> LinkedList<T>::returnLastNode()
 template<class T>
 void LinkedList<T>::deleteNextNode(Node <T> *pNodeBefore)
 {
+    if (pNodeBefore == nullptr)
+        throw std::out_of_range("Got nullptr instead of pNodeBefore!");
+
+    if (pNodeBefore->next == nullptr)
+        throw std::out_of_range("Trying to delete node that doesn't exist!");
+
     Node<T>* nodeToDelete = pNodeBefore->next;
 
     // Перекладываем ссылку
     pNodeBefore->next = nodeToDelete->next;
 
-    // Делаем так, чтобы этот узел уже ни на что не ссылался
-    nodeToDelete->next = nullptr;
+    // Удаляем...
+    delete nodeToDelete;
 }
 
 template<class T>
 void LinkedList<T>::deleteNodes(Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
-    // TODO: переписать, чтобы было О(1)?
+    if (pNodeBefore == nullptr)
+        throw std::out_of_range("Got nullptr instead of pNodeBefore!");
 
     // Пока не натыкаемся на нод, следующий которого последний для удаления.
     while (pNodeBefore->next != pNodeLast)
-    {
-        if (pNodeBefore->next == nullptr)
-            throw std::out_of_range("Null pointer while deleteNodes");
-
         deleteNextNode(pNodeBefore);
-    }
 
     // Удаляем последний нод - NodeLast
     deleteNextNode(pNodeBefore);
@@ -198,6 +200,18 @@ void LinkedList<T>::deleteNodes(Node <T> *pNodeBefore, Node <T> *pNodeLast)
 template<class T>
 void LinkedList<T>::moveNodeAfter(Node <T> *pNode, Node <T> *pNodeBefore)
 {
+
+    //TODO!
+
+    if (pNode == nullptr)
+        throw std::out_of_range("Got nullptr instead of pNode!");
+
+    if (pNodeBefore == nullptr)
+        throw std::out_of_range("Got nullptr instead of pNodeBefore!");
+
+    if (pNodeBefore->next == nullptr)
+        throw std::out_of_range("Trying to move node that doesn't exist!");
+
     Node<T>* nodeToMove = pNodeBefore->next;
 
     // Меняем ссылку на след эл-т у предыдущего узла
@@ -234,8 +248,6 @@ void LinkedList<T>::moveNodesAfter(Node <T> *pNode, Node <T> *pNodeBefore, Node 
 template<class T>
 void LinkedList<T>::moveNodesToEnd(Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
-
-    // TODO: переписать, чтобы было О(1)
     moveNodeToEnd(pNodeBefore);
     pNodeBefore->next = pNodeLast->next;
     pNodeLast->next = nullptr;

@@ -40,8 +40,7 @@ public:
     
     /// Указатель на узел-обертку следующего элемента
     Node* next;
-}; // class Node
-
+};
 
 
 
@@ -107,7 +106,7 @@ public:
 
 private:
 
-    Node<T> returnLastNode();
+    Node<T>* returnLastNode();
 
     void swap(LinkedList &first, LinkedList &second);
 
