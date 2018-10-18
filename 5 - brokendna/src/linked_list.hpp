@@ -23,8 +23,6 @@ LinkedList<T>::LinkedList()
     //Creation of the dummy/sentinel element
     _preHead = new Node<T>();
     _preHead->next = nullptr;
-    _lastElement = _preHead;
-    _lastElement->next = nullptr;
 }
 
 template <class T> 
@@ -64,8 +62,6 @@ LinkedList<T>::LinkedList(const LinkedList &other)
         currentNode = currentNode->next;
         currentOtherNode = currentOtherNode->next;
     }
-
-    _lastElement = currentNode;
 }
 
 template<class T>
@@ -92,22 +88,19 @@ Node <T> *LinkedList<T>::getPreHead()
 template<class T>
 T &LinkedList<T>::operator[](int i)
 {
-    if (i >= this->size())
-        throw std::out_of_range("Index out of range!");
-
     int k = -1;
     Node<T>* currentNode = _preHead;
 
     while (k < i)
     {
+        if (currentNode->next == nullptr)
+            throw std::out_of_range("Index out of range!");
+
         currentNode = currentNode->next;
         k++;
     }
 
-    if (currentNode != nullptr)
-        return currentNode->value;
-    else
-        throw std::out_of_range("Что-то пошло не так ><");
+    return currentNode->value;
 }
 
 template<class T>
@@ -154,9 +147,6 @@ Node<T>* LinkedList<T>::returnLastNode()
 {
     Node<T>* currentNode = _preHead;
 
-    if (_preHead->next == nullptr)
-        throw std::out_of_range("There are no elements in list!");
-
     while (currentNode->next != nullptr)
     {
         currentNode = currentNode->next;
@@ -200,9 +190,6 @@ void LinkedList<T>::deleteNodes(Node <T> *pNodeBefore, Node <T> *pNodeLast)
 template<class T>
 void LinkedList<T>::moveNodeAfter(Node <T> *pNode, Node <T> *pNodeBefore)
 {
-
-    //TODO!
-
     if (pNode == nullptr)
         throw std::out_of_range("Got nullptr instead of pNode!");
 
@@ -212,45 +199,67 @@ void LinkedList<T>::moveNodeAfter(Node <T> *pNode, Node <T> *pNodeBefore)
     if (pNodeBefore->next == nullptr)
         throw std::out_of_range("Trying to move node that doesn't exist!");
 
-    Node<T>* nodeToMove = pNodeBefore->next;
+    if (pNode != pNodeBefore)
+    {
+        Node<T> *nodeToMove = pNodeBefore->next;
 
-    // Меняем ссылку на след эл-т у предыдущего узла
-    pNodeBefore->next = nodeToMove->next;
+        // Меняем ссылку на след эл-т у предыдущего узла
+        pNodeBefore->next = nodeToMove->next;
 
-    // Меняем ссылку у нода, чтобы он ссылался на новый список
-    nodeToMove->next = pNode->next;
+        // Меняем ссылку у нода, чтобы он ссылался на новый список
+        nodeToMove->next = pNode->next;
 
-    // Вставляем нод в новый список
-    pNode->next = nodeToMove;
+        // Вставляем нод в новый список
+        pNode->next = nodeToMove;
+    }
 }
 
 template<class T>
 void LinkedList<T>::moveNodesAfter(Node <T> *pNode, Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
-    // TODO: переписать, чтобы было О(1)
+    /* Тут бы конечно проверять, что pNodeBefore и pNodeLast  - это одна цепочка, но тогда сложность операции
+     * будет O(k), где k - это кол-во узлов в между pNodeBefore и pNodeLast. Хотим ли мы максимально
+     * безопасную структуру или делать все за O(1) - не понятно...
+     */
 
-    Node<T>* currentNodeToInsertAfter = pNode;
+    if (pNode == nullptr)
+        throw std::out_of_range("Got nullptr instead of pNode!");
 
-    // Пока не натыкаемся на нод, следующий которого последний для перемещения.
-    while(pNodeBefore->next != pNodeLast)
+    if (pNodeBefore == nullptr)
+        throw std::out_of_range("Got nullptr instead of pNodeBefore!");
+
+    if (pNodeBefore->next == nullptr || pNodeLast == nullptr)
+        throw std::out_of_range("Trying to move node that doesn't exist!");
+
+    if (pNode == pNodeLast)
+        throw std::out_of_range("pNode == pNodeLast!");
+
+    if (pNode != pNodeBefore)
     {
-        if (pNodeBefore->next == nullptr)
-            throw std::out_of_range("Null pointer while moveNodesAfter");
+        Node<T> *nodeToMove = pNodeBefore->next;
 
-        moveNodeAfter(currentNodeToInsertAfter, pNodeBefore);
-        currentNodeToInsertAfter = currentNodeToInsertAfter->next;
+        // Меняем ссылку на след эл-т у предыдущего узла
+        pNodeBefore->next = pNodeLast->next;
+
+        // Меняем ссылку у последнего нода, чтобы он ссылался на новый список
+        pNodeLast->next = pNode->next;
+
+        // Вставляем нод в новый список
+        pNode->next = nodeToMove;
     }
-
-    // Перемещаем nodeLast
-    moveNodeAfter(pNodeBefore, currentNodeToInsertAfter);
 }
 
 template<class T>
 void LinkedList<T>::moveNodesToEnd(Node <T> *pNodeBefore, Node <T> *pNodeLast)
 {
-    moveNodeToEnd(pNodeBefore);
-    pNodeBefore->next = pNodeLast->next;
-    pNodeLast->next = nullptr;
+    Node<T>* lastNode = returnLastNode();
+
+    if (lastNode != pNodeLast)
+    {
+        lastNode->next = pNodeBefore->next;
+        pNodeBefore->next = pNodeLast->next;
+        pNodeLast->next = nullptr;
+    }
 }
 
 } // namespace xi
