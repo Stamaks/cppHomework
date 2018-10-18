@@ -17,6 +17,7 @@
 #include <sstream>
 #include <string>
 #include <map>
+#include <set>
 
 using namespace std;        // допустимо писать в глобальном пространстве только в cpp-файлах!
 
@@ -74,7 +75,7 @@ void DNARepairer::repairDNA()
 
     //Write your code here...
 
-    xi::Node<DNAChain>* currentDNANode = _dnaStorage.getPreHead();
+//    xi::Node<DNAChain>* currentDNANode = _dnaStorage.getPreHead();
 
     /* Будем хранить указатели на прехед каждой испорченной цепочки, чтобы за О(1) получать указатель.
      * Создаем массив этих указателей, но массив делаем из 26 элементов.
@@ -82,7 +83,85 @@ void DNARepairer::repairDNA()
      * Алгоритм: итерируемся по нодам каждой цепочки
      */
 
+    set<string> id2DnaMapKeys;
+    Id2DnaMap* id2DnaMap = new Id2DnaMap();
 
+    NodeDNAChain* currentNodeDNAChain = _dnaStorage.getPreHead()->next;
+
+    while (currentNodeDNAChain != nullptr) {
+
+        NodeDNA* currentNode = currentNodeDNAChain->value.getPreHead()->next;
+        NodeDNA* pNodeBefore = currentNodeDNAChain->value.getPreHead();
+
+
+        while (currentNode != nullptr)
+        {
+            string currentBase = currentNode->value.base;
+            int currentNumber = currentNode->value.number;
+            string currentId = currentNode->value.id;
+
+            // Запомнили намбер, с которого начнется перемещение
+            int firstNumber = currentNumber;
+
+            while(currentNode->next != nullptr)
+            {
+                // Если ледующий нод нужно перещещать вместе с первым
+                if (currentNode->next->value.id == currentBase &&
+                    currentNode->next->value.number - 1 == currentNumber)
+                {
+                    currentNode = currentNode->next;
+                    currentNumber = currentNode->value.number;
+                }
+                else
+                    break;
+            }
+
+            // Нашли последний подряд идущий узел. Перемещаем в нужную цепочку.
+
+            // Если у нас еще нет цепочки
+            if ((*id2DnaMap)[currentId] == nullptr)
+            {
+                DNAChain* newDNAChain = new DNAChain();
+                newDNAChain->moveNodesAfter(newDNAChain->getPreHead(), pNodeBefore, currentNode);
+                id2DnaMapKeys.insert(currentId);
+            }
+            else
+            {
+                NodeDNA* currentNodeInMap = (*id2DnaMap)[currentId]->getPreHead()->next;
+                NodeDNA* pNodeBeforeCurrentNodeInMap = (*id2DnaMap)[currentId]->getPreHead();
+
+                while (currentNodeInMap->next != nullptr)
+                {
+                    if (currentNodeInMap->value.number < firstNumber)
+                    {
+                        pNodeBeforeCurrentNodeInMap = currentNodeInMap;
+                        currentNodeInMap = currentNodeInMap->next;
+                    }
+                    else
+                        break;
+                }
+
+                (*id2DnaMap)[currentId]->moveNodesAfter(pNodeBeforeCurrentNodeInMap, pNodeBefore, currentNode);
+            }
+
+            currentNode = pNodeBefore->next;
+        }
+
+        currentNodeDNAChain = currentNodeDNAChain->next;
+    }
+
+    ListOfDNAChains* newDNAStorage = new ListOfDNAChains();
+    NodeDNAChain* currentNodeInNewDNAStorage = newDNAStorage->getPreHead();
+    for (string el : id2DnaMapKeys)
+    {
+        NodeDNAChain* newNodeInNewDNAStorage = new NodeDNAChain();
+        newNodeInNewDNAStorage->value = *(*id2DnaMap)[el];
+
+        currentNodeInNewDNAStorage->next = newNodeInNewDNAStorage;
+        currentNodeInNewDNAStorage = currentNodeInNewDNAStorage->next;
+    }
+    
+    _dnaStorage = *newDNAStorage;
 }
 
 void DNARepairer::printDNAStorage()
