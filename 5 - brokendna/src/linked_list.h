@@ -14,6 +14,7 @@
 
 #ifndef BROKENDNA_LINKEDLIST_H_
 #define BROKENDNA_LINKEDLIST_H_
+#define TEST_COPY_CONSTR_ASSIGN_OP
 
 
 /// Так как классы связанного списка являются типами общего назначения и подходят

@@ -94,6 +94,9 @@ Node <T> *LinkedList<T>::getPreHead() const
 template<class T>
 T &LinkedList<T>::operator[](int i)
 {
+    if (i < 0 || i > this->size())
+        throw std::out_of_range("Index out of range!");
+
     int k = -1;
     Node<T>* currentNode = _preHead;
 
