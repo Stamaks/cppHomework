@@ -47,7 +47,7 @@ LinkedList<T>::LinkedList(const LinkedList &other)
 {
     _preHead = new Node<T>();
 
-    // Текущая нода на шаг позади, потому что к ней пристраеваем новый нод
+    // Текущая нода на шаг позади, потому что к ней пристраиваем новый нод
     Node<T>* currentNode = _preHead;
     Node<T>* currentOtherNode = other.getPreHead()->next;
 
@@ -76,11 +76,17 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList &list)
 template<class T>
 void LinkedList<T>::swap(LinkedList &first, LinkedList &second)
 {
-    std::swap(first.getPreHead(), second.getPreHead());
+    std::swap(*first.getPreHead(), *second.getPreHead());
 }
 
 template<class T>
 Node <T> *LinkedList<T>::getPreHead()
+{
+    return _preHead;
+}
+
+template<class T>
+Node <T> *LinkedList<T>::getPreHead() const
 {
     return _preHead;
 }

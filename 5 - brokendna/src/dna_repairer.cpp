@@ -123,6 +123,7 @@ void DNARepairer::repairDNA()
             {
                 DNAChain* newDNAChain = new DNAChain();
                 newDNAChain->moveNodesAfter(newDNAChain->getPreHead(), pNodeBefore, currentNode);
+                (*id2DnaMap)[currentId] = newDNAChain;
                 id2DnaMapKeys.insert(currentId);
             }
             else
@@ -141,7 +142,10 @@ void DNARepairer::repairDNA()
                         break;
                 }
 
-                (*id2DnaMap)[currentId]->moveNodesAfter(pNodeBeforeCurrentNodeInMap, pNodeBefore, currentNode);
+                if (currentNodeInMap->value.number > firstNumber)
+                    (*id2DnaMap)[currentId]->moveNodesAfter(pNodeBeforeCurrentNodeInMap, pNodeBefore, currentNode);
+                else
+                    (*id2DnaMap)[currentId]->moveNodesAfter(currentNodeInMap, pNodeBefore, currentNode);
             }
 
             currentNode = pNodeBefore->next;
@@ -160,7 +164,7 @@ void DNARepairer::repairDNA()
         currentNodeInNewDNAStorage->next = newNodeInNewDNAStorage;
         currentNodeInNewDNAStorage = currentNodeInNewDNAStorage->next;
     }
-    
+
     _dnaStorage = *newDNAStorage;
 }
 

@@ -70,6 +70,8 @@ public:
     /// Возвращаем псевдо-нулевой элемент PreHead
     Node<T>* getPreHead();
 
+    Node<T>* getPreHead() const;
+
     /// Возвращает элемент по индексу. Операция дорогая, сложность — O(n)
     T& operator[] (int i);
 
