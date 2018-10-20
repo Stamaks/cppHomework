@@ -122,5 +122,45 @@ TEST(linked_list_tests, AddingOneElementToEmptyList_ReturnFirstElement_ReturnsIn
     ASSERT_EQ(inserted_element, list.getPreHead()->next->value);
 }
 
+TEST(linked_list_tests, GetPrehead) {
+    LinkedList<int> list;
+    int el = 3;
+
+    for (int i = 0; i < 10; ++i)
+    {
+        list.addElementToEnd(el);
+        ++el;
+    }
+
+    ASSERT_EQ(3, list.getPreHead()->next->value);
+    ASSERT_EQ(3, list.getPreHead()->next->value);
+
+    LinkedList<int> copy(list);
+
+    ASSERT_EQ(3, list.getPreHead()->next->value);
+
+    ASSERT_EQ(list[0], list.getPreHead()->next->value);
+}
+
+TEST(linked_list_tests, MoveNodeToEnd){
+    LinkedList<int> list;
+    int el = 3;
+
+    for (int i = 0; i < 10; ++i)
+    {
+        list.addElementToEnd(el);
+        ++el;
+    }
+
+    Node<int>* currentNode = list.getPreHead();
+
+    while (currentNode->next->value != 9)
+        currentNode = currentNode->next;
+
+    list.moveNodeToEnd(currentNode);
+
+    ASSERT_EQ(9, list[list.size() - 1]);
+    ASSERT_EQ(9, list[list.size() - 1]);
+}
 
 

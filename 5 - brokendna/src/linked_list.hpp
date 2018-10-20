@@ -148,7 +148,7 @@ void LinkedList<T>::moveNodeToEnd(Node <T> *pNodeBefore)
     nodeToMove->next = nullptr;
 
     // Добавляем в конец
-    addElementToEnd(nodeToMove);
+    this->returnLastNode()->next = nodeToMove;
 }
 
 template<class T>

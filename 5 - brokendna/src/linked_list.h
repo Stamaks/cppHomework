@@ -107,9 +107,9 @@ public:
     /// После перемещения из другого списка этот узел исключается.
     void moveNodeAfter(Node<T>* pNode, Node<T>* pNodeBefore);
 
-private:
-
     Node<T>* returnLastNode();
+
+private:
 
     void swap(LinkedList &first, LinkedList &second);
 
