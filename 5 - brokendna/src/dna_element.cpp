@@ -11,6 +11,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
+#include <regex>
 #include "dna_element.h"
 
 DNAElement::DNAElement()
@@ -28,19 +29,24 @@ DNAElement::DNAElement(const std::string &description)
 void DNAElement::readFromString(const std::string &description)
 {
     if (isdigit(description[0]))
-        throw std::invalid_argument("Wrong arg in pos 0");
+        throw std::invalid_argument("Wrong arg in position 0");
 
-    if (!isdigit(description[1]))
-        throw std::invalid_argument("Wrong arg in pos 1");
+    // Будем парсить number у ноды
+    std::string numberToParse = description.substr(1, description.size() - 3);
 
-    if (description[2] != ':')
-        throw std::invalid_argument("Wrong arg in pos 2");
+    std::regex reg("[0-9]*");
+    if (!std::regex_match(numberToParse.begin(), numberToParse.end(), reg))
+        throw std::invalid_argument("Wrong number!");
 
-    if (description[3] != 'A' && description[3] != 'C' && description[3] != 'G' && description[3] != 'T')
-        throw std::invalid_argument("Wrong arg in pos 3");
+    if (description[description.size() - 2] != ':')
+        throw std::invalid_argument("Wrong arg! Needed ':'");
+
+    if (description[description.size() - 1] != 'A' && description[description.size() - 1] != 'C' &&
+            description[description.size() - 1] != 'G' && description[description.size() - 1] != 'T')
+        throw std::invalid_argument("Wrong arg in the last position!");
 
     id = description[0];
-    number = description[1] - '0'; // Дамми-способ перевести char в int
+    number = std::stoi(numberToParse);
     base = description[3];
 }
 
