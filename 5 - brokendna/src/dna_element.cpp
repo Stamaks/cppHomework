@@ -31,8 +31,17 @@ void DNAElement::readFromString(const std::string &description)
     if (isdigit(description[0]))
         throw std::invalid_argument("Wrong arg in position 0");
 
+    std::string numberToParse;
+    
     // Будем парсить number у ноды
-    std::string numberToParse = description.substr(1, description.size() - 3);
+    try
+    {
+        numberToParse = description.substr(1, description.size() - 3);
+    }
+    catch(std::out_of_range)
+    {
+        throw std::invalid_argument("Too big number!");
+    }
 
     std::regex reg("[0-9]*");
     if (!std::regex_match(numberToParse.begin(), numberToParse.end(), reg))
@@ -47,7 +56,7 @@ void DNAElement::readFromString(const std::string &description)
 
     id = description[0];
     number = std::stoi(numberToParse);
-    base = description[3];
+    base = description[description.size() - 1];
 }
 
 
