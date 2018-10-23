@@ -129,11 +129,10 @@ typename BidiLinkedList<T>::Node*
     {
         node->insertAfterInternal(insNode);
 
-        // If there is no one on the right (C'MON WE'VE ALREADY CHECKED IT!!!) from the inserted, update _tail.
-        // if (!insNode->_next)
-        _tail = insNode;
+        // If there is no one on the right from the inserted, update _tail.
+         if (!insNode->_next)
+            _tail = insNode;
     }
-
 
     invalidateSize();
 
@@ -147,6 +146,9 @@ BidiLinkedList<T>::insertNodesAfter(Node* node, Node* begNode, Node* endNode)
 {
     if (!begNode || !endNode)
         throw std::invalid_argument("BegNode or endNode is nullptr");
+
+    if (!begNode->_prev || !endNode->_next)
+        throw std::invalid_argument("It seems nodes aren't free!");
 
     if (!node)
     {
@@ -166,7 +168,12 @@ BidiLinkedList<T>::insertNodesAfter(Node* node, Node* begNode, Node* endNode)
             endNode->_next = nodeAfter;
             nodeAfter->_prev = endNode;
         }
+
+        if (!endNode->_next)
+            _tail = endNode;
     }
+
+    invalidateSize();
 }
 
 
@@ -179,27 +186,82 @@ template <typename T>
 typename BidiLinkedList<T>::Node*
     BidiLinkedList<T>::insertNodeBefore(Node* node, Node* insNode)
 {
-    // !...
-    // Реализуй метод, если хочешь получит оценку повыше!
-    // !...
+    if (!insNode)
+        throw std::invalid_argument("`insNode` is nullptr");
+
+    // check if a node is alone
+    if (insNode->_next || insNode->_prev)
+        throw std::invalid_argument("`insNode` has siblings. It seems it isn't free");
+
+    if (!node)
+    {
+        _head = insNode;
+        _tail = insNode;
+    }
+    else
+    {
+        // Если нод, перед которым нужно вставить - это голова
+        if (!node->_prev)
+        {
+            node->_prev = insNode;
+            insNode->_next = node;
+        }
+        else
+        {
+            Node* nodePrev = node->_prev;
+
+            nodePrev->_next = insNode;
+            insNode->_prev = nodePrev;
+        }
+
+        if (!insNode->_prev)
+            _head = insNode;
+    }
+
+    invalidateSize();
 }
 
 
 template <typename T>
-void BidiLinkedList<T>::insertNodesBefore(Node* node, Node* beg, Node* end)
+void BidiLinkedList<T>::insertNodesBefore(Node* node, Node* begNode, Node* endNode)
 {
-    // !...
-    // Реализуй метод, если хочешь получит оценку повыше!
-    // !...
+    if (!begNode || !endNode)
+        throw std::invalid_argument("BegNode or endNode is nullptr");
+
+    if (!begNode->_prev || !endNode->_next)
+        throw std::invalid_argument("It seems nodes aren't free!");
+
+    if (!node)
+    {
+        _head = begNode;
+        _tail = endNode;
+    }
+    else
+    {
+        Node* nodeBef = node->_prev;
+
+        node->_prev = endNode;
+        endNode->_next = node;
+
+        // Если надо добавлять не в начало
+        if (nodeBef)
+        {
+            begNode->_prev = nodeBef;
+            nodeBef->_next = begNode;
+        }
+
+        if (!begNode->_prev)
+            _head = begNode;
+    }
 }
 
 #endif // IWANNAGET10POINTS
 
 
 template <typename T>
-void BidiLinkedList<T>::cutNodes(Node* beg, Node* end)
+void BidiLinkedList<T>::cutNodes(Node* begNode, Node* endNode)
 {
-    if (!beg || !end)
+    if (!begNode || !endNode)
         throw std::invalid_argument("Either `beg` or `end` is nullptr");
     // !...
     // Здесь вырезана часть кода. Ее необходимо реализовать

@@ -251,7 +251,7 @@ public:
      *  If \a node is nullptr, the chain is inserted in the very begin of the list
      *  If \a insNode has a previous or next sibling, an exception is thrown.
      */
-    void insertNodesBefore(Node* node, Node* beg, Node* end);
+    void insertNodesBefore(Node* node, Node* begNode, Node* endNode);
 
 #endif // IWANNAGET10POINTS
 
@@ -265,7 +265,7 @@ public:
      *
      *  <b style='color:orange'>Must be implemented by students</b>
      */
-    void cutNodes(Node* beg, Node* end);
+    void cutNodes(Node* begNode, Node* endNode);
 
 
 
