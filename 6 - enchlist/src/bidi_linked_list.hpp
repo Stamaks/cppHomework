@@ -263,9 +263,38 @@ void BidiLinkedList<T>::cutNodes(Node* begNode, Node* endNode)
 {
     if (!begNode || !endNode)
         throw std::invalid_argument("Either `beg` or `end` is nullptr");
-    // !...
-    // Здесь вырезана часть кода. Ее необходимо реализовать
-    // !...
+
+    // Если ноды не включают весь список
+    if (begNode->getPrev() || endNode->getNext())
+    {
+        if (begNode->getPrev() && endNode->getNext())
+        {
+            // Предыдущий элемент у begNode указывает на следующий элемент у endNode
+            begNode->getPrev()->getNext() = endNode->getNext();
+
+            // Следующий элемент у endNode указывает на предыдущий элемент у begNode
+            endNode->getNext()->getPrev() = begNode->getPrev();
+
+            begNode->getPrev() = nullptr;
+            endNode->getNext() = nullptr;
+        }
+        else if (!begNode->getPrev()) // Если begNode - начало списка
+        {
+            // Следующий нод после endNode имеет nullptr ссылку на предыдущий
+            endNode->getNext()->getPrev() = nullptr;
+
+            _head = endNode->getNext();
+            endNode->getNext() = nullptr;
+        }
+        else // Если endNode - конец списка
+        {
+            begNode->getPrev()->getNext() = nullptr;
+
+            _tail = begNode->getPrev();
+            begNode->getPrev() = nullptr;
+        }
+    }
+
     invalidateSize();
 
 }
@@ -275,9 +304,10 @@ template <typename T>
 typename BidiLinkedList<T>::Node* 
     BidiLinkedList<T>::cutNode(Node* node)
 {
-    // !...
-    // Метод необходимо реализовать целиком!
-    // !...
+    // Используем уже написанное решение
+    BidiLinkedList::cutNodes(node, node);
+
+    return node;
 }
 
 
