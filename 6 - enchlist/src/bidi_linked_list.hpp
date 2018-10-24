@@ -318,15 +318,20 @@ typename BidiLinkedList<T>::Node*
     if (!startFrom)
         return nullptr;
 
-    // !...
-    // Здесь вырезана часть кода. Ее необходимо реализовать
-    // !...
+    while (startFrom)
+    {
+        if (*(startFrom->getValue()) == *val)
+            return startFrom;
+
+        startFrom = startFrom->getNext();
+    }
 
     return nullptr;     // not found
 }
 
 
 
+// TODO: удалить повторяющийся код?
 template <typename T>
 typename BidiLinkedList<T>::Node** 
     BidiLinkedList<T>::findAll(Node* startFrom, const T& val, int& size)
@@ -334,23 +339,26 @@ typename BidiLinkedList<T>::Node**
     if (!startFrom)
         return nullptr;
 
-    // try not to use any standard containers. create an array only when found a first occurence  
+    // try not to use any standard containers. create an array only when found a first occurrence
     Node** res = nullptr;
     size = 0;
+    int nodesPassed = 0;
     
     while (startFrom)
     {
-        // !...
-        // Здесь вырезана часть кода. Ее необходимо реализовать
-        // !...
-    }
-    
-    // recreates array if created
-    if (res)
-    {
-        // !...
-        // А здесь вырезана еще одна часть кода. И ее тоже необходимо реализовать
-        // !...
+        if (*(startFrom->getValue()) == *val)
+        {
+            if (!res)
+            {
+                res = new Node*[this->getSize() - nodesPassed];
+            }
+
+            res[size] = startFrom;
+            ++size;
+        }
+
+        startFrom = startFrom->getNext();
+        ++nodesPassed;
     }
 
     return res;
@@ -364,9 +372,31 @@ template <typename T>
 typename BidiLinkedList<T>::Node**  
 BidiLinkedList<T>::cutAll(Node* startFrom, const T& val, int& size)
 {
-    // !...
-    // Реализуй метод, если хочешь получит оценку повыше!
-    // !...
+    if (!startFrom)
+        return nullptr;
+
+    Node** res = nullptr;
+    size = 0;
+    int nodesPassed = 0;
+
+    while (startFrom)
+    {
+        if (*(startFrom->getValue()) == *val)
+        {
+            if (!res)
+            {
+                res = new Node*[this->getSize() - nodesPassed];
+            }
+
+            res[size] = cutNode(startFrom);
+            ++size;
+        }
+
+        startFrom = startFrom->getNext();
+        ++nodesPassed;
+    }
+
+    return res;
 }
 
 #endif // IWANNAGET10POINTS
