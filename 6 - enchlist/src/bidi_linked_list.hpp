@@ -399,4 +399,89 @@ BidiLinkedList<T>::cutAll(Node* startFrom, const T& val, int& size)
     return res;
 }
 
+template<typename T>
+typename BidiLinkedList<T>::iterator BidiLinkedList<T>::begin()
+{
+    iterator it(_head);
+    return it;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::iterator BidiLinkedList<T>::end()
+{
+    iterator it(_tail->_next);
+    return it;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cbegin()
+{
+    const_iterator it(_head);
+    return it;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cend()
+{
+    const_iterator it(_tail->_next);
+    return it;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::rbegin()
+{
+    reverse_iterator it(_tail);
+    return it;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::rend()
+{
+    reverse_iterator it(_head->_prev);
+    return it;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crbegin()
+{
+    const_reverse_iterator it(_tail);
+    return it;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crend()
+{
+    const_reverse_iterator it(_head->_prev);
+    return it;
+}
+
+
+template<typename T>
+typename BidiLinkedList<T>::iterator BidiLinkedList<T>::iterator::operator++()
+{
+    if (pointer == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    return pointer->_next;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::iterator BidiLinkedList<T>::iterator::operator--()
+{
+    if (pointer->_prev == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    return pointer->_prev;
+}
+
+template<typename T>
+bool BidiLinkedList<T>::iterator::operator==(iterator it)
+{
+    if (pointer->_prev == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    return pointer->_prev;
+}
+
+
 #endif // IWANNAGET10POINTS

@@ -21,6 +21,7 @@
  #define IWANNAGET10POINTS
 
 #include <cstddef>      // size_t
+#include <iterator>
 
 
 /** \brief Declares a generic purpose bidirectional list
@@ -114,14 +115,60 @@ public:
 #ifdef TEST_ITERATOR
 
     // TODO: Implement iterators
-    
-    class MyIterator // You can rename it and extend it from std::iterator if you need for some reason.
+    class iterator // You can rename it and extend it from std::iterator if you need for some reason.
     {
-        // You can (but not necessary) put both declarations and implementations right here.
-        // Provide all necessary functions and operators for bidirectional iterator.
-        // ( http://www.cplusplus.com/reference/iterator/ )
-        
         // Iterator should throw logic_error in any irregular situation!!!
+        friend class BidiLinkedList;
+
+        Node* pointer;
+
+        public:
+            iterator(Node* pointer) : pointer(pointer) {}
+
+            iterator& operator++();
+            iterator& operator--();
+            bool operator==(const iterator& it) const;
+            bool operator!=(const iterator& it) const;
+
+    };
+
+    class const_iterator
+    {
+        const Node* pointer;
+
+        public:
+            const_iterator(Node* pointer) : pointer(pointer) {}
+
+            const_iterator operator++();
+            const_iterator operator--();
+            bool operator==(const_iterator it);
+            bool operator!=(const_iterator it);
+    };
+
+    class reverse_iterator
+    {
+        Node* pointer;
+
+        public:
+            reverse_iterator(Node* pointer) : pointer(pointer) {}
+
+            reverse_iterator operator++();
+            reverse_iterator operator--();
+            bool operator==(const_iterator it);
+            bool operator!=(const_iterator it);
+    };
+
+    class const_reverse_iterator
+    {
+        const Node* pointer;
+
+        public:
+            const_reverse_iterator(Node* pointer) : pointer(pointer) {}
+
+        const_reverse_iterator operator++();
+        const_reverse_iterator operator--();
+        bool operator==(const_reverse_iterator it);
+        bool operator!=(const_reverse_iterator it);
     };
     
     // Also you should implement by yourself classes for such iterators:
@@ -129,13 +176,6 @@ public:
     
     // You can implement them by yourself or just use an adapter:
     // https://en.cppreference.com/w/cpp/iterator/reverse_iterator
-    
-    
-    // If you call iterator classes with different names or use adapters, you can use typedefs:
-    // typedef подставь_имя_класса_итератора iterator;  
-    // typedef подставь_имя_класса_итератора const_iterator; 
-    // typedef подставь_имя_класса_итератора reverse_iterator; 
-    // typedef подставь_имя_класса_итератора const_reverse_iterator;
         
 
 
@@ -150,16 +190,14 @@ public:
     */
     iterator end();
     
-    // Similary you should define rbegin() rend() and their const combinations for reversed iterators:
-    
-//    const_iterator cbegin();
-//    const_iterator cend();
-//    
-//    reverse_iterator rbegin();
-//    reverse_iterator rend();
-//    
-//    const_reverse_iterator crbegin();
-//    const_reverse_iterator crend();
+    const_iterator cbegin();
+    const_iterator cend();
+
+    reverse_iterator rbegin();
+    reverse_iterator rend();
+
+    const_reverse_iterator crbegin();
+    const_reverse_iterator crend();
 
 
 
@@ -397,7 +435,8 @@ protected:
     /** \brief Caches a size of a list. If no size has been calculated, stores NO_SIZE value */
     std::size_t _size;
 
-}; // class BidiList 
+};
+// class BidiList
 
 
 
