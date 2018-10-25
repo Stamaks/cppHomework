@@ -103,8 +103,7 @@ void BidiLinkedList<T>::clear()
         delete currentNode->_prev;
     }
 
-    // Удаляем предпоследний и последний нод
-    delete _tail->_prev;
+    // Удаляем последний нод
     delete _tail;
 }
 
@@ -249,6 +248,8 @@ void BidiLinkedList<T>::insertNodesBefore(Node* node, Node* begNode, Node* endNo
         begNode->_prev = nodeBef;
         nodeBef->_next = begNode;
     }
+
+    invalidateSize();
 }
 
 #endif // IWANNAGET10POINTS
@@ -312,7 +313,6 @@ template <typename T>
 typename BidiLinkedList<T>::Node* 
     BidiLinkedList<T>::cutNode(Node* node)
 {
-    // Используем уже написанное решение
     BidiLinkedList::cutNodes(node, node);
 
     return node;
@@ -337,9 +337,6 @@ typename BidiLinkedList<T>::Node*
     return nullptr;     // not found
 }
 
-
-
-// TODO: удалить повторяющийся код?
 template <typename T>
 typename BidiLinkedList<T>::Node** 
     BidiLinkedList<T>::findAll(Node* startFrom, const T& val, int& size)
@@ -347,14 +344,13 @@ typename BidiLinkedList<T>::Node**
     if (!startFrom)
         return nullptr;
 
-    // try not to use any standard containers. create an array only when found a first occurrence
     Node** res = nullptr;
     size = 0;
     int nodesPassed = 0;
     
     while (startFrom)
     {
-        if (startFrom->getValue() == val)
+        if (startFrom->_val == val)
         {
             if (!res)
             {
@@ -396,13 +392,19 @@ BidiLinkedList<T>::cutAll(Node* startFrom, const T& val, int& size)
                 res = new Node*[this->getSize() - nodesPassed];
             }
 
+            Node* next = startFrom->_next;
             res[size] = cutNode(startFrom);
             ++size;
+            startFrom = next;
         }
-
-        startFrom = startFrom->getNext();
-        ++nodesPassed;
+        else
+        {
+            startFrom = startFrom->getNext();
+            ++nodesPassed;
+        }
     }
+
+    invalidateSize();
 
     return res;
 }
@@ -482,9 +484,6 @@ typename BidiLinkedList<T>::iterator& BidiLinkedList<T>::iterator::operator++()
 template<typename T>
 typename BidiLinkedList<T>::iterator BidiLinkedList<T>::iterator::operator++(int)
 {
-    if (pointer == nullptr)
-        throw std::logic_error("Iterator out of range!");
-
     iterator it(*this);
     ++(*this);
     return it;
@@ -510,9 +509,6 @@ typename BidiLinkedList<T>::iterator& BidiLinkedList<T>::iterator::operator--()
 template<typename T>
 typename BidiLinkedList<T>::iterator BidiLinkedList<T>::iterator::operator--(int)
 {
-    if (pointer->_prev == nullptr)
-        throw std::logic_error("Iterator out of range!");
-
     iterator it(*this);
     --(*this);
     return it;
@@ -549,9 +545,6 @@ typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::o
 template<typename T>
 typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::const_iterator::operator++(int)
 {
-    if (pointer == nullptr)
-        throw std::logic_error("Iterator out of range!");
-
     const_iterator it(*this);
     ++(*this);
     return it;
@@ -560,7 +553,7 @@ typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::const_iterator::op
 template<typename T>
 typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::operator--()
 {
-    if (pointer->_prev == nullptr)
+    if (pointer == nullptr || pointer->_prev == nullptr)
         throw std::logic_error("Iterator out of range!");
 
     // Если нам надо декрементировать указатель на пост-последний элемент
@@ -577,9 +570,6 @@ typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::o
 template<typename T>
 typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::const_iterator::operator--(int)
 {
-    if (pointer->_prev == nullptr)
-        throw std::logic_error("Iterator out of range!");
-
     const_iterator it(*this);
     --(*this);
     return it;
@@ -627,7 +617,7 @@ typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::reverse_iterator
 template<typename T>
 typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterator::operator--()
 {
-    if (pointer->_next == nullptr)
+    if (pointer == nullptr || pointer->_next == nullptr)
         throw std::logic_error("Iterator out of range!");
 
     pointer = pointer->_next;
@@ -637,9 +627,6 @@ typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterato
 template<typename T>
 typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::reverse_iterator::operator--(int)
 {
-    if (pointer->_next == nullptr)
-        throw std::logic_error("Iterator out of range!");
-
     reverse_iterator it(*this);
     --(*this);
     return it;
@@ -676,9 +663,6 @@ typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_rev
 template<typename T>
 typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::const_reverse_iterator::operator++(int)
 {
-    if (pointer == nullptr)
-        throw std::logic_error("Iterator out of range!");
-
     const_reverse_iterator it(*this);
     ++(*this);
     return it;
@@ -687,7 +671,7 @@ typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::const_reve
 template<typename T>
 typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_reverse_iterator::operator--()
 {
-    if (pointer->_next == nullptr)
+    if (pointer == nullptr || pointer->_next == nullptr)
         throw std::logic_error("Iterator out of range!");
 
     pointer = pointer->_next;
@@ -697,9 +681,6 @@ typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_rev
 template<typename T>
 typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::const_reverse_iterator::operator--(int)
 {
-    if (pointer->_next == nullptr)
-        throw std::logic_error("Iterator out of range!");
-
     const_reverse_iterator it(*this);
     --(*this);
     return it;
