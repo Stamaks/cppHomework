@@ -264,11 +264,11 @@ public:
 
 
     /** \brief Inserts a free chain given by its begin and end node after the given node.
-     *  \param beg begin node of the inserted chain
-     *  \param end end node of the inserted chain
+     *  \param begNode begin node of the inserted chain
+     *  \param endNode end node of the inserted chain
      *  \param node a node, after which the chain is inserted
      *  
-     *  If either \a beg or \a end is nullptr, an expection is thrown
+     *  If either \a begNode or \a endNode is nullptr, an expection is thrown
      *
      *  If inserted nodes \a beg and \a end  has a previous or next sibling respectively, 
      *  an exception is thrown. Since it is impossible to check whether [beg,end] belongs

@@ -25,21 +25,14 @@ template <typename T>
 typename BidiLinkedList<T>::Node* 
     BidiLinkedList<T>::Node::insertAfterInternal(Node* insNode)
 {
-    // here we use "this" keyword for enhancing the fact we deal with curent node!
-    /*
-    Node* afterNode = this->_next;      // an element, which was after node
-
-    this->_next = insNode;
-    insNode->_prev = this;
-    insNode->_next = afterNode;
-    afterNode->_prev = insNode;
-    */
     insNode->_prev = this;
     insNode->_next = this->_next;
+
     if (this->_next)
     {
         this->_next->_prev = insNode;
     }
+
     this->_next = insNode;
 
 
@@ -110,7 +103,8 @@ void BidiLinkedList<T>::clear()
         delete currentNode->_prev;
     }
 
-    // Удаляем последний нод
+    // Удаляем предпоследний и последний нод
+    delete _tail->_prev;
     delete _tail;
 }
 
@@ -151,26 +145,26 @@ typename BidiLinkedList<T>::Node*
 {
     Node* newNode = new Node(val);
 
-    // inserts after last node, size if going to e invalidated there
-    return insertNodeAfter(_tail, newNode);
+    // Вставляем после последнего нода (это дефолтный путь)
+    return insertNodeAfter(nullptr, newNode);
 }
 
-
-// возможно, этот метод даже не надо изменять
 template <typename T>
 typename BidiLinkedList<T>::Node* 
     BidiLinkedList<T>::insertNodeAfter(Node* node, Node* insNode)
 {
+    // Если на вход пришел nullptr для вставки
     if (!insNode)
         throw std::invalid_argument("`insNode` is nullptr");
 
-    // check if a node is alone
+    // Проверяем, что у нода для вставки нет соседей
     if (insNode->_next || insNode->_prev)
         throw std::invalid_argument("`insNode` has siblings. It seems it isn't free");
 
-    // if last node is nullptr itself, it means that no elements in the list at all
-    if (!node)
+    // Если нод nullptr или он - хвост - вставляем в конец
+    if (!node || node == _tail)
     {
+        // Если список вообще пуст
         if (_head == nullptr)
         {
             _head = insNode;
@@ -184,32 +178,29 @@ typename BidiLinkedList<T>::Node*
         }
     }
     else
-    {
         node->insertAfterInternal(insNode);
-
-        // If there is no one on the right from the inserted, update _tail.
-         if (!insNode->_next)
-            _tail = insNode;
-    }
 
     invalidateSize();
 
     return insNode;
 }
 
-// Здесь должна быть реализация метода BidiLinkedList<T>::insertNodesAfter().
 template<typename T>
 void
 BidiLinkedList<T>::insertNodesAfter(Node* node, Node* begNode, Node* endNode)
 {
+    // Если на вход пришел nullptr вместо begNode или endNode
     if (!begNode || !endNode)
         throw std::invalid_argument("BegNode or endNode is nullptr");
 
+    // Проверяем, что цепочка существует сама по себе
     if (begNode->_prev || endNode->_next)
         throw std::invalid_argument("It seems nodes aren't free!");
 
-    if (!node)
+    // Если нод nullptr или он - хвост - вставляем в конец
+    if (!node || node == _tail)
     {
+        // Если список вообще пуст
         if (_head == nullptr)
         {
             _head = begNode;
@@ -222,30 +213,20 @@ BidiLinkedList<T>::insertNodesAfter(Node* node, Node* begNode, Node* endNode)
             _tail = endNode;
         }
     }
-    else
+    else // Если вставляем не в конец
     {
         Node* nodeAfter = node->_next;
 
         node->_next = begNode;
         begNode->_prev = node;
-
-        // Если надо добавлять не в конец
-        if (nodeAfter)
-        {
-            endNode->_next = nodeAfter;
-            nodeAfter->_prev = endNode;
-        }
-
-        if (!endNode->_next)
-            _tail = endNode;
+        endNode->_next = nodeAfter;
+        nodeAfter->_prev = endNode;
     }
 
     invalidateSize();
 }
 
 
-// Следующий фрагмент кода перестанет быть "блеклым" и станет "ярким", как только вы определите
-// макрос IWANNAGET10POINTS, взяв тем самым на себя повышенные обязательства
 #ifdef IWANNAGET10POINTS
 
 
@@ -253,15 +234,18 @@ template <typename T>
 typename BidiLinkedList<T>::Node*
     BidiLinkedList<T>::insertNodeBefore(Node* node, Node* insNode)
 {
+    // Если на вход пришел nullptr для вставки
     if (!insNode)
         throw std::invalid_argument("`insNode` is nullptr");
 
-    // check if a node is alone
+    // Проверяем, что у нода для вставки нет соседей
     if (insNode->_next || insNode->_prev)
         throw std::invalid_argument("`insNode` has siblings. It seems it isn't free");
 
-    if (!node)
+    // Если нод - nullptr или он - голова, вставляем в начало
+    if (!node || node == _head)
     {
+        // Если список вообще пустой
         if (_head == nullptr)
         {
             _head = insNode;
@@ -274,24 +258,14 @@ typename BidiLinkedList<T>::Node*
             _head = insNode;
         }
     }
-    else
+    else  // Если вставляем не в начало
     {
-        // Если нод, перед которым нужно вставить - это голова
-        if (!node->_prev)
-        {
-            node->_prev = insNode;
-            insNode->_next = node;
-        }
-        else
-        {
-            Node* nodePrev = node->_prev;
+        Node* nodePrev = node->_prev;
 
-            nodePrev->_next = insNode;
-            insNode->_prev = nodePrev;
-        }
-
-        if (!insNode->_prev)
-            _head = insNode;
+        node->_prev = insNode;
+        insNode->_next = node;
+        nodePrev->_next = insNode;
+        insNode->_prev = nodePrev;
     }
 
     invalidateSize();
@@ -303,14 +277,18 @@ typename BidiLinkedList<T>::Node*
 template <typename T>
 void BidiLinkedList<T>::insertNodesBefore(Node* node, Node* begNode, Node* endNode)
 {
+    // Если на вход пришел nullptr вместо begNode или endNode
     if (!begNode || !endNode)
         throw std::invalid_argument("BegNode or endNode is nullptr");
 
-    if (!begNode->_prev || !endNode->_next)
+    // Проверяем, что цепочка существует сама по себе
+    if (begNode->_prev || endNode->_next)
         throw std::invalid_argument("It seems nodes aren't free!");
 
-    if (!node)
+    // Если нод - nullptr или он - голова, вставляем в начало
+    if (!node || node == _head)
     {
+        // Если список вообще пустой
         if (_head == nullptr)
         {
             _head = begNode;
@@ -323,22 +301,14 @@ void BidiLinkedList<T>::insertNodesBefore(Node* node, Node* begNode, Node* endNo
             _head = begNode;
         }
     }
-    else
+    else  // Если надо добавлять не в начало
     {
         Node* nodeBef = node->_prev;
 
         node->_prev = endNode;
         endNode->_next = node;
-
-        // Если надо добавлять не в начало
-        if (nodeBef)
-        {
-            begNode->_prev = nodeBef;
-            nodeBef->_next = begNode;
-        }
-
-        if (!begNode->_prev)
-            _head = begNode;
+        begNode->_prev = nodeBef;
+        nodeBef->_next = begNode;
     }
 }
 
