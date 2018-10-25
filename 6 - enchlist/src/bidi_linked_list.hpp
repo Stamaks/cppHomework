@@ -472,13 +472,42 @@ typename BidiLinkedList<T>::iterator& BidiLinkedList<T>::iterator::operator++()
 }
 
 template<typename T>
+typename BidiLinkedList<T>::iterator BidiLinkedList<T>::iterator::operator++(int)
+{
+    if (pointer == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    iterator it(*this);
+    ++(*this);
+    return it;
+}
+
+template<typename T>
 typename BidiLinkedList<T>::iterator& BidiLinkedList<T>::iterator::operator--()
 {
+    // Если нам надо декрементировать указатель на пост-последний элемент
+    if (pointer == nullptr)
+    {
+        pointer = _tail;
+        return *this;
+    }
+
     if (pointer->_prev == nullptr)
         throw std::logic_error("Iterator out of range!");
 
     pointer = pointer->_prev;
     return *this;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::iterator BidiLinkedList<T>::iterator::operator--(int)
+{
+    if (pointer->_prev == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    iterator it(*this);
+    --(*this);
+    return it;
 }
 
 template<typename T>
@@ -510,6 +539,17 @@ typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::o
 }
 
 template<typename T>
+typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::const_iterator::operator++(int)
+{
+    if (pointer == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    const_iterator it(*this);
+    ++(*this);
+    return it;
+}
+
+template<typename T>
 typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::operator--()
 {
     if (pointer->_prev == nullptr)
@@ -517,6 +557,17 @@ typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::o
 
     pointer = pointer->_prev;
     return *this;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::const_iterator::operator--(int)
+{
+    if (pointer->_prev == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    const_iterator it(*this);
+    --(*this);
+    return it;
 }
 
 template<typename T>
@@ -548,6 +599,17 @@ typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterato
 }
 
 template<typename T>
+typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::reverse_iterator::operator++(int)
+{
+    if (pointer == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    reverse_iterator it(*this);
+    ++(*this);
+    return it;
+}
+
+template<typename T>
 typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterator::operator--()
 {
     if (pointer->_next == nullptr)
@@ -555,6 +617,17 @@ typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterato
 
     pointer = pointer->_next;
     return *this;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::reverse_iterator::operator--(int)
+{
+    if (pointer->_next == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    reverse_iterator it(*this);
+    --(*this);
+    return it;
 }
 
 template<typename T>
@@ -586,6 +659,17 @@ typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_rev
 }
 
 template<typename T>
+typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::const_reverse_iterator::operator++(int)
+{
+    if (pointer == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    const_reverse_iterator it(*this);
+    ++(*this);
+    return it;
+}
+
+template<typename T>
 typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_reverse_iterator::operator--()
 {
     if (pointer->_next == nullptr)
@@ -593,6 +677,17 @@ typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_rev
 
     pointer = pointer->_next;
     return *this;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::const_reverse_iterator::operator--(int)
+{
+    if (pointer->_next == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    const_reverse_iterator it(*this);
+    --(*this);
+    return it;
 }
 
 template<typename T>

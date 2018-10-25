@@ -120,15 +120,20 @@ public:
         // Iterator should throw logic_error in any irregular situation!!!
         friend class BidiLinkedList;
 
-        Node* pointer;
-
         public:
             iterator(Node* pointer) : pointer(pointer) {}
 
             iterator& operator++();
+            const iterator operator++(int);
             iterator& operator--();
+            const iterator operator--(int);
             bool operator==(const iterator& it) const;
             bool operator!=(const iterator& it) const;
+            Node& operator*() { return *pointer; };
+            iterator& operator->() { return *this; };
+
+        protected:
+            Node* pointer;
     };
 
     class const_iterator
@@ -139,9 +144,13 @@ public:
             const_iterator(Node* pointer) : pointer(pointer) {}
 
             const_iterator& operator++();
+            const const_iterator operator++(int);
             const_iterator& operator--();
+            const const_iterator operator--(int);
             bool operator==(const const_iterator& it) const;
             bool operator!=(const const_iterator& it) const;
+            Node& operator*() { return *pointer; };
+            const_iterator& operator->();
     };
 
     class reverse_iterator
@@ -152,9 +161,13 @@ public:
             reverse_iterator(Node* pointer) : pointer(pointer) {}
 
             reverse_iterator& operator++();
+            const reverse_iterator operator++(int);
             reverse_iterator& operator--();
+            const reverse_iterator operator--(int);
             bool operator==(const reverse_iterator& it) const;
             bool operator!=(const reverse_iterator& it) const;
+            Node& operator*() { return *pointer; };
+            reverse_iterator& operator->();
     };
 
     class const_reverse_iterator
@@ -164,10 +177,13 @@ public:
         public:
             const_reverse_iterator(Node* pointer) : pointer(pointer) {}
 
-        const_reverse_iterator& operator++();
-        const_reverse_iterator& operator--();
-        bool operator==(const const_reverse_iterator& it) const;
-        bool operator!=(const const_reverse_iterator& it) const;
+            const_reverse_iterator& operator++();
+            const const_reverse_iterator operator++(int);
+            const_reverse_iterator& operator--();
+            const const_reverse_iterator operator--(int);
+            bool operator==(const const_reverse_iterator& it) const;
+            bool operator!=(const const_reverse_iterator& it) const;
+            Node& operator*() { return *pointer; };
     };
     
     // Also you should implement by yourself classes for such iterators:
