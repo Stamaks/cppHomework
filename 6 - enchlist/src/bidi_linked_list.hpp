@@ -153,34 +153,7 @@ template <typename T>
 typename BidiLinkedList<T>::Node* 
     BidiLinkedList<T>::insertNodeAfter(Node* node, Node* insNode)
 {
-    // Если на вход пришел nullptr для вставки
-    if (!insNode)
-        throw std::invalid_argument("`insNode` is nullptr");
-
-    // Проверяем, что у нода для вставки нет соседей
-    if (insNode->_next || insNode->_prev)
-        throw std::invalid_argument("`insNode` has siblings. It seems it isn't free");
-
-    // Если нод nullptr или он - хвост - вставляем в конец
-    if (!node || node == _tail)
-    {
-        // Если список вообще пуст
-        if (_head == nullptr)
-        {
-            _head = insNode;
-            _tail = insNode;
-        }
-        else
-        {
-            _tail->_next = insNode;
-            insNode->_prev = _tail;
-            _tail = insNode;
-        }
-    }
-    else
-        node->insertAfterInternal(insNode);
-
-    invalidateSize();
+    insertNodesAfter(node, insNode, insNode);
 
     return insNode;
 }
@@ -234,41 +207,7 @@ template <typename T>
 typename BidiLinkedList<T>::Node*
     BidiLinkedList<T>::insertNodeBefore(Node* node, Node* insNode)
 {
-    // Если на вход пришел nullptr для вставки
-    if (!insNode)
-        throw std::invalid_argument("`insNode` is nullptr");
-
-    // Проверяем, что у нода для вставки нет соседей
-    if (insNode->_next || insNode->_prev)
-        throw std::invalid_argument("`insNode` has siblings. It seems it isn't free");
-
-    // Если нод - nullptr или он - голова, вставляем в начало
-    if (!node || node == _head)
-    {
-        // Если список вообще пустой
-        if (_head == nullptr)
-        {
-            _head = insNode;
-            _tail = insNode;
-        }
-        else
-        {
-            _head->_prev = insNode;
-            insNode->_next = _head;
-            _head = insNode;
-        }
-    }
-    else  // Если вставляем не в начало
-    {
-        Node* nodePrev = node->_prev;
-
-        node->_prev = insNode;
-        insNode->_next = node;
-        nodePrev->_next = insNode;
-        insNode->_prev = nodePrev;
-    }
-
-    invalidateSize();
+    insertNodesBefore(node, insNode, insNode);
 
     return insNode;
 }
