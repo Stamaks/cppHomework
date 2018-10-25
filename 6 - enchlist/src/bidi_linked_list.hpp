@@ -257,15 +257,19 @@ void BidiLinkedList<T>::insertNodesBefore(Node* node, Node* begNode, Node* endNo
 template <typename T>
 void BidiLinkedList<T>::cutNodes(Node* begNode, Node* endNode)
 {
+    // Если какой-нибудь из нодов - nullptr
     if (!begNode || !endNode)
         throw std::invalid_argument("Either `beg` or `end` is nullptr");
 
+    // Если цепочка, которую нужно вырезать, это весь лист
     if (!begNode->_prev && !endNode->_next)
     {
         _head = nullptr;
         _tail = nullptr;
     }
-    else if (begNode->_prev && endNode->_next)
+
+    // Если цепочка находится где-то внутри листа (не с какого-либо краю)
+    if (begNode->_prev && endNode->_next)
     {
         // Предыдущий элемент у begNode указывает на следующий элемент у endNode
         begNode->_prev->_next = endNode->_next;
@@ -273,39 +277,34 @@ void BidiLinkedList<T>::cutNodes(Node* begNode, Node* endNode)
         // Следующий элемент у endNode указывает на предыдущий элемент у begNode
         endNode->_next->_prev = begNode->_prev;
 
+        // Обнуляем ссылки по краям вырезанной цепочки
         begNode->_prev = nullptr;
         endNode->_next = nullptr;
     }
-    else if (!begNode->_prev) // Если begNode - начало списка
+
+    // Если цепочка находится с левого края (begNode - начало списка)
+    if (!begNode->_prev && endNode->_next)
     {
-        // Следующий нод после endNode имеет nullptr ссылку на предыдущий
-        if (endNode->_next)
-        {
-            endNode->_next->_prev = nullptr;
+        // Теперь голова - следующий эл-т у endNode
+        _head = endNode->_next;
+        _head->_prev = nullptr;
 
-            _head = endNode->_next;
-        }
-        else
-            _head = nullptr;
-
+        // Обнуляем ссылку с правого края вырезанной цепочки
         endNode->_next = nullptr;
     }
-    else // Если endNode - конец списка
+
+    // Если цепочка находится с правого края (endNode - конец списка)
+    if (begNode->_prev && !endNode->_next)
     {
-        if (begNode->_prev)
-        {
-            begNode->_prev->_next = nullptr;
+        // Теперь хвост - предыдущий эл-т у begNode
+        _tail = begNode->_prev;
+        _tail->_next = nullptr;
 
-            _tail = begNode->_prev;
-        }
-        else
-            _tail = nullptr;
-
+        // Обнуляем ссылку с левого края вырезанной цепочки
         begNode->_prev = nullptr;
     }
 
     invalidateSize();
-
 }
 
 
