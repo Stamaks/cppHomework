@@ -414,14 +414,14 @@ typename BidiLinkedList<T>::iterator BidiLinkedList<T>::end()
 }
 
 template<typename T>
-typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cbegin()
+typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cbegin() const
 {
     const_iterator it(_head);
     return it;
 }
 
 template<typename T>
-typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cend()
+typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cend() const
 {
     const_iterator it(_tail->_next);
     return it;
@@ -442,46 +442,168 @@ typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::rend()
 }
 
 template<typename T>
-typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crbegin()
+typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crbegin() const
 {
     const_reverse_iterator it(_tail);
     return it;
 }
 
 template<typename T>
-typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crend()
+typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crend() const
 {
     const_reverse_iterator it(_head->_prev);
     return it;
 }
 
 
+//==============================================================================
+// class iterator<T>
+//==============================================================================
+
+
 template<typename T>
-typename BidiLinkedList<T>::iterator BidiLinkedList<T>::iterator::operator++()
+typename BidiLinkedList<T>::iterator& BidiLinkedList<T>::iterator::operator++()
 {
     if (pointer == nullptr)
         throw std::logic_error("Iterator out of range!");
 
-    return pointer->_next;
+    pointer = pointer->_next;
+    return *this;
 }
 
 template<typename T>
-typename BidiLinkedList<T>::iterator BidiLinkedList<T>::iterator::operator--()
+typename BidiLinkedList<T>::iterator& BidiLinkedList<T>::iterator::operator--()
 {
     if (pointer->_prev == nullptr)
         throw std::logic_error("Iterator out of range!");
 
-    return pointer->_prev;
+    pointer = pointer->_prev;
+    return *this;
 }
 
 template<typename T>
-bool BidiLinkedList<T>::iterator::operator==(iterator it)
+bool BidiLinkedList<T>::iterator::operator==(const iterator& it) const
+{
+    return it.pointer == pointer;
+}
+
+template<typename T>
+bool BidiLinkedList<T>::iterator::operator!=(const iterator& it) const
+{
+    return it.pointer != pointer;
+}
+
+
+//==============================================================================
+// class const_iterator<T>
+//==============================================================================
+
+
+template<typename T>
+typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::operator++()
+{
+    if (pointer == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    pointer = pointer->_next;
+    return *this;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::operator--()
 {
     if (pointer->_prev == nullptr)
         throw std::logic_error("Iterator out of range!");
 
-    return pointer->_prev;
+    pointer = pointer->_prev;
+    return *this;
+}
+
+template<typename T>
+bool BidiLinkedList<T>::const_iterator::operator==(const const_iterator& it) const
+{
+    return it.pointer == pointer;
+}
+
+template<typename T>
+bool BidiLinkedList<T>::const_iterator::operator!=(const const_iterator& it) const
+{
+    return it.pointer != pointer;
 }
 
 
+//==============================================================================
+// class reverse_iterator<T>
+//==============================================================================
+
+
+template<typename T>
+typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterator::operator++()
+{
+    if (pointer == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    pointer = pointer->_prev;
+    return *this;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterator::operator--()
+{
+    if (pointer->_next == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    pointer = pointer->_next;
+    return *this;
+}
+
+template<typename T>
+bool BidiLinkedList<T>::reverse_iterator::operator==(const BidiLinkedList::reverse_iterator& it) const
+{
+    return it.pointer == pointer;
+}
+
+template<typename T>
+bool BidiLinkedList<T>::reverse_iterator::operator!=(const BidiLinkedList::reverse_iterator& it) const
+{
+    return it.pointer != pointer;
+}
+
+
+//==============================================================================
+// class const_reverse_iterator<T>
+//==============================================================================
+
+
+template<typename T>
+typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_reverse_iterator::operator++()
+{
+    if (pointer == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    pointer = pointer->_prev;
+    return *this;
+}
+
+template<typename T>
+typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_reverse_iterator::operator--()
+{
+    if (pointer->_next == nullptr)
+        throw std::logic_error("Iterator out of range!");
+
+    pointer = pointer->_next;
+    return *this;
+}
+
+template<typename T>
+bool BidiLinkedList<T>::const_reverse_iterator::operator==(const BidiLinkedList::const_reverse_iterator& it) const
+{
+    return it.pointer == pointer;
+}
+
+template<typename T>
+bool BidiLinkedList<T>::const_reverse_iterator::operator!=(const BidiLinkedList::const_reverse_iterator& it) const
+{
+    return it.pointer != pointer;
+}
 #endif // IWANNAGET10POINTS

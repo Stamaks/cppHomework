@@ -129,7 +129,6 @@ public:
             iterator& operator--();
             bool operator==(const iterator& it) const;
             bool operator!=(const iterator& it) const;
-
     };
 
     class const_iterator
@@ -139,10 +138,10 @@ public:
         public:
             const_iterator(Node* pointer) : pointer(pointer) {}
 
-            const_iterator operator++();
-            const_iterator operator--();
-            bool operator==(const_iterator it);
-            bool operator!=(const_iterator it);
+            const_iterator& operator++();
+            const_iterator& operator--();
+            bool operator==(const const_iterator& it) const;
+            bool operator!=(const const_iterator& it) const;
     };
 
     class reverse_iterator
@@ -152,10 +151,10 @@ public:
         public:
             reverse_iterator(Node* pointer) : pointer(pointer) {}
 
-            reverse_iterator operator++();
-            reverse_iterator operator--();
-            bool operator==(const_iterator it);
-            bool operator!=(const_iterator it);
+            reverse_iterator& operator++();
+            reverse_iterator& operator--();
+            bool operator==(const reverse_iterator& it) const;
+            bool operator!=(const reverse_iterator& it) const;
     };
 
     class const_reverse_iterator
@@ -165,10 +164,10 @@ public:
         public:
             const_reverse_iterator(Node* pointer) : pointer(pointer) {}
 
-        const_reverse_iterator operator++();
-        const_reverse_iterator operator--();
-        bool operator==(const_reverse_iterator it);
-        bool operator!=(const_reverse_iterator it);
+        const_reverse_iterator& operator++();
+        const_reverse_iterator& operator--();
+        bool operator==(const const_reverse_iterator& it) const;
+        bool operator!=(const const_reverse_iterator& it) const;
     };
     
     // Also you should implement by yourself classes for such iterators:
@@ -190,14 +189,14 @@ public:
     */
     iterator end();
     
-    const_iterator cbegin();
-    const_iterator cend();
+    const_iterator cbegin() const;
+    const_iterator cend() const;
 
     reverse_iterator rbegin();
     reverse_iterator rend();
 
-    const_reverse_iterator crbegin();
-    const_reverse_iterator crend();
+    const_reverse_iterator crbegin() const;
+    const_reverse_iterator crend() const;
 
 
 
@@ -436,6 +435,8 @@ protected:
     std::size_t _size;
 
 };
+
+
 // class BidiList
 
 
