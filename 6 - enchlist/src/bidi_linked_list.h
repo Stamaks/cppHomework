@@ -83,7 +83,9 @@ public:
 
         /** \brief Sets a new value carried by the node */
         void setValue(const T& newVal) { _val = newVal; }
-        
+
+        T* operator->() { return &_val; }
+
     public:
         
         // UPD: unfortunately, can't proclaim this methos due to encapsulation reqs
@@ -114,87 +116,85 @@ public:
 #define TEST_ITERATOR
 #ifdef TEST_ITERATOR
 
-    // TODO: Implement iterators
-    class iterator // You can rename it and extend it from std::iterator if you need for some reason.
+    class iterator
     {
         // Iterator should throw logic_error in any irregular situation!!!
         friend class BidiLinkedList;
 
         public:
-            iterator(Node* pointer) : pointer(pointer) {}
+            iterator(Node* pointer, const BidiLinkedList* list) : pointer(pointer), list(list) {}
 
             iterator& operator++();
-            const iterator operator++(int);
+            iterator operator++(int);
             iterator& operator--();
-            const iterator operator--(int);
+            iterator operator--(int);
             bool operator==(const iterator& it) const;
             bool operator!=(const iterator& it) const;
-            Node& operator*() { return *pointer; };
-            iterator& operator->() { return *this; };
+            T& operator*() { return pointer->_val; };
+            Node operator->() { return *pointer; };
 
         protected:
             Node* pointer;
+            const BidiLinkedList* list;
     };
 
     class const_iterator
     {
-        const Node* pointer;
-
         public:
-            const_iterator(Node* pointer) : pointer(pointer) {}
+            const_iterator(Node* pointer, const BidiLinkedList* list) : pointer(pointer), list(list) {}
 
             const_iterator& operator++();
-            const const_iterator operator++(int);
+            const_iterator operator++(int);
             const_iterator& operator--();
-            const const_iterator operator--(int);
+            const_iterator operator--(int);
             bool operator==(const const_iterator& it) const;
             bool operator!=(const const_iterator& it) const;
-            Node& operator*() { return *pointer; };
-            const_iterator& operator->();
+            T& operator*() { return pointer->_val; };
+            Node operator->() { return *pointer; };
+
+        protected:
+            Node* pointer;
+            const BidiLinkedList* list;
     };
 
     class reverse_iterator
     {
-        Node* pointer;
-
         public:
-            reverse_iterator(Node* pointer) : pointer(pointer) {}
+            reverse_iterator(Node* pointer, const BidiLinkedList* list) : pointer(pointer), list(list) {}
 
             reverse_iterator& operator++();
-            const reverse_iterator operator++(int);
+            reverse_iterator operator++(int);
             reverse_iterator& operator--();
-            const reverse_iterator operator--(int);
+            reverse_iterator operator--(int);
             bool operator==(const reverse_iterator& it) const;
             bool operator!=(const reverse_iterator& it) const;
-            Node& operator*() { return *pointer; };
-            reverse_iterator& operator->();
+            T& operator*() { return pointer->_val; };
+            Node operator->() { return *pointer; };
+
+        protected:
+            Node* pointer;
+            const BidiLinkedList* list;
     };
 
     class const_reverse_iterator
     {
-        const Node* pointer;
-
         public:
-            const_reverse_iterator(Node* pointer) : pointer(pointer) {}
+            const_reverse_iterator(Node* pointer, const BidiLinkedList* list) : pointer(pointer), list(list) {}
 
             const_reverse_iterator& operator++();
-            const const_reverse_iterator operator++(int);
+            const_reverse_iterator operator++(int);
             const_reverse_iterator& operator--();
-            const const_reverse_iterator operator--(int);
+            const_reverse_iterator operator--(int);
             bool operator==(const const_reverse_iterator& it) const;
             bool operator!=(const const_reverse_iterator& it) const;
-            Node& operator*() { return *pointer; };
+            T& operator*() { return pointer->_val; };
+            Node operator->() { return *pointer; };
+
+        protected:
+            Node* pointer;
+            const BidiLinkedList* list;
     };
-    
-    // Also you should implement by yourself classes for such iterators:
-    // reverse_iterator, const_interator, const_reverse_iterator
-    
-    // You can implement them by yourself or just use an adapter:
-    // https://en.cppreference.com/w/cpp/iterator/reverse_iterator
-        
 
-
-    // For iterator
 public:
     /** \brief Returns an iterator to the first element of the list
      *  If the list is empty - returns an iterator to the non existing element. (Like end() does.)
@@ -223,14 +223,17 @@ public:
     /** \brief Default constructor */
     BidiLinkedList() : _head(nullptr), _tail(nullptr), _size(NO_SIZE) {};
 
+    BidiLinkedList(const BidiLinkedList& list);
+
     /** \brief Destructor
      *
      *  <b style='color:orange'>Must be implemented by students</b>
      */
     ~BidiLinkedList();
-    
-    // TODO don't forget about big three. You can either implement it or just declare private.
+
 public:
+
+    BidiLinkedList<T>& operator=(const BidiLinkedList<T>& list);
 
     /** \brief Clears the list (deletes all elements and frees memory) 
      *
@@ -434,6 +437,8 @@ protected:
      *  <b style='color:orange'>Must be implemented by students</b>
      */
     void calculateSize();
+
+    void swap(BidiLinkedList& first, BidiLinkedList& second);
 protected:
     /** \brief Pointer to a first element of a list
      *

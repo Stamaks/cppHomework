@@ -24,6 +24,8 @@
 
 /** \brief Type alias for a list of integers. */
 typedef BidiLinkedList<int> IntBidiLinkedList;
+typedef BidiLinkedList<int> IntBidiList;
+typedef IntBidiList::Node IntBidiListNode;
 
 
 /** \brief Simple list creating. */
@@ -39,7 +41,10 @@ int main()
 {
     demo1();
 
-
+    IntBidiList lst;
+    IntBidiListNode* nd1 = lst.appendEl(10);
+    IntBidiListNode* nd2 = lst.appendEl(20);
+    IntBidiListNode* nd3 = lst.appendEl(10);
 
     return 0;
 }

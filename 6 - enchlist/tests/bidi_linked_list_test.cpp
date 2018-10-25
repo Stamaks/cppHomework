@@ -674,6 +674,112 @@ TEST(Iterators, combinedIncrements)
     EXPECT_EQ(*(--(--it)), 10);
 }
 
+TEST(MyIterators,  reversUsual)
+{
+    IntBidiList lst;
+
+    lst.appendEl(1);
+    lst.appendEl(2);
+    lst.appendEl(3);
+    lst.appendEl(4);
+    lst.appendEl(5);
+
+    std::stringstream ss;
+
+    for (IntBidiList::reverse_iterator it = lst.rbegin(); !(it == lst.rend()); ++it )
+        ss << *it;
+    EXPECT_EQ(ss.str(), "54321");
+
+    std::stringstream ss2;
+    for (IntBidiList::reverse_iterator it = lst.rbegin(); it != lst.rend(); ++it )
+        ss2 << *it;
+
+    EXPECT_EQ(ss2.str(), "54321");
+
+    std::stringstream ss3;
+    for (IntBidiList::reverse_iterator it = lst.rbegin(); it != lst.rend(); it++ )
+        ss3 << *it;
+
+    EXPECT_EQ(ss3.str(), "54321");
+}
+
+TEST(MyIterators, reversUsualDecr)
+{
+    IntBidiList lst;
+
+    lst.appendEl(1);
+    lst.appendEl(2);
+    lst.appendEl(3);
+    lst.appendEl(4);
+    lst.appendEl(5);
+
+
+    std::stringstream ss;
+    for (IntBidiList::reverse_iterator it = --lst.rend(); it != lst.rbegin(); it-- )
+        ss << *it;
+
+    EXPECT_EQ(ss.str(), "1234");
+
+    std::stringstream ss2;
+    for (IntBidiList::reverse_iterator it = --lst.rend(); it != lst.rbegin(); --it )
+        ss2 << *it;
+
+    EXPECT_EQ(ss2.str(), "1234");
+}
+
+TEST(MyIterators, simplUsual)
+{
+    IntBidiList lst;
+
+    lst.appendEl(1);
+    lst.appendEl(2);
+    lst.appendEl(3);
+    lst.appendEl(4);
+    lst.appendEl(5);
+
+    std::stringstream ss;
+
+    for (IntBidiList::iterator it = lst.begin(); !(it == lst.end()); ++it )
+        ss << *it;
+    EXPECT_EQ(ss.str(), "12345");
+
+    std::stringstream ss2;
+    for (IntBidiList::iterator it = lst.begin(); it != lst.end(); ++it )
+        ss2 << *it;
+
+    EXPECT_EQ(ss2.str(), "12345");
+
+    std::stringstream ss3;
+    for (IntBidiList::iterator it = lst.begin(); it != lst.end(); it++ )
+        ss3 << *it;
+
+    EXPECT_EQ(ss3.str(), "12345");
+}
+
+TEST(MyIterators, simplUsualDecr)
+{
+    IntBidiList lst;
+
+    lst.appendEl(1);
+    lst.appendEl(2);
+    lst.appendEl(3);
+    lst.appendEl(4);
+    lst.appendEl(5);
+
+
+    std::stringstream ss;
+    for (IntBidiList::iterator it = --lst.end(); it != lst.begin(); it-- )
+        ss << *it;
+
+    EXPECT_EQ(ss.str(), "5432");
+
+    std::stringstream ss2;
+    for (IntBidiList::iterator it = --lst.end(); it != lst.begin(); --it )
+        ss2 << *it;
+
+    EXPECT_EQ(ss2.str(), "5432");
+}
+
 
 #else // TEST_ITERATOR
 TEST(Iterators, notImplemented)

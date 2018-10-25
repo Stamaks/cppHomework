@@ -26,12 +26,22 @@ typename BidiLinkedList<T>::Node*
     BidiLinkedList<T>::Node::insertAfterInternal(Node* insNode)
 {
     // here we use "this" keyword for enhancing the fact we deal with curent node!
+    /*
     Node* afterNode = this->_next;      // an element, which was after node
 
     this->_next = insNode;
     insNode->_prev = this;
     insNode->_next = afterNode;
     afterNode->_prev = insNode;
+    */
+    insNode->_prev = this;
+    insNode->_next = this->_next;
+    if (this->_next)
+    {
+        this->_next->_prev = insNode;
+    }
+    this->_next = insNode;
+
 
     return insNode;
 }
@@ -40,7 +50,30 @@ typename BidiLinkedList<T>::Node*
 // class BidiList<T>
 //==============================================================================
 
+template <typename T>
+BidiLinkedList<T>::BidiLinkedList(const BidiLinkedList& list)
+{
+    Node* currentNode = list.getHeadNode();
+    Node* prevNewNode = nullptr;
 
+    // Если нам передали не пустой список
+    if (currentNode)
+    {
+        _head = new Node(currentNode->_val);
+        _tail = _head;
+        currentNode = currentNode->_next;
+        prevNewNode = _head;
+    }
+
+    while (currentNode)
+    {
+        Node* newNode = new Node(currentNode->_val);
+        newNode->_prev = prevNewNode;
+        prevNewNode->_next = newNode;
+        _tail = newNode;
+        prevNewNode = newNode;
+    }
+}
 
 template <typename T>
 BidiLinkedList<T>::~BidiLinkedList()
@@ -48,6 +81,23 @@ BidiLinkedList<T>::~BidiLinkedList()
     clear();
 }
 
+template <typename T>
+BidiLinkedList<T>& BidiLinkedList<T>::operator=(const BidiLinkedList<T>& list)
+{
+    BidiLinkedList<T> tmp(list);
+    swap(*this, tmp);
+
+    return *this;
+}
+
+template <typename T>
+void BidiLinkedList<T>::swap(BidiLinkedList<T>& first, BidiLinkedList<T>& second)
+{
+    std::swap(first.getHeadNode(), second.getHeadNode());
+    std::swap(first.getLastNode(), second.getLastNode());
+    first.invalidateSize();
+    second.invalidateSize();
+}
 
 template <typename T>
 void BidiLinkedList<T>::clear()
@@ -91,7 +141,6 @@ template <typename T>
 typename BidiLinkedList<T>::Node* 
     BidiLinkedList<T>::getLastNode() const
 {
-    // Const?..
     return _tail;
 }
 
@@ -122,8 +171,17 @@ typename BidiLinkedList<T>::Node*
     // if last node is nullptr itself, it means that no elements in the list at all
     if (!node)
     {
-        _head = insNode;
-        _tail = insNode;
+        if (_head == nullptr)
+        {
+            _head = insNode;
+            _tail = insNode;
+        }
+        else
+        {
+            _tail->_next = insNode;
+            insNode->_prev = _tail;
+            _tail = insNode;
+        }
     }
     else
     {
@@ -147,13 +205,22 @@ BidiLinkedList<T>::insertNodesAfter(Node* node, Node* begNode, Node* endNode)
     if (!begNode || !endNode)
         throw std::invalid_argument("BegNode or endNode is nullptr");
 
-    if (!begNode->_prev || !endNode->_next)
+    if (begNode->_prev || endNode->_next)
         throw std::invalid_argument("It seems nodes aren't free!");
 
     if (!node)
     {
-        _head = begNode;
-        _tail = endNode;
+        if (_head == nullptr)
+        {
+            _head = begNode;
+            _tail = endNode;
+        }
+        else
+        {
+            _tail->_next = begNode;
+            begNode->_prev = _tail;
+            _tail = endNode;
+        }
     }
     else
     {
@@ -195,8 +262,17 @@ typename BidiLinkedList<T>::Node*
 
     if (!node)
     {
-        _head = insNode;
-        _tail = insNode;
+        if (_head == nullptr)
+        {
+            _head = insNode;
+            _tail = insNode;
+        }
+        else
+        {
+            _head->_prev = insNode;
+            insNode->_next = _head;
+            _head = insNode;
+        }
     }
     else
     {
@@ -219,6 +295,8 @@ typename BidiLinkedList<T>::Node*
     }
 
     invalidateSize();
+
+    return insNode;
 }
 
 
@@ -233,8 +311,17 @@ void BidiLinkedList<T>::insertNodesBefore(Node* node, Node* begNode, Node* endNo
 
     if (!node)
     {
-        _head = begNode;
-        _tail = endNode;
+        if (_head == nullptr)
+        {
+            _head = begNode;
+            _tail = endNode;
+        }
+        else
+        {
+            _head->_prev = endNode;
+            endNode->_next = _head;
+            _head = begNode;
+        }
     }
     else
     {
@@ -264,35 +351,48 @@ void BidiLinkedList<T>::cutNodes(Node* begNode, Node* endNode)
     if (!begNode || !endNode)
         throw std::invalid_argument("Either `beg` or `end` is nullptr");
 
-    // Если ноды не включают весь список
-    if (begNode->getPrev() || endNode->getNext())
+    if (!begNode->_prev && !endNode->_next)
     {
-        if (begNode->getPrev() && endNode->getNext())
+        _head = nullptr;
+        _tail = nullptr;
+    }
+    else if (begNode->_prev && endNode->_next)
+    {
+        // Предыдущий элемент у begNode указывает на следующий элемент у endNode
+        begNode->_prev->_next = endNode->_next;
+
+        // Следующий элемент у endNode указывает на предыдущий элемент у begNode
+        endNode->_next->_prev = begNode->_prev;
+
+        begNode->_prev = nullptr;
+        endNode->_next = nullptr;
+    }
+    else if (!begNode->_prev) // Если begNode - начало списка
+    {
+        // Следующий нод после endNode имеет nullptr ссылку на предыдущий
+        if (endNode->_next)
         {
-            // Предыдущий элемент у begNode указывает на следующий элемент у endNode
-            begNode->getPrev()->getNext() = endNode->getNext();
+            endNode->_next->_prev = nullptr;
 
-            // Следующий элемент у endNode указывает на предыдущий элемент у begNode
-            endNode->getNext()->getPrev() = begNode->getPrev();
-
-            begNode->getPrev() = nullptr;
-            endNode->getNext() = nullptr;
+            _head = endNode->_next;
         }
-        else if (!begNode->getPrev()) // Если begNode - начало списка
+        else
+            _head = nullptr;
+
+        endNode->_next = nullptr;
+    }
+    else // Если endNode - конец списка
+    {
+        if (begNode->_prev)
         {
-            // Следующий нод после endNode имеет nullptr ссылку на предыдущий
-            endNode->getNext()->getPrev() = nullptr;
+            begNode->_prev->_next = nullptr;
 
-            _head = endNode->getNext();
-            endNode->getNext() = nullptr;
+            _tail = begNode->_prev;
         }
-        else // Если endNode - конец списка
-        {
-            begNode->getPrev()->getNext() = nullptr;
+        else
+            _tail = nullptr;
 
-            _tail = begNode->getPrev();
-            begNode->getPrev() = nullptr;
-        }
+        begNode->_prev = nullptr;
     }
 
     invalidateSize();
@@ -320,10 +420,10 @@ typename BidiLinkedList<T>::Node*
 
     while (startFrom)
     {
-        if (*(startFrom->getValue()) == *val)
+        if (startFrom->_val == val)
             return startFrom;
 
-        startFrom = startFrom->getNext();
+        startFrom = startFrom->_next;
     }
 
     return nullptr;     // not found
@@ -346,7 +446,7 @@ typename BidiLinkedList<T>::Node**
     
     while (startFrom)
     {
-        if (*(startFrom->getValue()) == *val)
+        if (startFrom->getValue() == val)
         {
             if (!res)
             {
@@ -357,7 +457,7 @@ typename BidiLinkedList<T>::Node**
             ++size;
         }
 
-        startFrom = startFrom->getNext();
+        startFrom = startFrom->_next;
         ++nodesPassed;
     }
 
@@ -381,7 +481,7 @@ BidiLinkedList<T>::cutAll(Node* startFrom, const T& val, int& size)
 
     while (startFrom)
     {
-        if (*(startFrom->getValue()) == *val)
+        if (startFrom->_val == val)
         {
             if (!res)
             {
@@ -402,56 +502,56 @@ BidiLinkedList<T>::cutAll(Node* startFrom, const T& val, int& size)
 template<typename T>
 typename BidiLinkedList<T>::iterator BidiLinkedList<T>::begin()
 {
-    iterator it(_head);
+    iterator it(_head, this);
     return it;
 }
 
 template<typename T>
 typename BidiLinkedList<T>::iterator BidiLinkedList<T>::end()
 {
-    iterator it(_tail->_next);
+    iterator it(_tail->_next, this);
     return it;
 }
 
 template<typename T>
 typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cbegin() const
 {
-    const_iterator it(_head);
+    const_iterator it(_head, this);
     return it;
 }
 
 template<typename T>
 typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cend() const
 {
-    const_iterator it(_tail->_next);
+    const_iterator it(_tail->_next, this);
     return it;
 }
 
 template<typename T>
 typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::rbegin()
 {
-    reverse_iterator it(_tail);
+    reverse_iterator it(_tail, this);
     return it;
 }
 
 template<typename T>
 typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::rend()
 {
-    reverse_iterator it(_head->_prev);
+    reverse_iterator it(_head->_prev, this);
     return it;
 }
 
 template<typename T>
 typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crbegin() const
 {
-    const_reverse_iterator it(_tail);
+    const_reverse_iterator it(_tail, this);
     return it;
 }
 
 template<typename T>
 typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crend() const
 {
-    const_reverse_iterator it(_head->_prev);
+    const_reverse_iterator it(_head->_prev, this);
     return it;
 }
 
@@ -488,7 +588,7 @@ typename BidiLinkedList<T>::iterator& BidiLinkedList<T>::iterator::operator--()
     // Если нам надо декрементировать указатель на пост-последний элемент
     if (pointer == nullptr)
     {
-        pointer = _tail;
+        pointer = list->_tail;
         return *this;
     }
 
@@ -554,6 +654,13 @@ typename BidiLinkedList<T>::const_iterator& BidiLinkedList<T>::const_iterator::o
 {
     if (pointer->_prev == nullptr)
         throw std::logic_error("Iterator out of range!");
+
+    // Если нам надо декрементировать указатель на пост-последний элемент
+    if (pointer == nullptr)
+    {
+        pointer = list->_tail;
+        return *this;
+    }
 
     pointer = pointer->_prev;
     return *this;
