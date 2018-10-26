@@ -606,9 +606,6 @@ typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterato
 template<typename T>
 typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::reverse_iterator::operator++(int)
 {
-    if (pointer == nullptr)
-        throw std::logic_error("Iterator out of range!");
-
     reverse_iterator it(*this);
     ++(*this);
     return it;
@@ -617,7 +614,13 @@ typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::reverse_iterator
 template<typename T>
 typename BidiLinkedList<T>::reverse_iterator& BidiLinkedList<T>::reverse_iterator::operator--()
 {
-    if (pointer == nullptr || pointer->_next == nullptr)
+    if (pointer == nullptr)
+    {
+        pointer = list->_head;
+        return *this;
+    }
+
+    if (pointer->_next == nullptr)
         throw std::logic_error("Iterator out of range!");
 
     pointer = pointer->_next;
@@ -671,7 +674,14 @@ typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::const_reve
 template<typename T>
 typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_reverse_iterator::operator--()
 {
-    if (pointer == nullptr || pointer->_next == nullptr)
+
+    if (pointer == nullptr)
+    {
+        pointer = list->_head;
+        return *this;
+    }
+
+    if (pointer->_next == nullptr)
         throw std::logic_error("Iterator out of range!");
 
     pointer = pointer->_next;
