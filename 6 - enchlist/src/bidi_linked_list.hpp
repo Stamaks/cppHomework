@@ -105,6 +105,9 @@ void BidiLinkedList<T>::clear()
 
     // Удаляем последний нод
     delete _tail;
+
+    _tail = nullptr;
+    _head = nullptr;
 }
 
 template <typename T>
@@ -430,14 +433,14 @@ typename BidiLinkedList<T>::iterator BidiLinkedList<T>::end()
 }
 
 template<typename T>
-typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cbegin() const
+typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cbegin()
 {
     const_iterator it(_head, this);
     return it;
 }
 
 template<typename T>
-typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cend() const
+typename BidiLinkedList<T>::const_iterator BidiLinkedList<T>::cend()
 {
     if (_tail)
     {
@@ -470,14 +473,14 @@ typename BidiLinkedList<T>::reverse_iterator BidiLinkedList<T>::rend()
 }
 
 template<typename T>
-typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crbegin() const
+typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crbegin()
 {
     const_reverse_iterator it(_tail, this);
     return it;
 }
 
 template<typename T>
-typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crend() const
+typename BidiLinkedList<T>::const_reverse_iterator BidiLinkedList<T>::crend()
 {
     if (_head)
     {
@@ -720,7 +723,7 @@ template<typename T>
 typename BidiLinkedList<T>::const_reverse_iterator& BidiLinkedList<T>::const_reverse_iterator::operator--()
 {
     if (list->_head == nullptr)
-        throw std::logic_error("Iterator out of range!");   
+        throw std::logic_error("Iterator out of range!");
 
     if (pointer == nullptr)
     {

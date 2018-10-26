@@ -800,4 +800,29 @@ TEST(MyIterators, inc)
     EXPECT_THROW(--lst.rend(), std::logic_error);
     EXPECT_THROW(--lst.crbegin(), std::logic_error);
     EXPECT_THROW(--lst.crend(), std::logic_error);
+
+    EXPECT_THROW(++lst.begin(), std::logic_error);
+    EXPECT_THROW(++lst.end(), std::logic_error);
+    EXPECT_THROW(++lst.cbegin(), std::logic_error);
+    EXPECT_THROW(++lst.cend(), std::logic_error);
+    EXPECT_THROW(++lst.rbegin(), std::logic_error);
+    EXPECT_THROW(++lst.rend(), std::logic_error);
+    EXPECT_THROW(++lst.crbegin(), std::logic_error);
+    EXPECT_THROW(++lst.crend(), std::logic_error);
+
+    EXPECT_THROW(*lst.begin(), std::logic_error);
+    EXPECT_THROW(*lst.end(),std::logic_error);
+    EXPECT_THROW(*lst.cbegin(), std::logic_error);
+    EXPECT_THROW(*lst.cend(),std::logic_error);
+    EXPECT_THROW(*lst.rbegin(), std::logic_error);
+    EXPECT_THROW(*lst.rend(),std::logic_error);
+    EXPECT_THROW(*lst.crbegin(), std::logic_error);
+    EXPECT_THROW(*lst.crend(),std::logic_error);
+
+    lst.clear();
+    EXPECT_THROW(*lst.begin(), std::logic_error);
+
+    ASSERT_EQ(lst.begin(), lst.end());
+
+
 }

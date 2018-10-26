@@ -84,8 +84,6 @@ public:
         /** \brief Sets a new value carried by the node */
         void setValue(const T& newVal) { _val = newVal; }
 
-        T* operator->() { return &_val; }
-
     public:
         
         // UPD: unfortunately, can't proclaim this methos due to encapsulation reqs
@@ -130,8 +128,8 @@ public:
             iterator operator--(int);
             bool operator==(const iterator& it) const;
             bool operator!=(const iterator& it) const;
-            T& operator*() { return pointer->_val; };
-            Node operator->() { return *pointer; };
+            T& operator*() { if (pointer) return pointer->_val; else throw std::logic_error(""); };
+            T* operator->() { if (pointer) return &pointer->_val; else throw std::logic_error(""); };
 
         protected:
             Node* pointer;
@@ -149,11 +147,11 @@ public:
             const_iterator operator--(int);
             bool operator==(const const_iterator& it) const;
             bool operator!=(const const_iterator& it) const;
-            T& operator*() { return pointer->_val; };
-            Node operator->() { return *pointer; };
+            const T& operator*() { if (pointer) return pointer->_val; else throw std::logic_error(""); };
+            const T* operator->() { if (pointer) return &pointer->_val; else throw std::logic_error(""); };
 
         protected:
-            Node* pointer;
+            const Node* pointer;
             const BidiLinkedList* list;
     };
 
@@ -168,8 +166,8 @@ public:
             reverse_iterator operator--(int);
             bool operator==(const reverse_iterator& it) const;
             bool operator!=(const reverse_iterator& it) const;
-            T& operator*() { return pointer->_val; };
-            Node operator->() { return *pointer; };
+            T& operator*() { if (pointer) return pointer->_val; else throw std::logic_error(""); };
+            T* operator->() { if (pointer) return &pointer->_val; else throw std::logic_error(""); };
 
         protected:
             Node* pointer;
@@ -187,11 +185,11 @@ public:
             const_reverse_iterator operator--(int);
             bool operator==(const const_reverse_iterator& it) const;
             bool operator!=(const const_reverse_iterator& it) const;
-            T& operator*() { return pointer->_val; };
-            Node operator->() { return *pointer; };
+            const T& operator*() { if (pointer) return pointer->_val; else throw std::logic_error(""); };
+            const T* operator->() { if (pointer) return &pointer->_val; else throw std::logic_error(""); };
 
         protected:
-            Node* pointer;
+            const Node* pointer;
             const BidiLinkedList* list;
     };
 
@@ -205,14 +203,14 @@ public:
     */
     iterator end();
     
-    const_iterator cbegin() const;
-    const_iterator cend() const;
+    const_iterator cbegin();
+    const_iterator cend();
 
     reverse_iterator rbegin();
     reverse_iterator rend();
 
-    const_reverse_iterator crbegin() const;
-    const_reverse_iterator crend() const;
+    const_reverse_iterator crbegin();
+    const_reverse_iterator crend();
 
 
 
