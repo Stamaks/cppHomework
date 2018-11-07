@@ -90,15 +90,53 @@ void SkipList<Value, Key, numLevels>::append(const Value &val, const Key &key)
         prevNode->next = newNode;
     }
 
-    int currentLevel = 0;
+    int currentLevel = -1;
 
     // std::rand() генерирует числа [0, RAND_MAX]. Превращаем их в отрезок от 0 до 1 и радуемся.
     while (currentLevel < numLevels && (float) std::rand() / RAND_MAX < _probability)
     {
+        //TODO: Спускаемся вниз до уровня и ищем на нем, спускаемся ступеньками
 
+
+        ++currentLevel;
     }
+
+    newNode->levelHighest = currentLevel;
 
 }
 
+template<class Value, class Key, int numLevels>
+void SkipList<Value, Key, numLevels>::removeNext(SkipList::Node *node)
+{
+    if (node == nullptr)
+        throw std::invalid_argument("Node is nullptr!");
 
-// TODO: !!! One need to implement all declared methods !!!
+    if (node->next == nullptr)
+        throw std::invalid_argument("Node is broken! Next is nullptr!");
+
+    if (node->next == this->_preHead)
+        throw std::invalid_argument("Trying to remove preHead!");
+
+    if (this->_preHead->next == this->_preHead)
+        throw std::invalid_argument("The list is empty!");
+
+    //TODO: Спуском переставляем все ссылки с этого эл-та не следующий
+
+    delete[](node->nextJump[0]);
+    delete node;
+}
+
+template<class Value, class Key, int numLevels>
+typename SkipList<Value, Key, numLevels>::Node *SkipList<Value, Key, numLevels>::findLastLessThan(const Key &key) const
+{
+    //TODO: Спускаемся вниз до уровня и ищем на нем, спускаемся ступеньками. Если мы на -1 уровне и след эл-т больше - возвращаем текущий
+    //TODO: если не нашли - кидать invalid arg
+}
+
+template<class Value, class Key, int numLevels>
+typename SkipList<Value, Key, numLevels>::Node *SkipList<Value, Key, numLevels>::findFirst(const Key &key) const
+{
+    // Может, юзать findLastLessThan? И просто возвращать следующий?
+    //TODO: Спускаемся вниз ступеньками. Если next.val больше ИЛИ РАВЕН текущ - идем вниз, если это -1 - идем вправо.
+    //TODO: если не нашли - кидать invalid arg
+}
