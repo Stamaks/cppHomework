@@ -150,6 +150,34 @@ void SkipList<Value, Key, numLevels>::removeNext(SkipList::Node *nodeBefore)
         throw std::invalid_argument("The list is empty!");
 
     //TODO: Спуском переставляем все ссылки с этого эл-та нa следующий
+    Node* nodeToRemove = nodeBefore->next;
+    Node* currentNode = this->_preHead;
+    int currentLevel = numLevels - 1;
+
+    while (currentLevel != -1)
+    {
+        if (currentNode->nextJump[currentLevel] == this->_preHead)
+        {
+            std::cout << currentLevel << " meow" << std::endl;
+            --currentLevel;
+            continue;
+        }
+
+        if (currentNode->nextJump[currentLevel] == nodeToRemove)
+        {
+            std::cout << "removing link from " << currentNode->key << std::endl;
+            currentNode->nextJump[currentLevel] = nodeToRemove->nextJump[currentLevel];
+            --currentLevel;
+            continue;
+        }
+
+        if (currentNode->nextJump[currentLevel]->key < nodeToRemove->key)
+        {
+            std::cout << currentLevel << " jump to " << currentNode->nextJump[currentLevel]->key << std::endl;
+            currentNode = currentNode->nextJump[currentLevel];
+            --currentLevel;
+        }
+    }
 
     delete[](nodeBefore->next->nextJump[0]);
     delete nodeBefore->next;
