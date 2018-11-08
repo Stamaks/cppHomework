@@ -19,6 +19,7 @@
 
 
 #include "ordered_list.h"
+#include "skip_list.h"
 
 // псевдонимы для тестовых типов
 typedef NodeWithKey<double, int> IntDblKeyNode;
@@ -49,3 +50,20 @@ TEST(NodeWithKey, nodeInit1)
     //int a = 42;
 }
 
+TEST(LastLessThan, lastLess)
+{
+    SkipList<int, int, 8> list;
+
+    EXPECT_EQ(list.getPreHead(), list.findLastLessThan(0));
+
+    list.append(0, 0);
+    list.append(1, 1);
+    list.append(2, 2);
+    list.append(3, 3);
+    list.append(4, 4);
+
+    EXPECT_EQ(3, list.findLastLessThan(4)->key);
+    EXPECT_EQ(list.getPreHead(), list.findLastLessThan(0));
+    EXPECT_EQ(list.getPreHead(), list.findLastLessThan(8));
+    EXPECT_EQ(list.getPreHead(), list.findLastLessThan(-9));
+}

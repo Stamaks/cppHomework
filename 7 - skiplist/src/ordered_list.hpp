@@ -104,5 +104,23 @@ Node* OrderedList<Value, Key, Node>::getPreHead() const
     return _preHead;
 }
 
+template<class Value, class Key, class Node>
+OrderedList<Value, Key, Node>::~OrderedList()
+{
+    //TODO: переписать
+    Node* currentNode = this->_preHead->next;
+    Node* prevNode;
+
+    while (currentNode != this->_preHead)
+    {
+        prevNode = currentNode;
+        currentNode->next = currentNode;
+
+        delete prevNode;
+    }
+
+    delete this->_preHead;
+}
+
 //-----------------------------------------------------------------------------
 

@@ -93,16 +93,54 @@ void SkipList<Value, Key, numLevels>::append(const Value &val, const Key &key)
     int currentLevel = -1;
 
     // std::rand() генерирует числа [0, RAND_MAX]. Превращаем их в отрезок от 0 до 1 и радуемся.
+    // Высчитываем, на каком уровне у нас впервые встретится элемент
     while (currentLevel < numLevels && (float) std::rand() / RAND_MAX < _probability)
     {
-        //TODO: Спускаемся вниз до уровня и ищем на нем, спускаемся ступеньками
-
-
         ++currentLevel;
     }
 
     newNode->levelHighest = currentLevel;
 
+    Node* currentNode = this->_preHead;
+
+    while (currentNode->next != this->_preHead && currentLevel != -1)
+    {
+        if (currentNode->nextJump[currentLevel] == this->_preHead)
+        {
+            currentNode->nextJump[currentLevel] = newNode;
+            newNode->nextJump[currentLevel] = this->_preHead;
+
+            --currentLevel;
+        }
+        else if (currentNode->nextJump[currentLevel]->key < key)
+        {
+            currentNode = currentNode->nextJump[currentLevel];
+        }
+        else
+        {
+            newNode->nextJump[currentLevel] = currentNode->nextJump[currentLevel];
+            currentNode->nextJump[currentLevel] = newNode;
+            --currentLevel;
+        }
+    }
+
+}
+
+template<class Value, class Key, int numLevels>
+SkipList<Value, Key, numLevels>::~SkipList()
+{
+    Node* currentNode = this->_preHead->next;
+    Node* prevNode;
+
+    while (currentNode != this->_preHead)
+    {
+        prevNode = currentNode;
+        currentNode->next = currentNode;
+
+        delete prevNode;
+    }
+
+    delete this->_preHead;
 }
 
 template<class Value, class Key, int numLevels>
@@ -129,6 +167,48 @@ void SkipList<Value, Key, numLevels>::removeNext(SkipList::Node *node)
 template<class Value, class Key, int numLevels>
 typename SkipList<Value, Key, numLevels>::Node *SkipList<Value, Key, numLevels>::findLastLessThan(const Key &key) const
 {
+    Node* currentNode = this->_preHead;
+    bool found = 0;
+    int currentLevel = numLevels - 1;
+
+    while (currentNode->next != this->_preHead && !found)
+    {
+        if (currentLevel != -1)
+        {
+            if (currentNode->nextJump[currentLevel] == this->_preHead)
+            {
+                --currentLevel;
+            }
+            else if (currentNode->nextJump[currentLevel]->key < key)
+            {
+                currentNode = currentNode->nextJump[currentLevel];
+            }
+            else
+            {
+                --currentLevel;
+            }
+        }
+        else
+        {
+            if (currentNode->next->key < key)
+            {
+                currentNode = currentNode->next;
+            }
+            else if (currentNode->next->key == key)
+            {
+                found = 1;
+            }
+            else {
+                break;
+            }
+        }
+    }
+
+    if (found)
+        return currentNode;
+
+    return this->_preHead;
+
     //TODO: Спускаемся вниз до уровня и ищем на нем, спускаемся ступеньками. Если мы на -1 уровне и след эл-т больше - возвращаем текущий
     //TODO: если не нашли - кидать invalid arg
 }
