@@ -26,8 +26,27 @@ OrderedList<Value, Key, Node>::OrderedList()
 
 //-----------------------------------------------------------------------------
 
+template<class Value, class Key, class Node>
+OrderedList<Value, Key, Node>::~OrderedList()
+{
+    if (this->_preHead != nullptr)
+    {
+        Node *currentNode = this->_preHead->next;
+        Node *prevNode;
 
-    // TODO: !!! Implement destructor correctly !!!
+        std::cout << this->_preHead->key << std::endl;
+        while (currentNode != this->_preHead)
+        {
+            prevNode = currentNode;
+            currentNode = currentNode->next;
+
+            std::cout << prevNode->key << std::endl;
+            delete prevNode;
+        }
+
+        delete this->_preHead;
+    }
+}
 
 //-----------------------------------------------------------------------------
 
@@ -105,4 +124,3 @@ Node* OrderedList<Value, Key, Node>::getPreHead() const
 }
 
 //-----------------------------------------------------------------------------
-
