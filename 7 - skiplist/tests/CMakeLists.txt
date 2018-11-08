@@ -4,8 +4,8 @@ include_directories(.)
 
 add_executable(tests
 # skiplist tests
-    time_stamp_test.cpp
-    ordered_list_test.cpp
+    journal_test.cpp
+    skip_list_test.cpp
 #
 # skiplist sources
     ../src/time_stamp.h
@@ -28,3 +28,7 @@ add_executable(tests
 if (UNIX)
     target_link_libraries(tests pthread)
 endif ()
+
+# for coverage
+# TARGET_COMPILE_OPTIONS(tests PUBLIC --coverage)
+# target_link_libraries(tests gcov)

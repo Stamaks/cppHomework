@@ -39,13 +39,31 @@ public:
 
     /// Just dumps the whole journal to the \a out stream.
     void dumpJournal(std::ostream& out);
-
+    
+    void parseLogFromStream(std::istream& in);
+    
+    
     /// Reads the whole log from the file on \a fullpath.
     void parseLog(const std::string& fullpath);
 
-    /// Outputs all net activity between \a from and \a to.
+    /// Outputs all net activity between \a from and \a to (including borders).
+    /// Uses given ostream for output!!!
+    /// 
+    /// If `from` > `to` throws std::invalid_argument
+    ///
+    /// Output format should be like this: (one space between key and value)
+    /// 2015.07.10 10:33:02 user126 e-maxx.ru
+    /// 2015.07.10 10:34:02 user127 e-maxx.ru
+    /// 
+    /// The last line should end with a new line.
+    /// Line separator should be std::endl.
+    /// Empty output is "" without new line. 
+    /// 
+    /// Net Activities with equal TimeStamps should go in the same order as they were in the journal.
     void outputSuspiciousActivities(const std::string& site,
-        const TimeStamp& from, const TimeStamp& to) const;
+                                    const TimeStamp& from,
+                                    const TimeStamp& to,
+                                    std::ostream& out) const;
 
 protected:
     /// Log storage.

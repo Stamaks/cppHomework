@@ -65,13 +65,14 @@ void testJournal(const JournalNetActivity<numLevels>& journal,
     std::cout << "SkipList: Test #" << cntTest << std::endl << std::endl;
 
     tmr.tick();
-    journal.outputSuspiciousActivities(host, from, to);
+    journal.outputSuspiciousActivities(host, from, to, std::cout);
     tmr.tack("Test took");
     std::cout << "===============================================================================" << std::endl;
 
     std::cout << std::endl;
 }
 
+const std::string LOG_FOLDER = "../../data/";
 
 //------------------------------------------------------------------------------
 
@@ -89,7 +90,7 @@ int main (int /*argc*/, char* /*argv*/[])
     tmr.tick();
     int i = 0;
     for (i = 0; i < 200 * 1000; ++i)
-        list.append(i, i);
+        list.insert(i, i);
 
     tmr.tack("SkipList over integers creation");
 
@@ -110,25 +111,25 @@ int main (int /*argc*/, char* /*argv*/[])
     try{
         // Test #1
         JournalNetActivity<5> journal1;
-        journal1.parseLog("test1.log");
+        journal1.parseLog(LOG_FOLDER + "test1.log");
         testJournal(journal1, "e-maxx.ru", TimeStamp(2015,6,10,10,33,1), TimeStamp(2015,6,10,10,33,4));
 
         // Test #2
         JournalNetActivity<5> journal2;
-        journal2.parseLog("test2.log");
+        journal2.parseLog(LOG_FOLDER + "test2.log");
         testJournal(journal2, "verisicretproxi.com", TimeStamp(2015,6,10,10,33,54), TimeStamp(2015,6,10,10,33,54));
 
 //        // Test #3
 //        JournalNetActivity<5> journal3;
 //        tmr.tick();
-//        journal3.parseLog("test3.log");
+//        journal3.parseLog(LOG_FOLDER + "test3.log");
 //        tmr.tack("Parsing test3.log");
 //        testJournal(journal3, "verisicretproxi.com", TimeStamp(2015,6,10,12,27,45), TimeStamp(2015,6,10,12,27,59));
 
 //        // Test #4
 //        JournalNetActivity<5> journal4;
 //        tmr.tick();
-//        journal4.parseLog("test4.log");
+//        journal4.parseLog(LOG_FOLDER + "test4.log");
 //        tmr.tack("Parsing test4.log:");
 //        testJournal(journal4, "verisicretproxi.com", TimeStamp(2015,6,10,22,30,20), TimeStamp(2015,6,10,22,30,50));
 

@@ -33,7 +33,7 @@ OrderedList<Value, Key, Node>::OrderedList()
 
 
 template <class Value, class Key, class Node >
-void OrderedList<Value,Key,Node>::insert(const Value& val, const Key& tkey)
+void OrderedList<Value,Key,Node>::append(const Value& val, const Key& tkey)
 {
     // ищем "последний" элемент в цепочке
     Node* run = _preHead;
@@ -102,6 +102,24 @@ template <class Value, class Key, class Node>
 Node* OrderedList<Value, Key, Node>::getPreHead() const
 {
     return _preHead;
+}
+
+template<class Value, class Key, class Node>
+OrderedList<Value, Key, Node>::~OrderedList()
+{
+    //TODO: переписать
+    Node* currentNode = this->_preHead->next;
+    Node* prevNode;
+
+    while (currentNode != this->_preHead)
+    {
+        prevNode = currentNode;
+        currentNode->next = currentNode;
+
+        delete prevNode;
+    }
+
+    delete this->_preHead;
 }
 
 //-----------------------------------------------------------------------------

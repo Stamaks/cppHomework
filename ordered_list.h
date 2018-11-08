@@ -119,8 +119,8 @@ public:
 
     // TODO: деструктор!
 
-    /// Inserts a new node with the given (value == val) and (key == tkey).
-    virtual void insert(const Value& val, const Key& tkey);
+    /// Appends a new node with the given (value == val) and (key == tkey).
+    virtual void append(const Value& val, const Key& tkey);
 
     /// Removes node just after \a nodeBefore.
     virtual void removeNext(Node* nodeBefore);

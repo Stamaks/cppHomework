@@ -20,26 +20,35 @@
 template <int numLevels>
 void JournalNetActivity<numLevels>::parseLog(const std::string& fullpath)
 {
+    // пытаемся открыть файл для чтения
     std::ifstream fin(fullpath);    // opens the file
+    if (!fin)
+        throw std::logic_error("Couldn't open file " + fullpath);
+    
+    parseLogFromStream(fin);
+}
 
+template <int numLevels>
+void JournalNetActivity<numLevels>::parseLogFromStream(std::istream& in)
+{
     TimeStamp timestamp;            // dummy
     NetActivity netactivity;        // dummy
 
-    while (fin)
+    while (in)
     {
-        fin >> timestamp;
-        if (!fin)
+        in >> timestamp;
+        if (!in)
             break;
 
-        fin >> netactivity.user;
-        if (!fin)
+        in >> netactivity.user;
+        if (!in)
             break;
 
-        fin >> netactivity.host;
-        if (!fin)
+        in >> netactivity.host;
+        if (!in)
             break;
 
-        _journal.append(netactivity, timestamp);
+        _journal.insert(netactivity, timestamp);
     }
 }
 
@@ -53,12 +62,12 @@ void JournalNetActivity<numLevels>::dumpJournal(std::ostream& out)
 
     // prehead is placed before the first and after the last element
     // So it serves two roles.
-    while (run->m_next != prehead)
+    while (run->next != prehead)
     {
-        run = run->m_next;
-        out << run->m_key;
+        run = run->next;
+        out << run->key;
         out << " ";
-        out << run->m_value;
+        out << run->value;
     }
 }
 
@@ -66,9 +75,10 @@ void JournalNetActivity<numLevels>::dumpJournal(std::ostream& out)
 
 template <int numLevels>
 void JournalNetActivity<numLevels>::outputSuspiciousActivities(
-        const std::string& hostSuspicious, const TimeStamp & timeFrom,
-        const TimeStamp & timeTo) const
+        const std::string& hostSuspicious,
+        const TimeStamp& timeFrom,
+        const TimeStamp& timeTo,
+        std::ostream& out) const
 {
     // TODO: Implement this method!
 }
-

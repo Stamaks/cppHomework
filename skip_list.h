@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
 /// \file
 /// \brief      Contains interfaces for the following classes:
 ///                 NodeSkipListAbstract, NodeSkipList, SkipList.
@@ -105,43 +105,38 @@ public:
     /// \param probability is the probability of each sparse level to appear.
     SkipList(double probability = 0.5);
 
-    /// Virtual destructor: must take into account different levels!
+        /// Virtual destructor: must take into account different levels!
     virtual ~SkipList();
 
 
     /// \brief Insert a new element into your list.
     ///
-    /// Think very hard how will you guarantee thatnew element will be
+    /// Think very hard how will you guarantee that new element will be
     /// included in sparse levels correctly!
     ///
     /// Make different test. Check border cases - empty list, end of the list,
     /// et cetera ...
-    virtual void insert(const Value& val, const Key& key);
+    virtual void append(const Value& val, const Key& key);
 
     /// \brief Remove the node from the list and delete it from the memory.
     ///
     /// Check if an idiot called your function
     /// (i.e. don't delete pprehead occasionaly, and other cases)
-    /// (Throw std::invalid_argument in such case.)
     ///
     /// Continue to think hard about sparse levels.
     /// Check different cases.
-    virtual void removeNext(Node* nodeBefore);
+    virtual void removeNext(Node* node);
 
     /// \brief Find the last element with key strictly less than key.
     ///
     /// You have to do it in log(n) time,  i.e. you have to use sparse levels
     /// correctly from the highest to the lowest.
-    /// 
-    /// If the key is less than the first element or the list is empty, returns _preHead.
     virtual Node* findLastLessThan(const Key& key) const;
 
     /// \brief Find the first element with key equal to key.
     ///
     /// You have to do it in log(n) time, i.e. you have to use sparse levels
     /// correctly from the highest to the lowest.
-    /// 
-    /// If nothing was found, returns nullptr.
     virtual Node* findFirst(const Key& key) const;
 
 protected:

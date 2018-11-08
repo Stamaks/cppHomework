@@ -49,7 +49,7 @@ public:
     /// Checks if timestamps are not equal.
     bool operator!= (const TimeStamp& another) const
     {
-        return !(compareTo(another) == 0);
+        return compareTo(another) != 0;
     }
 
     /// Checks if left timestamp is earlier than the right one.
@@ -63,6 +63,16 @@ public:
     {
         int compare = compareTo(another);
         return (compare == 0 || compare == -1);
+    }
+
+    bool operator>= (const TimeStamp& another) const
+    {
+        return !operator<(another);
+    }
+
+    bool operator> (const TimeStamp& another) const
+    {
+        return !operator<=(another);
     }
 
 public:
