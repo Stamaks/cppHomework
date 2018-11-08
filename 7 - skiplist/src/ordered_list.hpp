@@ -34,13 +34,11 @@ OrderedList<Value, Key, Node>::~OrderedList()
         Node *currentNode = this->_preHead->next;
         Node *prevNode;
 
-        std::cout << this->_preHead->key << std::endl;
         while (currentNode != this->_preHead)
         {
             prevNode = currentNode;
             currentNode = currentNode->next;
 
-            std::cout << prevNode->key << std::endl;
             delete prevNode;
         }
 

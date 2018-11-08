@@ -81,4 +81,9 @@ void JournalNetActivity<numLevels>::outputSuspiciousActivities(
         std::ostream& out) const
 {
     // TODO: Implement this method!
+
+    if (timeFrom > timeTo)
+        throw std::invalid_argument("timeFrom > timeTo!");
+
+    auto nodeFirst = this->_journal.findFirst(timeFrom);
 }

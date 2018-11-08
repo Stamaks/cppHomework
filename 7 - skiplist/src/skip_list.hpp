@@ -73,13 +73,13 @@ SkipList<Value, Key, numLevels>::SkipList(double probability)
     std::srand(time(NULL));
 }
 
+
 template<class Value, class Key, int numLevels>
 void SkipList<Value, Key, numLevels>::insert(const Value &val, const Key &key)
 {
     Node* newNode = new Node(key, val);
     Node* prevNode;
 
-    std::cout << "doing INS of key " << key << std::endl;
     if (this->_preHead->next == this->_preHead)
     {
         this->_preHead->next = newNode;
@@ -88,7 +88,11 @@ void SkipList<Value, Key, numLevels>::insert(const Value &val, const Key &key)
     else
     {
         prevNode = findLastLessThan(key);
-        std::cout << (prevNode == this->_preHead) << std::endl;
+
+        // move right a bit among equal nodes
+        while (prevNode->next != this->_preHead && prevNode->next->key == key)
+            prevNode = prevNode->next;
+
         newNode->next = prevNode->next;
         prevNode->next = newNode;
     }
@@ -99,35 +103,33 @@ void SkipList<Value, Key, numLevels>::insert(const Value &val, const Key &key)
     // Высчитываем, на каком уровне у нас впервые встретится элемент
     float prob = (float) std::rand() / RAND_MAX;
 
-    std::cout << "Prob is " << prob << "\n";
-    while (currentLevel < numLevels && prob < _probability)
+    while (currentLevel < numLevels - 1 && prob < _probability)
     {
         ++currentLevel;
         prob = (float) std::rand() / RAND_MAX;
-        std::cout << "And now prob is " << prob << "\n";
     }
 
+    // adding references on higher levels
     newNode->levelHighest = currentLevel;
-
     Node* currentNode = this->_preHead;
 
-    while (currentNode->next != this->_preHead && currentLevel != -1)
+    while (currentLevel != -1)
     {
-        if (currentNode->nextJump[currentLevel] == this->_preHead)
-        {
-            currentNode->nextJump[currentLevel] = newNode;
-            newNode->nextJump[currentLevel] = this->_preHead;
+        // right in sparse levels!
+        Node* right = currentNode->nextJump[currentLevel];
 
-            --currentLevel;
-        }
-        else if (currentNode->nextJump[currentLevel]->key < key)
+        // our new node is the last among all equal to it, (so <= )
+        if (right != this->_preHead && right->key <= key)
         {
-            currentNode = currentNode->nextJump[currentLevel];
+            // just go right
+            currentNode = right;
         }
         else
         {
-            newNode->nextJump[currentLevel] = currentNode->nextJump[currentLevel];
+            // insert new reference in sparse level.
             currentNode->nextJump[currentLevel] = newNode;
+            newNode->nextJump[currentLevel] = right;
+            // go down
             --currentLevel;
         }
     }
@@ -158,14 +160,12 @@ void SkipList<Value, Key, numLevels>::removeNext(SkipList::Node *nodeBefore)
     {
         if (currentNode->nextJump[currentLevel] == this->_preHead)
         {
-            std::cout << currentLevel << " meow" << std::endl;
             --currentLevel;
             continue;
         }
 
         if (currentNode->nextJump[currentLevel] == nodeToRemove)
-        {
-            std::cout << "removing link from " << currentNode->key << std::endl;
+        {\
             currentNode->nextJump[currentLevel] = nodeToRemove->nextJump[currentLevel];
             --currentLevel;
             continue;
@@ -173,14 +173,17 @@ void SkipList<Value, Key, numLevels>::removeNext(SkipList::Node *nodeBefore)
 
         if (currentNode->nextJump[currentLevel]->key < nodeToRemove->key)
         {
-            std::cout << currentLevel << " jump to " << currentNode->nextJump[currentLevel]->key << std::endl;
             currentNode = currentNode->nextJump[currentLevel];
+            --currentLevel;
+        }
+        else
+        {
             --currentLevel;
         }
     }
 
-    delete[](nodeBefore->next->nextJump[0]);
-    delete nodeBefore->next;
+    nodeBefore->next = nodeToRemove->next;
+    delete nodeToRemove;
 }
 
 template<class Value, class Key, int numLevels>
@@ -190,50 +193,29 @@ typename SkipList<Value, Key, numLevels>::Node *SkipList<Value, Key, numLevels>:
     bool found = 0;
     int currentLevel = numLevels - 1;
 
-    std::cout << "key " << key << std::endl;
-
     while (!found)
     {
         if (currentLevel != -1)
         {
             if (currentNode->nextJump[currentLevel] == this->_preHead)
-            {
-                std::cout << currentLevel << " meow" << std::endl;
                 --currentLevel;
-            }
             else if (currentNode->nextJump[currentLevel]->key < key)
-            {
-                std::cout << currentLevel << " move to " << currentNode->nextJump[currentLevel]->key << std::endl;
                 currentNode = currentNode->nextJump[currentLevel];
-            }
             else
-            {
-                std::cout << currentLevel << " bark" << std::endl;
                 --currentLevel;
-            }
         }
         else
         {
             if (currentNode->next == this->_preHead)
-            {
-                std::cout << "went to _preHead\n";
                 return currentNode;
-            }
 
             if (currentNode->next->key < key)
-            {
-                std::cout << currentLevel << " move to " << currentNode->next->key << std::endl;
                 currentNode = currentNode->next;
-            }
             else
-            {
-                std::cout << currentLevel << " found " << currentNode->next->key << "\n";
                 found = 1;
-            }
         }
     }
 
-    std::cout << "found: " << found << "\n" << std::endl;
     if (found)
         return currentNode;
 
@@ -249,7 +231,7 @@ typename SkipList<Value, Key, numLevels>::Node *SkipList<Value, Key, numLevels>:
     if (tryToFind->next != this->_preHead && tryToFind->next->key == key)
         return tryToFind->next;
 
-    throw std::invalid_argument("There is no such key!");
+    return nullptr;
 }
 
 template<class Value, class Key, int numLevels>

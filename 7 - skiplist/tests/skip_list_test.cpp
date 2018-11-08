@@ -454,37 +454,38 @@ TEST(SkipList, findLastLessThen1)
     EXPECT_EQ(list.findLastLessThan(30), list[3]);
 
 }
-
-TEST(SkipList, removeNext1)
-{
-    TestSkipList list(
-            vector<int>{10, 20, 30},
-            vector<int>{6, 0, 3},
-            vector<string>{"a", "b", "c"}
-    );
-    list.printRefs();
-    list.printValues(1);
-    list.checkRefs();
-
-    cout << "removing 20 b" << endl;
-    list.removeNext(list[0]); // b
-    list.printRefs();
-    list.checkRefs();
-    EXPECT_EQ(list.joinValuesToString(), "a c");
-
-    cout << "removing 30 c" << endl;
-    list.removeNext(list[0]); // c
-    list.printRefs();
-    list.checkRefs();
-    EXPECT_EQ(list.joinValuesToString(), "a");
-
-    cout << "removing 10 a" << endl;
-    list.removeNext(list[-1]); // a
-    list.checkRefs();
-    list.printRefs();
-    EXPECT_EQ(list.joinValuesToString(), "");
-    EXPECT_EQ(list.size(), 0);
-}
+//
+//TEST(SkipList, removeNext1)
+//{
+//    TestSkipList list(
+//            vector<int>{10, 20, 30},
+//            vector<int>{6, 0, 3},
+//            vector<string>{"a", "b", "c"}
+//    );
+//    list.printRefs();
+//    list.printValues(1);
+//    list.checkRefs();
+//
+//    cout << "removing 20 b" << endl;
+//    list.removeNext(list[0]); // b
+//    list.printRefs();
+//    list.checkRefs();
+//    EXPECT_EQ(list.joinValuesToString(), "a c");
+//
+//    cout << "removing 30 c" << endl;
+//    list.removeNext(list[0]); // c
+//    list.printRefs();
+//    list.checkRefs();
+//    EXPECT_EQ(list.joinValuesToString(), "a");
+//
+//    cout << "removing 10 a" << endl;
+//    list.getPreHead();
+//    list.removeNext(list[-1]); // a
+//    list.checkRefs();
+//    list.printRefs();
+//    EXPECT_EQ(list.joinValuesToString(), "");
+//    EXPECT_EQ(list.size(), 0);
+//}
 
 
 
