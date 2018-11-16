@@ -65,7 +65,6 @@ SkipList<Value, Key, numLevels>::SkipList(double probability)
 {
     _probability = probability;
 
-    // Lets use m_pPreHead as a final sentinel element
     for (int i = 0; i < numLevels; ++i)
         Base::_preHead->nextJump[i] = Base::_preHead;
 
@@ -89,7 +88,6 @@ void SkipList<Value, Key, numLevels>::insert(const Value &val, const Key &key)
     {
         prevNode = findLastLessThan(key);
 
-        // move right a bit among equal nodes
         while (prevNode->next != this->_preHead && prevNode->next->key == key)
             prevNode = prevNode->next;
 
@@ -109,27 +107,19 @@ void SkipList<Value, Key, numLevels>::insert(const Value &val, const Key &key)
         prob = (float) std::rand() / RAND_MAX;
     }
 
-    // adding references on higher levels
     newNode->levelHighest = currentLevel;
     Node* currentNode = this->_preHead;
 
     while (currentLevel != -1)
     {
-        // right in sparse levels!
         Node* right = currentNode->nextJump[currentLevel];
 
-        // our new node is the last among all equal to it, (so <= )
         if (right != this->_preHead && right->key <= key)
-        {
-            // just go right
             currentNode = right;
-        }
         else
         {
-            // insert new reference in sparse level.
             currentNode->nextJump[currentLevel] = newNode;
             newNode->nextJump[currentLevel] = right;
-            // go down
             --currentLevel;
         }
     }
@@ -151,7 +141,6 @@ void SkipList<Value, Key, numLevels>::removeNext(SkipList::Node *nodeBefore)
     if (this->_preHead->next == this->_preHead)
         throw std::invalid_argument("The list is empty!");
 
-    //TODO: Спуском переставляем все ссылки с этого эл-та нa следующий
     Node* nodeToRemove = nodeBefore->next;
     Node* currentNode = this->_preHead;
     int currentLevel = numLevels - 1;

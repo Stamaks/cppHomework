@@ -85,5 +85,16 @@ void JournalNetActivity<numLevels>::outputSuspiciousActivities(
     if (timeFrom > timeTo)
         throw std::invalid_argument("timeFrom > timeTo!");
 
-    auto nodeFirst = this->_journal.findFirst(timeFrom);
+    auto curBefNode = this->_journal.findLastLessThan(timeFrom);
+
+    while (curBefNode->next != this->_journal.getPreHead() &&  curBefNode->next->key <= timeTo)
+    {
+        curBefNode = curBefNode->next;
+
+        if (curBefNode->value.host == hostSuspicious)
+        {
+            out << curBefNode->key << " ";
+            out << curBefNode->value << std::endl;
+        }
+    }
 }

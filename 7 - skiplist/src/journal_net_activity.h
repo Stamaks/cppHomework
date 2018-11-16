@@ -55,7 +55,7 @@ public:
     /// 2015.07.10 10:33:02 user126 e-maxx.ru
     /// 2015.07.10 10:34:02 user127 e-maxx.ru
     ///
-    /// The last line should end with a new line.
+    ///  The last line should end with a new line.
     /// Line separator should be std::endl.
     /// Empty output is "" without new line.
     ///
