@@ -70,5 +70,6 @@ int main(void)
 {
     load_definitions("definitions.txt");
     process_queries("queries.txt");
+    std::cout << partContainer.lookup("hospital")->count_howmanyUp(partContainer.lookup("small_rubber_washer")) << std::endl;
     return EXIT_SUCCESS;
 }

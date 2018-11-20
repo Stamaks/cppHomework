@@ -6,12 +6,8 @@
 
 #IncludeRegexTransform: 
 
-/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/src/main.cpp
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/src/parts.cpp
 iostream
--
-fstream
--
-cstdlib
 -
 parts.h
 /home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/src/parts.h

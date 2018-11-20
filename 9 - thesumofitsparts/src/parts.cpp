@@ -34,6 +34,18 @@ int Part::count_howmany(Part const *p) const
     return sum;
 }
 
+int Part::count_howmanyUp(Part const *p)
+{
+    int mult = 1;
+    while (p != this)
+    {
+        mult *= p->parent->subparts[p];
+        p = p->parent;
+    }
+
+    return mult;
+}
+
 Part *NameContainer::lookup(std::string const &name)
 {
     if (name_map.find(name) == name_map.end())
@@ -56,10 +68,13 @@ void NameContainer::add_part(std::string const &part_name, int quantity, std::st
     Part* subpart = lookup(subpart_name);
 
     part->subparts[subpart] = quantity;
+    subpart->parent = part;
 }
 
-//TODO: destructor
 NameContainer::~NameContainer()
 {
-
+    for (std::pair<std::string, Part const*> el : name_map)
+    {
+        delete el.second;
+    }
 }
