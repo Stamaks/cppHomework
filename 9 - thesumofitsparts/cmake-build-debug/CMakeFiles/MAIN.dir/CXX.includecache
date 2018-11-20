@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/main.cpp
+iostream
+-
+fstream
+-
+cstdlib
+-
+parts.h
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/parts.h
+
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/parts.h
+vector
+-
+map
+-
+string
+-
+

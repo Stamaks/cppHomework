@@ -1,0 +1,1 @@
+/usr/bin/c++         -std=gnu++11 -DWINVER=0x0500 -g  -rdynamic CMakeFiles/main_thesumofitsparts.dir/main.cpp.o CMakeFiles/main_thesumofitsparts.dir/parts.cpp.o  -o main_thesumofitsparts 

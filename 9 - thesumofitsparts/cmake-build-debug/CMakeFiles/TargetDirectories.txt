@@ -1,0 +1,5 @@
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/cmake-build-debug/src/CMakeFiles/edit_cache.dir
+/home/stamaks/CLionProjects/Inst/9 - thesumofitsparts/cmake-build-debug/src/CMakeFiles/main_thesumofitsparts.dir
