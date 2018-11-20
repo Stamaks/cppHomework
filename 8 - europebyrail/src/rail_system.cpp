@@ -6,6 +6,7 @@
 #include <tgmath.h>
 #include <iostream>
 #include <fstream>
+#include "city_heap.h"
 
 //TODO: REWRITE
 RailSystem::RailSystem(const std::string &filename)
@@ -182,28 +183,26 @@ std::pair<int, int> RailSystem::calc_route(std::string from, std::string to)
     }
 
 
-    // Не бейте, я объявляю кучу размером 2 ^ ceil(двоичный_лог(кол-во городов))
-    // Пусть кол-во городов == 25. Тогда ceil(двоичный_лог(кол-во городов)) == 5, а 2^5 == 32
-    std::vector<City *> heap(pow(2, ceil(log2(cities.size()))), nullptr);
+    CityHeap heap(cities);
 
     // Заполняем кучу. Наверх ставим город, из которого идем
-    heap[0] = cities[from];
+    heap.add_city_to_heap(cities[from], false);
     cities[from]->total_distance = 0;
 
-    int i = 1;
     for (std::pair<std::string, City*> pair : cities)
     {
         if (pair.first == from)
             continue;
 
-        heap[i] = pair.second;
+        heap.add_city_to_heap(pair.second);
         pair.second->total_distance = INT_MAX;
     }
 
     int num_of_iterations = 0;
     while (true)
     {
-        
+        City* current_city = heap[0];
+
 
         ++num_of_iterations;
         if (num_of_iterations == INT_MAX)
@@ -215,29 +214,7 @@ std::pair<int, int> RailSystem::calc_route(std::string from, std::string to)
 
 }
 
-//void RailSystem::add_city_to_heap(City *city, std::vector<City *> &heap, int index)
-//{
-//    if (index >= heap.size())
-//        throw std::invalid_argument("Index is too big!");
-//
-//    if (heap[index] != nullptr)
-//        throw std::invalid_argument("Index is not null!");
-//
-//    heap[index] = city;
-//
-//    rebuild_heap(heap, index);
-//}
 
-void RailSystem::change_distance(City *city, int new_distance, std::vector<City *> &heap)
-{
-    int i = 0;
-    while (heap[i] !=)
-}
-
-void RailSystem::rebuild_heap(std::vector<City *> &heap, int index_to_look_at, bool down_to_up)
-{
-
-}
 
 //TODO: написать
 std::vector<std::string> RailSystem::recover_route(const std::string &city)

@@ -5,7 +5,6 @@
 #include <fstream>
 #include <map>
 #include <list>
-#include <queue>
 #include <vector>
 #include <assert.h>
 #include <climits>      // INT_MAX
@@ -83,11 +82,6 @@ public:
     /// For test only.  
     Route getCheapestRoute(const std::string& from, const std::string& to);
 
-private:
-
-    void change_distance(City* city, int new_distance, std::vector<City *>& heap);
-
-    void rebuild_heap(std::vector<City *>& heap, int index_to_look_at, bool down_to_up=true);
 };
 
 #endif // _RAILSYSTEM_H_
