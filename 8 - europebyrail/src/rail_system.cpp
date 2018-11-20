@@ -9,8 +9,7 @@
 //TODO: REWRITE
 RailSystem::RailSystem(const std::string &filename)
 {
-//    load_services(filename);
-
+    load_services(filename);
 }
 
 RailSystem::~RailSystem()
@@ -47,45 +46,66 @@ void RailSystem::load_services(const std::string &filename)
     {
         while (services_file >> line)
         {
+            // Проверяем, что строка на входе не пустая
             if (!line.empty())
             {
+
+                // В зависимости от положения считанного слова в строке
                 switch (index)
                 {
-                    case 0:
+                    case 0: // Город из
                         city_from = line;
 
+                        // Если еще ни разу не встречали такой город, добавляем в словарь
                         if (cities.find(city_from) == cities.end())
                         {
                             cities[city_from] = new City(city_from);
                         }
 
+                        ++index;
+
                         break;
 
-                    case 1:
+                    case 1: // Город в
                         city_to = line;
 
+                        // Если еще ни разу не встречали такой город, добавляем в словарь
                         if (cities.find(city_to) == cities.end())
                         {
                             cities[city_to] = new City(city_to);
                         }
 
+                        ++index;
+
                         break;
 
-                    case 2:
+                    case 2: // Стоимость
                         fee = std::stoi(line);
 
                         // Такого быть не может!
                         if (fee <= 0)
                             throw std::logic_error("The file is invalid!");
 
+                        ++index;
+
                         break;
 
-                    case 3:
+                    case 3: // Расстояние
                         distance = std::stoi(line);
 
                         // Такого быть не может!
                         if (distance <= 0)
                             throw std::logic_error("The file is invalid!");
+
+                        // Добавляем ребро в словарь
+                        outgoing_services[city_from].push_back(new Service(city_to, fee, distance));
+
+                        // Обнуляем переменные
+                        index = 0;
+                        city_from = "";
+                        city_to = "";
+                        fee = -1;
+                        distance = -1;
 
                         break;
 
@@ -95,19 +115,6 @@ void RailSystem::load_services(const std::string &filename)
             }
             else
                 throw std::logic_error("The file is invalid!");
-
-            if (index == 3)
-            {
-                outgoing_services[city_from].push_back(new Service(city_to, fee, distance));
-
-                index = 0;
-                city_from = "";
-                city_to = "";
-                fee = -1;
-                distance = -1;
-            }
-            else
-                ++index;
         }
     }
     else
@@ -141,31 +148,58 @@ std::pair<int, int> RailSystem::calc_route(std::string from, std::string to)
         used[pair.first] = false;
     }
 
-    for (int i = 0; i < outgoing_services.size(); ++i) {
-        int v = -1;
 
+    current_distances[from] = 0;
+    for (int i = 0; i < outgoing_services.size(); ++i) {
+        std::string current_city = "";
+
+        // Ищем не помеченный город с наименьшим до него расстоянием
         for (std::pair<std::string, std::list<Service*>> pair : outgoing_services)
         {
-            if (!used[pair.first] && (v == -1 || current_distances[pair.first] < current_distances[pair.first]))
-                v = j;
+            if (!used[pair.first] && (current_city == "" || current_distances[pair.first] < current_distances[current_city]))
+                current_city = pair.first;
         }
 
-        if (current_distances[v] == INT_MAX)
+        // Не нашли путь до вершины
+        if (current_distances[current_city] == INT_MAX)
             break;
 
-        used[v] = true;
+        used[current_city] = true;
 
-        for (size_t j=0; j < g[v].size(); ++j) {
-            int to = g[v][j].first,
-                    len = g[v][j].second;
-            if (d[v] + len < d[to]) {
-                d[to] = d[v] + len;
-                p[to] = v;
-            }
-        }
+//        for (size_t j=0; j < outgoing_services[current_city].size(); ++j) {
+//            int to = outgoing_services[current_city].,
+//                    len = g[v][j].second;
+//            if (d[v] + len < d[to]) {
+//                d[to] = d[v] + len;
+//                p[to] = v;
+//            }
+//        }
     }
 
 
 
 
 }
+
+//TODO: написать
+std::vector<std::string> RailSystem::recover_route(const std::string &city)
+{
+    return std::vector<std::string>();
+}
+
+//TODO: написать
+void RailSystem::output_cheapest_route(const std::string &from, const std::string &to)
+{
+    std::pair<int, int> result = calc_route(from, to);
+
+    if (result.first == INT_MAX && result.second == INT_MAX)
+        std::cout << "There is no route from " << from << " to " << to << std::endl;
+    else
+    {
+        std::cout << "The cheapest route from " << from << " to " << to <<
+                     " costs " << result.first << " euros and spans " << result.second << " kilometers" << std::endl;
+//        recover_route();
+    }
+}
+
+
