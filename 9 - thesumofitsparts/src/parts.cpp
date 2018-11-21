@@ -20,12 +20,15 @@ int Part::count_howmany(Part const *p) const
 {
     int sum = 0;
 
+    // Если пришли в нужную вершину, возвращаем 1
     if (this == p)
         return 1;
 
+    // Если пришли в лист и этот лист - не искомый нод, значит, в этой ветке ничего не нашли, возвращаем 0.
     if (subparts.empty())
         return 0;
 
+    // Заходим в каждую ветку, идущую от текущей вершины
     for (std::pair<Part const*, int> el : subparts)
     {
         sum += el.first->count_howmany(p) * el.second;
@@ -37,6 +40,8 @@ int Part::count_howmany(Part const *p) const
 int Part::count_howmanyUp(Part const *p)
 {
     int mult = 1;
+
+    // Поднимаемся к предку и умножаем ответ на вес ребра
     while (p != this)
     {
         mult *= p->parent->subparts[p];
@@ -48,6 +53,7 @@ int Part::count_howmanyUp(Part const *p)
 
 Part *NameContainer::lookup(std::string const &name)
 {
+    // Если не нашли имя части - создаем ее
     if (name_map.find(name) == name_map.end())
     {
         Part* part = new Part(name);
@@ -61,13 +67,17 @@ Part *NameContainer::lookup(std::string const &name)
 
 void NameContainer::add_part(std::string const &part_name, int quantity, std::string const &subpart_name)
 {
+    // Принципиально не добавляем отрицательные и нулевые ребра
     if (quantity <= 0)
         throw std::invalid_argument("Quantity should be > 0!");
 
     Part* part = lookup(part_name);
     Part* subpart = lookup(subpart_name);
 
+    // Запоминаем вес ребра
     part->subparts[subpart] = quantity;
+
+    // Добавляем ссылку на родителя
     subpart->parent = part;
 }
 
