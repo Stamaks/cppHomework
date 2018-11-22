@@ -21,15 +21,19 @@ class CityHeap
 public:
     CityHeap(std::map<std::string, City*> cities);
 
-    void delete_city(int index);
+    void delete_city(City* city);
 
     void add_city_to_heap(City *city, bool need_rebuilding=true);
 
     void change_distance(City* city, int new_distance);
 
+    City* get_city_with_min_dist();
+
 private:
 
-    void rebuild_heap(int index_to_look_at, bool down_to_up=true);
+    void rebuild_heap(bool down_to_up=true);
+
+    int find_city_index(City* city);
 
     std::vector<City *> heap;
     size_t current_size;

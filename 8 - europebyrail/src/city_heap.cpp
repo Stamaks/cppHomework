@@ -20,27 +20,24 @@ CityHeap::CityHeap(std::map<std::string, City*> cities)
 }
 
 // TODO: WRITE
-
-void CityHeap::change_distance(City *city, int new_distance)
+void CityHeap::change_distance(City* city, int new_distance)
 {
     int i = 0;
 //    while (heap[i] !=)
 }
 
 // TODO: WRITE
-void CityHeap::rebuild_heap(int index_to_look_at, bool down_to_up)
+void CityHeap::rebuild_heap(bool down_to_up)
 {
+    if (down_to_up)
+    {
 
+    }
 }
 
 // TODO: WRITE
-void CityHeap::delete_city(int index)
+void CityHeap::delete_city(City* city)
 {
-    if (index >= heap.size())
-        throw std::invalid_argument("Index is too big!");
-
-    if (heap[index] != nullptr)
-        throw std::invalid_argument("Index is not null!");
 
 }
 
@@ -49,11 +46,24 @@ void CityHeap::add_city_to_heap(City *city, bool need_rebuilding)
     if (current_size == heap.size())
         throw std::logic_error("The heap is full!");
 
+    if (current_size == INT_MAX)
+        throw std::logic_error("Too many elements!");
+
     heap[current_size] = city;
 
     if (need_rebuilding)
         rebuild_heap(current_size);
 
     ++current_size;
+}
+
+City *CityHeap::get_city_with_min_dist()
+{
+    return heap[0];
+}
+
+int CityHeap::find_city_index(City* city)
+{
+
 }
 

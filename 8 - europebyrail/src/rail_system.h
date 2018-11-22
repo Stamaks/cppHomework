@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <climits>      // INT_MAX
 #include <algorithm>    // std::find
+#include <queue>
 
 #include "service.h"
 #include "city.h"
@@ -26,6 +27,23 @@ public:
     bool operator()(const City& city1, const City& city2)
     {
         return city1.total_fee > city2.total_fee;
+    }
+
+};
+
+class Shortest
+{
+public:
+    Shortest() {}
+
+    bool operator()(const City* city1, const City* city2)
+    {
+        return city1->total_distance > city2->total_distance;
+    }
+
+    bool operator()(const City& city1, const City& city2)
+    {
+        return city1.total_distance > city2.total_distance;
     }
 
 };
@@ -67,7 +85,10 @@ protected:
     std::vector<std::string> recover_route(const std::string& city);
 
     /// Throws std::invalid_argument in case of invalid cities.
-    std::pair<int, int> calc_route(std::string from, std::string to);
+//    std::pair<int, int> calc_route(std::string from, std::string to);
+
+    void find_shortest_route(std::string &from, std::string &to);
+    void find_cheapest_route(std::string &from, std::string &to);
 
 public:
 
@@ -81,7 +102,7 @@ public:
 
     /// For test only.  
     Route getCheapestRoute(const std::string& from, const std::string& to);
-
+    std::pair<int, int> calc_route(std::string from, std::string to);
 };
 
 #endif // _RAILSYSTEM_H_

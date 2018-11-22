@@ -65,4 +65,5 @@ using namespace std;
 int main()
 {
     RailSystem rs("../../res/services.txt");
+    cout << rs.calc_route("Rome", "Warsaw").first;
 }

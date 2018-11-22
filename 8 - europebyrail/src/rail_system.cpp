@@ -6,6 +6,8 @@
 #include <tgmath.h>
 #include <iostream>
 #include <fstream>
+#include <queue>
+#include <set>
 #include "city_heap.h"
 
 //TODO: REWRITE
@@ -135,108 +137,208 @@ void RailSystem::reset()
     }
 }
 
+template <typename U = std::less<int>>
+bool f(City* a, City* b, U u = U())
+{
+    return u(a->total_distance, b->total_distance);
+}
+
 std::pair<int, int> RailSystem::calc_route(std::string from, std::string to)
 {
-    // Создаем вектор дистанций и инициализируем его максимальным значением
-    std::map<std::string, int> current_distances;
-    std::map<std::string, int> current_fees;
-    std::map<std::string, bool> used;
+    find_shortest_route(from, to);
 
-    // Сообщаем мапам, какие у нас есть вершины
-    for (std::pair<std::string, City*> pair : cities)
-    {
-        current_distances[pair.first] = INT_MAX;
-        current_fees[pair.first] = 0;
-        used[pair.first] = false;
-    }
+    // Не нашли пути(((                      не путю
+    if (cities[to]->total_distance == INT_MAX)
+        return std::make_pair(INT_MAX, INT_MAX);
 
-
-    current_distances[from] = 0;
-    for (int i = 0; i < outgoing_services.size(); ++i) {
-        std::string current_city = "";
-
-        // Ищем не помеченный город с наименьшим до него расстоянием
-        for (std::pair<std::string, std::list<Service*>> pair : outgoing_services)
-        {
-            if (!used[pair.first] && (current_city == "" || current_distances[pair.first] < current_distances[current_city]))
-                current_city = pair.first;
-        }
-
-        // Не нашли путь до вершины
-        if (current_distances[current_city] == INT_MAX)
-            break;
-
-        used[current_city] = true;
-
-//        for (size_t j=0; j < outgoing_services[current_city].size(); ++j) {
-//            int to = outgoing_services[current_city].,
-//                    len = g[v][j].second;
-//            if (d[v] + len < d[to]) {
-//                d[to] = d[v] + len;
-//                p[to] = v;
-//            }
-//        }
-
-
-
-
-    }
-
-
-    CityHeap heap(cities);
-
-    // Заполняем кучу. Наверх ставим город, из которого идем
-    heap.add_city_to_heap(cities[from], false);
-    cities[from]->total_distance = 0;
-
-    for (std::pair<std::string, City*> pair : cities)
-    {
-        if (pair.first == from)
-            continue;
-
-        heap.add_city_to_heap(pair.second);
-        pair.second->total_distance = INT_MAX;
-    }
-
-    int num_of_iterations = 0;
-    while (true)
-    {
-        City* current_city = heap[0];
-
-
-        ++num_of_iterations;
-        if (num_of_iterations == INT_MAX)
-        {
-            std::cout << "REACHED MAX NUM OF ITERATIONS!";
-            break;
-        }
-    }
-
+    return std::make_pair(cities[to]->total_fee, cities[to]->total_distance);
 }
 
-
-
-//TODO: написать
-std::vector<std::string> RailSystem::recover_route(const std::string &city)
+std::vector<std::string> RailSystem::recover_route(const std::string& city)
 {
-    return std::vector<std::string>();
+    if (!is_valid_city(city))
+        throw std::invalid_argument("There is no such city!");
+
+    std::vector<std::string> route;
+    std::string current_city = city;
+
+    route.push_back(current_city);
+
+    while (cities[current_city]->from_city != "")
+    {
+        route.push_back(cities[current_city]->from_city);
+        current_city = cities[city]->from_city;
+    }
+
+    return route;
 }
 
-//TODO: написать
 void RailSystem::output_cheapest_route(const std::string &from, const std::string &to)
 {
-    std::pair<int, int> result = calc_route(from, to);
 
-    if (result.first == INT_MAX && result.second == INT_MAX)
+    if (cities[to]->total_distance == INT_MAX)
         std::cout << "There is no route from " << from << " to " << to << std::endl;
     else
     {
         std::cout << "The cheapest route from " << from << " to " << to <<
-                     " costs " << result.first << " euros and spans " << result.second << " kilometers" << std::endl;
-//        recover_route();
+                     " costs " << cities[to]->total_fee << " euros and spans " <<
+                     cities[to]->total_distance << " kilometers" << std::endl;
+        std::vector<std::string> route = recover_route(to);
+
+        for (int i = route.size() - 1; i > 0; --i)
+        {
+            std::cout << route[i] << " to ";
+        }
+
+        std::cout << route[0] << std::endl;
     }
 }
 
+void RailSystem::find_shortest_route(std::string &from, std::string &to)
+{
+    // Очищаем всю информацию о городах
+    reset();
+
+    std::priority_queue<City *, std::vector<City *>, Shortest> queue;
+
+    // Расстояние от from до from, очевидно, равно 0
+    cities[from]->total_distance = 0;
+
+    // Заполняем очередь
+    queue.push(cities[from]);
+
+    for (std::pair<std::string, City*> pair : cities)
+    {
+        if (pair.first != from)
+        {
+            // Изначально расстояние до каждого города, который не from, равно условной бесконечности
+            pair.second->total_distance = INT_MAX;
+            queue.push(pair.second);
+        }
+    }
+
+    bool have_to_rebuild = true;
+
+    // Дейкстра!
+    for (int i = 0; i < outgoing_services.size(); ++i) {
+        City* current_city = queue.top();
+        queue.pop();
+
+        // Ищем не помеченный город с наименьшим до него расстоянием
+        while (current_city->visited && !queue.empty())
+        {
+            current_city = queue.top();
+            queue.pop();
+        }
+
+        // Останавливаемся, если пути нет
+        if (current_city->total_distance == INT_MAX)
+            break;
+
+        current_city->visited = true;
+
+        // Релаксируем
+        for (Service* service : outgoing_services[current_city->name])
+        {
+            // Если текущее расстояние до города больше, обновляем
+            if (cities[service->destination]->total_distance > current_city->total_distance + service->distance)
+            {
+                cities[service->destination]->total_distance = current_city->total_distance + service->distance;
+                cities[service->destination]->total_fee = current_city->total_fee + service->fee;
+                cities[service->destination]->from_city = current_city->name;
+                have_to_rebuild = true;
+            }
+        }
+
+        // Перестраиваем очередь, но только если были обновления
+        if (have_to_rebuild)
+        {
+            // Очищаем очередь
+            while (!queue.empty())
+                queue.pop();
+
+            for (std::pair<std::string, City*> pair : cities)
+            {
+                queue.push(pair.second);
+            }
+        }
+
+        have_to_rebuild = false;
+    }
+}
+
+void RailSystem::find_cheapest_route(std::string& from, std::string& to)
+{
+    // Очищаем всю информацию о городах
+    reset();
+
+    std::priority_queue<City *, std::vector<City *>, Cheapest> queue;
+
+    // Расстояние от from до from, очевидно, равно 0
+    cities[from]->total_distance = 0;
+
+    // Заполняем очередь
+    queue.push(cities[from]);
+
+    for (std::pair<std::string, City*> pair : cities)
+    {
+        if (pair.first != from)
+        {
+            // Изначально расстояние до каждого города, который не from, равно условной бесконечности
+            pair.second->total_distance = INT_MAX;
+            queue.push(pair.second);
+        }
+    }
+
+    bool have_to_rebuild = true;
+
+    // Дейкстра!
+    for (int i = 0; i < outgoing_services.size(); ++i) {
+        City* current_city = queue.top();
+        queue.pop();
+
+        // Ищем не помеченный город с наименьшим до него расстоянием
+        while (current_city->visited && !queue.empty())
+        {
+            current_city = queue.top();
+            queue.pop();
+        }
+
+        // Останавливаемся, если пути нет
+        if (current_city->total_distance == INT_MAX)
+            break;
+
+        current_city->visited = true;
+
+        // Релаксируем
+        for (Service* service : outgoing_services[current_city->name])
+        {
+            // Если текущее стоимость пути до города больше, обновляем
+            if (cities[service->destination]->total_fee > current_city->total_fee + service->fee)
+            {
+                cities[service->destination]->total_distance = current_city->total_distance + service->distance;
+                cities[service->destination]->total_fee = current_city->total_fee + service->fee;
+                cities[service->destination]->from_city = current_city->name;
+                have_to_rebuild = true;
+            }
+        }
+
+        // Перестраиваем очередь, но только если были обновления
+        if (have_to_rebuild)
+        {
+            // Очищаем очередь
+            while (!queue.empty())
+                queue.pop();
+
+            for (std::pair<std::string, City*> pair : cities)
+            {
+                queue.push(pair.second);
+            }
+        }
+
+        have_to_rebuild = false;
+    }
+}
 
 
 
