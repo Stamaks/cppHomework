@@ -85,10 +85,10 @@ protected:
     std::vector<std::string> recover_route(const std::string& city);
 
     /// Throws std::invalid_argument in case of invalid cities.
-//    std::pair<int, int> calc_route(std::string from, std::string to);
+    std::pair<int, int> calc_route(std::string from, std::string to);
 
-    void find_shortest_route(std::string &from, std::string &to);
-    void find_cheapest_route(std::string &from, std::string &to);
+//    void find_shortest_route(const std::string &from, const std::string &to);
+//    void find_cheapest_route(const std::string &from, const std::string &to);
 
 public:
 
@@ -102,7 +102,9 @@ public:
 
     /// For test only.  
     Route getCheapestRoute(const std::string& from, const std::string& to);
-    std::pair<int, int> calc_route(std::string from, std::string to);
+
+    void find_shortest_route(const std::string &from, const std::string &to);
+    void find_cheapest_route(const std::string &from, const std::string &to);
 };
 
 #endif // _RAILSYSTEM_H_

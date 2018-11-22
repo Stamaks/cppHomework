@@ -10,7 +10,6 @@
 #include <set>
 #include "city_heap.h"
 
-//TODO: REWRITE
 RailSystem::RailSystem(const std::string &filename)
 {
     load_services(filename);
@@ -137,12 +136,6 @@ void RailSystem::reset()
     }
 }
 
-template <typename U = std::less<int>>
-bool f(City* a, City* b, U u = U())
-{
-    return u(a->total_distance, b->total_distance);
-}
-
 std::pair<int, int> RailSystem::calc_route(std::string from, std::string to)
 {
     find_shortest_route(from, to);
@@ -173,8 +166,9 @@ std::vector<std::string> RailSystem::recover_route(const std::string& city)
     return route;
 }
 
-void RailSystem::output_cheapest_route(const std::string &from, const std::string &to)
+void RailSystem::output_cheapest_route(const std::string& from, const std::string& to)
 {
+    find_cheapest_route(from, to);
 
     if (cities[to]->total_distance == INT_MAX)
         std::cout << "There is no route from " << from << " to " << to << std::endl;
@@ -183,9 +177,12 @@ void RailSystem::output_cheapest_route(const std::string &from, const std::strin
         std::cout << "The cheapest route from " << from << " to " << to <<
                      " costs " << cities[to]->total_fee << " euros and spans " <<
                      cities[to]->total_distance << " kilometers" << std::endl;
+
+        // Восстанавливаем путь
         std::vector<std::string> route = recover_route(to);
 
-        for (int i = route.size() - 1; i > 0; --i)
+        // Печатаем путь
+        for (size_t i = route.size() - 1; i > 0; --i)
         {
             std::cout << route[i] << " to ";
         }
@@ -194,8 +191,11 @@ void RailSystem::output_cheapest_route(const std::string &from, const std::strin
     }
 }
 
-void RailSystem::find_shortest_route(std::string &from, std::string &to)
+void RailSystem::find_shortest_route(const std::string &from, const std::string &to)
 {
+    if (!is_valid_city(from) || !is_valid_city(to))
+        throw std::invalid_argument("There is no such city!");
+
     // Очищаем всю информацию о городах
     reset();
 
@@ -267,8 +267,11 @@ void RailSystem::find_shortest_route(std::string &from, std::string &to)
     }
 }
 
-void RailSystem::find_cheapest_route(std::string& from, std::string& to)
+void RailSystem::find_cheapest_route(const std::string& from, const std::string& to)
 {
+    if (!is_valid_city(from) || !is_valid_city(to))
+        throw std::invalid_argument("There is no such city!");
+
     // Очищаем всю информацию о городах
     reset();
 
@@ -338,6 +341,11 @@ void RailSystem::find_cheapest_route(std::string& from, std::string& to)
 
         have_to_rebuild = false;
     }
+}
+
+bool RailSystem::is_valid_city(const std::string &name)
+{
+    return cities.find(name) != cities.end();
 }
 
 
