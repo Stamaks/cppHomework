@@ -13,7 +13,7 @@
 
 std::string servicesPath = "../../res/services.txt";
 
-
+using namespace std;
 
 TEST(RailSystemTest, testRomeWarsaw) {
     RailSystem rs(servicesPath);

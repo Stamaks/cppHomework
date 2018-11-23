@@ -7,7 +7,6 @@
 #include <iostream>
 #include <fstream>
 #include <queue>
-#include <set>
 #include "city_heap.h"
 
 RailSystem::RailSystem(const std::string &filename)
@@ -230,11 +229,14 @@ std::vector<std::string> RailSystem::recover_route(const std::string& city)
 
     route.push_back(current_city->name);
 
-    while (current_city->from_city != "")
+    while (!current_city->from_city.empty())
     {
         route.push_back(current_city->from_city);
         current_city = cities[current_city->from_city];
     }
+
+    // Разворачиваем, а то тесты не проходят
+    std::reverse(route.begin(), route.end());
 
     return route;
 }
@@ -257,9 +259,9 @@ void RailSystem::output_cheapest_route(const std::string& from, const std::strin
         std::vector<std::string> route = recover_route(to);
 
         // Печатаем путь
-        for (size_t i = route.size() - 1; i > 0; --i)
+        for (std::string &city_name : route)
         {
-            std::cout << route[i] << " to ";
+            std::cout << city_name << " to ";
         }
 
         std::cout << route[0] << std::endl;
