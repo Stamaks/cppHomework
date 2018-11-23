@@ -102,9 +102,6 @@ public:
 
     /// For test only.  
     Route getCheapestRoute(const std::string& from, const std::string& to);
-
-    void find_shortest_route(const std::string &from, const std::string &to);
-    void find_cheapest_route(const std::string &from, const std::string &to);
 };
 
 #endif // _RAILSYSTEM_H_

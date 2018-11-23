@@ -11,59 +11,59 @@
 
 using namespace std;
 
-//// For test
-//bool check(Route & expected,RailSystem &rs)
-//{
-//    Route actual = rs.getCheapestRoute(expected.from,expected.to);
-//    return actual == expected;
-//}
-//
-//int main(int argc, char* argv[])
-//{
-//
-//    try
-//    {
-//
-//        RailSystem rs("../../res/services.txt");
-//
-//        while (true)
-//        {
-//
-//            cout << "\n\nEnter a start and destination city:  ('quit' to exit)\n";
-//
-//            string from, to;
-//            cin >> from;
-//            if (from == "quit") break;
-//            cin >> to;
-//
-//            if (rs.is_valid_city(from) && rs.is_valid_city(to))
-//            {
-//                rs.output_cheapest_route(from, to);
-//            }
-//            else
-//            {
-//                cout << "Please enter valid cities\n\n";
-//            }
-//
-//        }
-//
-//        return EXIT_SUCCESS;
-//
-//    }
-//    catch (exception& e)
-//    {
-//        cout << e.what() << endl;
-//    }
-//    catch (...)
-//    {
-//        cout << "Unknown exception caught\n";
-//    }
-//
-//    return EXIT_FAILURE;
-//}
-
-int main()
+// For test
+bool check(Route & expected,RailSystem &rs)
 {
-    RailSystem rs("../../res/services.txt");
-    rs.find_shortest_route("Rome", "Warsaw");
+    Route actual = rs.getCheapestRoute(expected.from,expected.to);
+    return actual == expected;
 }
+
+int main(int argc, char* argv[])
+{
+
+    try
+    {
+
+        RailSystem rs("../../res/services.txt");
+
+        while (true)
+        {
+
+            cout << "\n\nEnter a start and destination city:  ('quit' to exit)\n";
+
+            string from, to;
+            cin >> from;
+            if (from == "quit") break;
+            cin >> to;
+
+            if (rs.is_valid_city(from) && rs.is_valid_city(to))
+            {
+                rs.output_cheapest_route(from, to);
+            }
+            else
+            {
+                cout << "Please enter valid cities\n\n";
+            }
+
+        }
+
+        return EXIT_SUCCESS;
+
+    }
+    catch (exception& e)
+    {
+        cout << e.what() << endl;
+    }
+    catch (...)
+    {
+        cout << "Unknown exception caught\n";
+    }
+
+    return EXIT_FAILURE;
+}
+
+//int main()
+//{
+//    RailSystem rs("../../res/services.txt");
+//    rs.output_cheapest_route("Rome", "Warsaw");
+//}
