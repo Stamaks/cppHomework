@@ -181,7 +181,7 @@ const typename RBTree<Element, Compar>::Node* RBTree<Element, Compar>::find(cons
             if (currentNode->_right)
                 currentNode = currentNode->_right;
             else
-                return nullptr; 
+                return nullptr;
         }
     }
 
@@ -250,20 +250,30 @@ template <typename Element, typename Compar >
 typename RBTree<Element, Compar>::Node* 
     RBTree<Element, Compar>::rebalanceDUG(Node* nd)
 {
-    // TODO: этот метод студенты могут оставить и реализовать при декомпозиции балансировки дерева
-    // В методе оставлены некоторые важные комментарии/snippet-ы
-
-
     // попадание в этот метод уже означает, что папа есть (а вот про дедушку пока не известно)
-    //...
+    //TODO: Пока кидаем ошибку, если нет дедушки или дяди ИСПРАВИТЬ
 
-    Node* uncle = ...; // для левого случая нужен правый дядя и наоборот.
+    if (!nd->_parent->_parent)
+        throw std::invalid_argument("No grandDaddy");
+
+    if (!nd->_parent->_parent->_right || !nd->_parent->_parent->_left)
+        throw std::invalid_argument("No uncle!");
+
+    Node* uncle; // для левого случая нужен правый дядя и наоборот.
+
+    if (nd->isLeftChild())
+        uncle = nd->_parent->_parent->_right;
+    else
+        uncle = nd->_parent->_parent->_left;
 
     // если дядя такой же красный, как сам нод и его папа...
-    if (... uncle->isRed() ...)
+    if (uncle->isRed() && nd->isLeftChild())
     {
         // дядю и папу красим в черное
         // а дедушку — в коммунистические цвета
+        uncle->setBlack();
+        nd->_parent->setBlack();
+        nd->_parent->_parent->setRed();
 
         // отладочное событие
         if (_dumper)
@@ -271,50 +281,50 @@ typename RBTree<Element, Compar>::Node*
 
         // теперь чередование цветов "узел-папа-дедушка-дядя" — К-Ч-К-Ч, но надо разобраться, что там
         // с дедушкой и его предками, поэтому продолжим с дедушкой
-        //..
+        return nd->_parent->_parent;
     }
 
     // дядя черный
     // смотрим, является ли узел "правильно-правым" у папочки
-    if (...)                                        // для левого случая нужен правый узел, поэтом отрицание
+    if (uncle->isBlack() && nd->isLeftChild())      // для левого случая нужен правый узел
     {                                               // CASE2 в действии
+        nd->_parent->setBlack();
+        nd->_parent->_parent->setRed();
 
-        // ... при вращении будет вызвано отладочное событие 
-        // ...
+        // при вращении будет вызвано отладочное событие
+        rotRight(nd->_parent->_parent);
 
+        return nullptr;
     }
 
+    if (uncle->isRed() && nd->isRightChild())
+    {
+        nd->_parent->setBlack();
+        nd->_parent->_parent->setRed();
+        uncle->setBlack();
 
-    // ...
+        // отладочное событие
+        if (_dumper)
+            _dumper->rbTreeEvent(IRBTreeDumper<Element, Compar>::DE_AFTER_RECOLOR1, this, nd);
 
-    // отладочное событие
-    if (_dumper)
-        _dumper->rbTreeEvent(IRBTreeDumper<Element, Compar>::DE_AFTER_RECOLOR3D, this, nd);
+        return nd->_parent->_parent;
+    }
 
+    if (uncle->isBlack() && nd->isRightChild())
+    {
+        rotLeft(nd->_parent);
 
-    // деда в красный
+        return nd->_left;
+    }
 
-    // ...
-
-    // отладочное событие
-    if (_dumper)
-        _dumper->rbTreeEvent(IRBTreeDumper<Element, Compar>::DE_AFTER_RECOLOR3G, this, nd);
-
-    // ...
-
-
-    return nd;
+    return nullptr;
 }
 
 
 template <typename Element, typename Compar >
 void RBTree<Element, Compar>::rebalance(Node* nd)
 {
-    // TODO: метод реализуют студенты
-
-    // ...
-
-    // пока папа — цвета пионерского галстука, действуем
+    // TODO: пока папа — цвета пионерского галстука, действуем ????????????
     while (...)
     {
         // локальная перебалансировка семейства "папа, дядя, дедушка" и повторная проверка
