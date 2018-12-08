@@ -306,12 +306,10 @@ void RBTree<Element, Compar>::rotLeft(typename RBTree<Element, Compar>::Node* nd
     else
         nd->_right = nullptr;
 
-    right->_parent = nullptr;
+    right->_parent = nd->_parent;
 
     if (nd->_parent)
     {
-        right->_parent = nd->_parent;
-
         if (nd->isLeftChild())
             nd->_parent->_left = right;
         else
@@ -320,7 +318,7 @@ void RBTree<Element, Compar>::rotLeft(typename RBTree<Element, Compar>::Node* nd
 
     nd->_parent = right;
     right->_left = nd;
-    
+
     // отладочное событие
     if (_dumper)
         _dumper->rbTreeEvent(IRBTreeDumper<Element, Compar>::DE_AFTER_LROT, this, nd);
@@ -332,6 +330,33 @@ template <typename Element, typename Compar>
 void RBTree<Element, Compar>::rotRight(typename RBTree<Element, Compar>::Node* nd)
 {
 
+    // левый потомок, который станет после правого поворота "выше"
+    Node* left = nd->_left;
+
+    if (!left)
+        throw std::invalid_argument("Can't rotate right since the left child is nil");
+
+    if (left->_right)
+    {
+        nd->_left = left->_right;
+        left->_right->_parent = nd;
+        left->_right = nullptr;
+    }
+    else
+        nd->_left = nullptr;
+
+    left->_parent = nd->_parent;
+
+    if (nd->_parent)
+    {
+        if (nd->isLeftChild())
+            nd->_parent->_left = left;
+        else
+            nd->_parent->_right = left;
+    }
+
+    nd->_parent = left;
+    left->_right = nd;
 
     // отладочное событие
     if (_dumper)
