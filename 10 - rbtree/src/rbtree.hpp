@@ -166,7 +166,43 @@ template <typename Element, typename Compar >
 typename RBTree<Element, Compar>::Node* 
         RBTree<Element, Compar>::insertNewBstEl(const Element& key)
 {
-    // TODO: метод реализуют студенты
+    if (_root == nullptr)
+    {
+        _root = new Node(key);
+        return _root;
+    }
+
+    Node* currentNode = _root;
+    while (currentNode->_left || currentNode->_right)
+    {
+        if (currentNode->_key == key)
+            throw std::invalid_argument("Key is already in the tree!");
+
+        if (key < currentNode->_key)
+        {
+            // Идем влево, если можно
+            if (currentNode->_left)
+                currentNode = currentNode->_left;
+            else
+            {
+                Node *newNode = new Node(key, nullptr, nullptr, currentNode, RED);
+                currentNode->_left = newNode;
+                return newNode;
+            }
+        }
+        else
+        {
+            // Идем вправо, если можно
+            if (currentNode->_right)
+                currentNode = currentNode->_right;
+            else
+            {
+                Node *newNode = new Node(key, nullptr, nullptr, currentNode, RED);
+                currentNode->_right = newNode;
+                return newNode;
+            }
+        }
+    }
 }
 
 
@@ -254,19 +290,37 @@ void RBTree<Element, Compar>::rebalance(Node* nd)
 template <typename Element, typename Compar>
 void RBTree<Element, Compar>::rotLeft(typename RBTree<Element, Compar>::Node* nd)
 {
-    // TODO: метод реализуют студенты
 
     // правый потомок, который станет после левого поворота "выше"
-    Node* y = nd->_right;
+    Node* right = nd->_right;
     
-    if (!y)
+    if (!right)
         throw std::invalid_argument("Can't rotate left since the right child is nil");
 
+    if (right->_left)
+    {
+        nd->_right = right->_left;
+        right->_left->_parent = nd;
+        right->_left = nullptr;
+    }
+    else
+        nd->_right = nullptr;
 
+    right->_parent = nullptr;
 
-    // ...
+    if (nd->_parent)
+    {
+        right->_parent = nd->_parent;
 
+        if (nd->isLeftChild())
+            nd->_parent->_left = right;
+        else
+            nd->_parent->_right = right;
+    }
 
+    nd->_parent = right;
+    right->_left = nd;
+    
     // отладочное событие
     if (_dumper)
         _dumper->rbTreeEvent(IRBTreeDumper<Element, Compar>::DE_AFTER_LROT, this, nd);
@@ -277,10 +331,7 @@ void RBTree<Element, Compar>::rotLeft(typename RBTree<Element, Compar>::Node* nd
 template <typename Element, typename Compar>
 void RBTree<Element, Compar>::rotRight(typename RBTree<Element, Compar>::Node* nd)
 {
-    // TODO: метод реализуют студенты
 
-
-    // ...
 
     // отладочное событие
     if (_dumper)

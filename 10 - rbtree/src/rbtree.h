@@ -20,6 +20,8 @@
 //#define RBTREE_WITH_DELETION
 
 
+#include <algorithm>
+
 namespace xi {
 
 
