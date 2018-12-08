@@ -159,14 +159,43 @@ void RBTree<Element, Compar>::insert(const Element& key)
 template <typename Element, typename Compar>
 const typename RBTree<Element, Compar>::Node* RBTree<Element, Compar>::find(const Element& key)
 {
-    // TODO: метод реализуют студенты
+    if (!_root)
+        throw std::invalid_argument("Root is nullptr!");
+
+    Node* currentNode = _root;
+
+    while (currentNode->_left || currentNode->_right)
+    {
+        if (currentNode->_key == key)
+            return currentNode;
+
+        if (key < currentNode->_key)
+        {
+            if (currentNode->_left)
+                currentNode = currentNode->_left;
+            else
+                return nullptr;
+        }
+        else
+        {
+            if (currentNode->_right)
+                currentNode = currentNode->_right;
+            else
+                return nullptr; 
+        }
+    }
+
+    if (currentNode->_key == key)
+        return currentNode;
+
+    return nullptr;
 }
 
 template <typename Element, typename Compar >
 typename RBTree<Element, Compar>::Node* 
         RBTree<Element, Compar>::insertNewBstEl(const Element& key)
 {
-    if (_root == nullptr)
+    if (!_root)
     {
         _root = new Node(key);
         return _root;
@@ -203,6 +232,17 @@ typename RBTree<Element, Compar>::Node*
             }
         }
     }
+
+    if (key < currentNode->_key)
+    {
+        Node *newNode = new Node(key, nullptr, nullptr, currentNode, RED);
+        currentNode->_left = newNode;
+        return newNode;
+    }
+
+    Node *newNode = new Node(key, nullptr, nullptr, currentNode, RED);
+    currentNode->_right = newNode;
+    return newNode;
 }
 
 
