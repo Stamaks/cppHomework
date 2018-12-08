@@ -160,7 +160,7 @@ template <typename Element, typename Compar>
 const typename RBTree<Element, Compar>::Node* RBTree<Element, Compar>::find(const Element& key)
 {
     if (!_root)
-        throw std::invalid_argument("Root is nullptr!");
+        return nullptr;
 
     Node* currentNode = _root;
 
@@ -207,7 +207,7 @@ typename RBTree<Element, Compar>::Node*
         if (currentNode->_key == key)
             throw std::invalid_argument("Key is already in the tree!");
 
-        if (key < currentNode->_key)
+         if (key < currentNode->_key)
         {
             // Идем влево, если можно
             if (currentNode->_left)
@@ -324,15 +324,63 @@ typename RBTree<Element, Compar>::Node*
 template <typename Element, typename Compar >
 void RBTree<Element, Compar>::rebalance(Node* nd)
 {
-    // TODO: пока папа — цвета пионерского галстука, действуем ????????????
-    while (...)
+    if (nd == _root)
+        nd->setBlack();
+    else
     {
-        // локальная перебалансировка семейства "папа, дядя, дедушка" и повторная проверка
-        ...
-    } 
+        // TODO: delete
+        int num_of_iter = 0;
+        while (nd->_parent->isRed())
+        {
+            // локальная перебалансировка семейства "папа, дядя, дедушка" и повторная проверка
+//            rebalanceDUG(nd);
+
+            ++num_of_iter;
+
+            if (num_of_iter == 100)
+                std::cout << "Ушли в бесконечный цикл!!!";
 
 
-    // ...
+            if (nd->_parent->isLeftChild())
+            {
+                // если дядя есть
+                if (nd->_parent->_parent->_right)
+                {
+                    rebalanceDUG(nd);
+                }
+                else
+                {
+                    if (nd->isRightChild())
+                        rotLeft(nd->_parent);
+                    else
+                        rotRight(nd->_parent);
+//                    nd->_parent->setBlack();
+//                    nd->_parent->_parent->setRed();
+//                    rotRight(nd->_parent->_parent);
+                }
+            }
+            else
+            {
+                // если дядя есть
+                if (nd->_parent->_parent->_left)
+                {
+                    rebalanceDUG(nd);
+                }
+                else
+                {
+                    if (nd->isLeftChild())
+                        rotRight(nd->_parent);
+                    else
+                        rotLeft(nd->_parent);
+//                    nd->_parent->setBlack();
+//                    nd->_parent->_parent->setRed();
+//                    rotLeft(nd->_parent->_parent);
+                }
+            }
+        }
+
+        _root->setBlack();
+    }
 }
 
 
