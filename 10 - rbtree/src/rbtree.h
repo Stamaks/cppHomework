@@ -331,6 +331,8 @@ public:
         _dumper = nullptr;
     }
 
+    void rotLeft(Node* nd);
+    Node* insertNewBstEl(const Element& key);
 
 protected:
 
@@ -342,7 +344,7 @@ protected:
      *  Дубликаты не разрешены, исключение то же, что и у \c insert().
      *  \return Указатель на новодобавленный элемент.
      */
-    Node* insertNewBstEl(const Element& key);
+//    Node* insertNewBstEl(const Element& key);
 
     /** \brief Выполняет перебалансировку дерева после добавления нового элемента в узел \c nd. 
      *
@@ -369,7 +371,7 @@ protected:
      *  Требование: правый ребенок узла \c nd не должен быть null, иначе генерируется
      *  исключительная ситуация \c std::invalid_argument.
      */
-    void rotLeft(Node* nd);
+//    void rotLeft(Node* nd);
 
     /** \brief Вращает поддерево относительно узла \c nd вправо. Условия и ограничения 
       * аналогичны (симметрично) левому вращению. 

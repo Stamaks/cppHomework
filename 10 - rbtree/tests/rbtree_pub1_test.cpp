@@ -132,6 +132,22 @@ TEST_F(RBTreePubTest, find2)
     EXPECT_EQ(nullptr, n100);
 }
 
+TEST_F(RBTreePubTest, rotLeft)
+{
+    // пустое дерево
+    RBTreeInt tree;
+
+    RBTreeInt::Node* n3 = tree.insertNewBstEl(3);
+    RBTreeInt::Node* n5 = tree.insertNewBstEl(5);
+    tree.insertNewBstEl(6);
+
+    tree.rotLeft(n3);
+
+    ASSERT_EQ(tree.getRoot()->getKey(), 5);
+
+}
+
+
 
 #ifdef RBTREE_WITH_DELETION
 

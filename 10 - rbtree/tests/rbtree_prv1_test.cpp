@@ -21,3 +21,5 @@
 /// https://github.com/google/googletest/blob/master/googletest/docs/AdvancedGuide.md#testing-private-code
 ///
 ////////////////////////////////////////////////////////////////////////////////
+
+#include <gtest/gtest_prod.h>

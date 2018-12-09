@@ -150,7 +150,6 @@ void RBTree<Element, Compar>::insert(const Element& key)
     // отладочное событие
     if (_dumper)
         _dumper->rbTreeEvent(IRBTreeDumper<Element, Compar>::DE_AFTER_INSERT, this, newNode);
-
 }
 
 
@@ -413,6 +412,8 @@ void RBTree<Element, Compar>::rotLeft(typename RBTree<Element, Compar>::Node* nd
         else
             nd->_parent->_right = right;
     }
+    else
+        _root = right;
 
     nd->_parent = right;
     right->_left = nd;
@@ -452,6 +453,8 @@ void RBTree<Element, Compar>::rotRight(typename RBTree<Element, Compar>::Node* n
         else
             nd->_parent->_right = left;
     }
+    else
+        _root = left;
 
     nd->_parent = left;
     left->_right = nd;
