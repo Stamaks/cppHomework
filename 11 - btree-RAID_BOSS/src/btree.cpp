@@ -134,10 +134,37 @@ xi::UInt BaseBTree::allocNewRootPage(PageWrapper& pw)
 
 Byte* BaseBTree::search(const Byte* k)
 {
-    // TODO: релаизовать студентам!
-//    return nullptr;
+    IComparator* c = _comparator;
+    if (!c)
+        throw std::runtime_error("Comparator not set. Can't insert");
 
-    _rootPage.
+    // Танцы (со звездами) с бубном
+    PageWrapper currentPage(this);
+    currentPage.readPage(_rootPageNum);
+
+    // Пока страница имеет ключи - это хорошо
+    while (currentPage.getKeysNum())
+    {
+        UShort currentKeyInd = 0;
+        Byte* currentKey = currentPage.getKey(currentKeyInd);
+
+        // Ищем, на какой позиции ключ
+        while (currentKeyInd < currentPage.getKeysNum() && c->compare(currentKey, k, getRecSize()))
+            currentKey = currentPage.getKey(++currentKeyInd);
+
+        // Если ключи равны - все круто
+        if (c->isEqual(currentKey, k, getRecSize()))
+            return currentKey;
+
+        // Если текущая страница - лист и мы не нашли элемента - грустим
+        if (currentPage.isLeaf())
+            return nullptr;
+
+        // Переходим на следующую страницу
+        currentPage.readPage(currentPage.getCursor(currentKeyInd));
+    }
+
+
 }
 
 int BaseBTree::searchAll(const Byte* k, std::list<Byte*>& keys)
