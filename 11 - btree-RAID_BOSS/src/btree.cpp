@@ -154,7 +154,7 @@ Byte* BaseBTree::search(const Byte* k)
 
         // Если ключи равны - все круто
         if (c->isEqual(currentKey, k, getRecSize()))
-            return currentKey;
+            return currentKey; // Б - безопасность
 
         // Если текущая страница - лист и мы не нашли элемента - грустим
         if (currentPage.isLeaf())
@@ -188,8 +188,7 @@ UInt BaseBTree::allocPageInternal(PageWrapper& pw, UShort keysNum, bool isRoot, 
     writePageCounter();
 
 
-    // TODO: flush-им на диск сразу?!
-    //_stream->flush();
+    _stream->flush();
 
     return _lastPageNum;
 }
@@ -639,10 +638,45 @@ void BaseBTree::PageWrapper::splitChild(UShort iChild)
     if (iChild > getKeysNum())
         throw std::invalid_argument("Cursor not exists");
 
+    // Читаем ребенка
+    PageWrapper childPage(_tree);
+    childPage.readPage(iChild);
 
-    // TODO: реализовать студентам
+    if (!childPage.isFull())
+        throw std::domain_error("Child is not full! Can't split!");
 
-    //...
+    // Кол-во ключей в половине узла и, одновременно, номер цетрального ключа...
+    UShort halfKeysNum = childPage.getKeysNum()/2;
+
+    // Достаем центральный ключ
+    Byte* middleKey = childPage.getKey(halfKeysNum);
+
+    // Ноды ночами делают новых нодееей (так Сплин пел)
+    PageWrapper newChildRight(_tree);
+    childPage.allocPage(halfKeysNum, childPage.isLeaf());
+
+    // Копируем ключи
+    newChildRight.copyKeys(newChildRight.getKey(0), childPage.getKey(halfKeysNum + 1), halfKeysNum);
+
+    // Копируем курсоры
+    newChildRight.copyCursors(newChildRight.getCursorPtr(0), childPage.getCursorPtr(halfKeysNum + 1), halfKeysNum + 1);
+
+    // Вставляем центральный элемент в родителя
+    insertNonFull(middleKey);
+
+    // Устанавливаем большее поддерево вставленного элемента
+    setCursor(iChild + 1, newChildRight.getPageNum());
+
+    // Устанавливаем количество элементов в левом ребёнке
+    childPage.setKeyNum(halfKeysNum);
+    newChildRight.setKeyNum(halfKeysNum);
+
+    // Записываем изменения всех нодов
+    writePage();
+    childPage.writePage();
+    newChildRight.writePage();
+
+
 }
 
 
@@ -673,7 +707,8 @@ void BaseBTree::PageWrapper::insertNonFull(const Byte* k)
         UShort numOfKeysToMove = oldKeysNum - currentKeyInd;
         copyKeys(getKey(currentKeyInd + 1), currentKey, numOfKeysToMove);
 
-        // numOfKeysToMove + 1 - потому что курсоров на 1 больше, чем ключей (капец, я чуть не умерла, пытаясь вспомнить, почему написала + 1 блин) Комментировать код после написания - плохо!
+        // numOfKeysToMove + 1 - потому что курсоров на 1 больше, чем ключей (капец, я чуть не умерла,
+        // пытаясь вспомнить, почему написала + 1 блин) Комментировать код после написания - плохо!
         copyCursors(getCursorPtr(currentKeyInd + 1), getCursorPtr(currentKeyInd), numOfKeysToMove + 1);
     }
 
