@@ -731,37 +731,48 @@ void BaseBTree::insert(const Byte* k)
     PageWrapper currentPage(this);
     currentPage.readPage(_rootPageNum);
 
-    // Если пуст корень, инсертим и не стесняемся
-    if (!currentPage.getKeysNum())
+    // Если корень заполнен - сплитим его
+    if (currentPage.isFull())
     {
-        currentPage.insertNonFull(k);
-        return;
+        // Кол-во ключей в половине узла и, одновременно, номер цетрального ключа...
+        UShort halfKeysNum = currentPage.getKeysNum()/2;
+
+        // Достаем центральный ключ (из широких штанин дубликатом бесценного груза)
+        Byte* middleKey = currentPage.getKey(halfKeysNum);
+
+        // Делаем новый корень
+        PageWrapper newRoot(this);
+        currentPage.allocPage(1, false);
+
+        // Создаём правого потомка
+        PageWrapper newChildRight(this);
+        newChildRight.allocPage(halfKeysNum, currentPage.isLeaf());
+
+        // Копируем ключи в правого дитю
+        newChildRight.copyKeys(newChildRight.getKey(0), currentPage.getKey(halfKeysNum + 1), halfKeysNum);
+
+        // Копируем курсоры туда же
+        newChildRight.copyCursors(newChildRight.getCursorPtr(0), currentPage.getCursorPtr(halfKeysNum + 1), halfKeysNum + 1);
+
+        // Вставляем центральный ключ в новый корень
+        newRoot.copyKey(newRoot.getKey(0), middleKey);
+        newRoot.setCursor(0, currentPage.getPageNum());
+        newRoot.setCursor(1, newChildRight.getPageNum());
+
+        // Ура, у нас есть новый корень!
+        newRoot.setAsRoot();
+
+        // Обновляем кол-во ключей в листе
+        currentPage.setKeyNum(halfKeysNum);
+
+        // Запоминаем
+        currentPage.writePage();
+        newRoot.writePage();
+        newChildRight.writePage();
     }
 
-    // Пока не спустились в лист
-    while (!currentPage.isLeaf())
-    {
-        UShort currentKeyInd = 0;
-        Byte* currentKey = currentPage.getKey(currentKeyInd);
-
-        // Ищем, на какую позицию вставить ключ
-        while (currentKeyInd < currentPage.getKeysNum() && _comparator->compare(currentKey, k, getRecSize()))
-            currentKey = currentPage.getKey(++currentKeyInd);
-
-
-        // Смотрим, является ли ребенок листом
-        // Если нет - просто переходим
-        // Если да - проверяем, заполнен ли он
-        // Если нет - просто вставляем
-        // Если да, проверяем, заполнен ли родитель... делаем сплит чайлд
-
-        // Переходим на следующую страницу
-//        currentPage.readPage(currentPage.getCursor(currentKeyInd));
-    }
-
-    // В листовую ноду вставляем
+    // Вставляем элемент. Оно там само рекурсией разберется, что надо делать
     currentPage.insertNonFull(k);
-
 }
 
 

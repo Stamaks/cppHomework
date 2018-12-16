@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stamaks/CLionProjects/Inst/11 - btree-RAID_BOSS/src/btree.cpp
+btree.h
+/home/stamaks/CLionProjects/Inst/11 - btree-RAID_BOSS/src/btree.h
+stdexcept
+-
+cstring
+-
+vector
+-
+
+/home/stamaks/CLionProjects/Inst/11 - btree-RAID_BOSS/src/btree.h
+string
+-
+fstream
+-
+list
+-
+utils.h
+/home/stamaks/CLionProjects/Inst/11 - btree-RAID_BOSS/src/utils.h
+
+/home/stamaks/CLionProjects/Inst/11 - btree-RAID_BOSS/src/main.cpp
+iostream
+-
+assert.h
+-
+stdexcept
+-
+btree.h
+/home/stamaks/CLionProjects/Inst/11 - btree-RAID_BOSS/src/btree.h
+
+/home/stamaks/CLionProjects/Inst/11 - btree-RAID_BOSS/src/utils.h
+
