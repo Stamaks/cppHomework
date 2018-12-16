@@ -484,6 +484,9 @@ public:
      */
     int searchAll(const Byte* k, std::list<Byte*>& keys);
 
+private:
+
+    int searchAll(UInt pageIndex, const Byte* k, std::list<Byte*>& keys);
 
 #ifdef BTREE_WITH_DELETION
 

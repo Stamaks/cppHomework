@@ -14,6 +14,7 @@
 
 #include <stdexcept>        // std::invalid_argument
 #include <cstring>          // memset
+#include <vector>
 
 
 namespace xi {
@@ -164,13 +165,56 @@ Byte* BaseBTree::search(const Byte* k)
         currentPage.readPage(currentPage.getCursor(currentKeyInd));
     }
 
-
+    return nullptr;
 }
 
 int BaseBTree::searchAll(const Byte* k, std::list<Byte*>& keys)
 {
-    // TODO: релаизовать студентам!   
-    //return 0;
+    return searchAll(_rootPageNum, k, keys);
+}
+
+int BaseBTree::searchAll(UInt pageIndex, const Byte* k, std::list<Byte*>& keys)
+{
+    IComparator* c = _comparator;
+    if (!c)
+        throw std::runtime_error("Comparator not set. Can't search");
+
+    // Танцы (со звездами) с бубном
+    PageWrapper currentPage(this);
+    currentPage.readPage(pageIndex);
+
+    UShort currentKeyInd = 0;
+    Byte* currentKey = currentPage.getKey(currentKeyInd);
+
+    // Ищем, на какой позиции ключ
+    while (currentKeyInd < currentPage.getKeysNum() && c->compare(currentKey, k, getRecSize()))
+        currentKey = currentPage.getKey(++currentKeyInd);
+
+    // Будем добавлять сюда курсоры, в которые хотим рекурсивно спуститься
+    std::vector<UInt> cursors = std::vector<UInt>();
+
+    // Пока идем по равным элементам, пушбэкаем ключи и курсоры
+    while (currentKeyInd < currentPage.getKeysNum() && c->isEqual(currentKey, k, getRecSize()))
+    {
+        keys.push_back(currentKey);
+        cursors.push_back(currentPage.getCursor(currentKeyInd));
+        currentKey = currentPage.getKey(++currentKeyInd);
+    }
+
+    // Добавляем курсор после последнего равного элемента
+    cursors.push_back(currentKeyInd);
+
+    // Eсли текущий элемент - лист, возвращаемся
+    if (currentPage.isLeaf())
+        return keys.size();
+
+    // Спускаемся рекурсивно в курсоры
+    for (UInt &iter : cursors)
+    {
+        searchAll(iter, k, keys);
+    }
+
+    return keys.size();
 }
 
 //UInt BaseBTree::allocPageInternal(UShort keysNum, NodeType nt, PageWrapper& pw)
@@ -669,7 +713,6 @@ void BaseBTree::PageWrapper::splitChild(UShort iChild)
 
     // Устанавливаем количество элементов в левом ребёнке
     childPage.setKeyNum(halfKeysNum);
-    newChildRight.setKeyNum(halfKeysNum);
 
     // Записываем изменения всех нодов
     writePage();
