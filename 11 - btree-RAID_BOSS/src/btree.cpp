@@ -131,8 +131,6 @@ xi::UInt BaseBTree::allocNewRootPage(PageWrapper& pw)
 }
 
 
-
-
 Byte* BaseBTree::search(const Byte* k)
 {
     IComparator* c = _comparator;
@@ -723,6 +721,50 @@ void BaseBTree::PageWrapper::splitChild(UShort iChild)
 }
 
 
+void BaseBTree::insert(const Byte* k)
+{
+    IComparator* c = _comparator;
+    if (!c)
+        throw std::runtime_error("Comparator not set. Can't insert");
+
+    // Танцуем туц-туц
+    PageWrapper currentPage(this);
+    currentPage.readPage(_rootPageNum);
+
+    // Если пуст корень, инсертим и не стесняемся
+    if (!currentPage.getKeysNum())
+    {
+        currentPage.insertNonFull(k);
+        return;
+    }
+
+    // Пока не спустились в лист
+    while (!currentPage.isLeaf())
+    {
+        UShort currentKeyInd = 0;
+        Byte* currentKey = currentPage.getKey(currentKeyInd);
+
+        // Ищем, на какую позицию вставить ключ
+        while (currentKeyInd < currentPage.getKeysNum() && _comparator->compare(currentKey, k, getRecSize()))
+            currentKey = currentPage.getKey(++currentKeyInd);
+
+
+        // Смотрим, является ли ребенок листом
+        // Если нет - просто переходим
+        // Если да - проверяем, заполнен ли он
+        // Если нет - просто вставляем
+        // Если да, проверяем, заполнен ли родитель... делаем сплит чайлд
+
+        // Переходим на следующую страницу
+//        currentPage.readPage(currentPage.getCursor(currentKeyInd));
+    }
+
+    // В листовую ноду вставляем
+    currentPage.insertNonFull(k);
+
+}
+
+
 void BaseBTree::PageWrapper::insertNonFull(const Byte* k)
 {
     if (isFull())
@@ -744,20 +786,57 @@ void BaseBTree::PageWrapper::insertNonFull(const Byte* k)
     while (currentKeyInd < oldKeysNum && c->compare(currentKey, k, _tree->getRecSize()))
         currentKey = getKey(++currentKeyInd);
 
-    // Сдвигаем, если currentKeyInd - не последний ключ из существующих
-    if (currentKeyInd < oldKeysNum)
+    // Если мы уже в листе - вставляем
+    if (isLeaf())
     {
-        UShort numOfKeysToMove = oldKeysNum - currentKeyInd;
-        copyKeys(getKey(currentKeyInd + 1), currentKey, numOfKeysToMove);
+        // Сдвигаем, если currentKeyInd - не последний ключ из существующих
+        if (currentKeyInd < oldKeysNum)
+        {
+            UShort numOfKeysToMove = oldKeysNum - currentKeyInd;
+            copyKeys(getKey(currentKeyInd + 1), currentKey, numOfKeysToMove);
 
-        // numOfKeysToMove + 1 - потому что курсоров на 1 больше, чем ключей (капец, я чуть не умерла,
-        // пытаясь вспомнить, почему написала + 1 блин) Комментировать код после написания - плохо!
-        copyCursors(getCursorPtr(currentKeyInd + 1), getCursorPtr(currentKeyInd), numOfKeysToMove + 1);
+            // numOfKeysToMove + 1 - потому что курсоров на 1 больше, чем ключей (капец, я чуть не умерла,
+            // пытаясь вспомнить, почему написала + 1 блин) Комментировать код после написания - плохо!
+            copyCursors(getCursorPtr(currentKeyInd + 1), getCursorPtr(currentKeyInd), numOfKeysToMove + 1);
+        }
+
+        // Вставляем ключ и (пере)записываем изменения
+        copyKey(currentKey, k);
+        writePage();
     }
+    else // Иначе идем рекурсивно вниз (и сплитим, если ннада)
+    {
+        // Костыль
+        PageWrapper childRight(_tree);
+        childRight.readPage(getCursor(currentKeyInd));
 
-    // Вставляем ключ и (пере)записываем изменения
-    copyKey(currentKey, k);
-    writePage();
+        // Если ребенок заполнен - сплитим его и идем в него
+        if (childRight.isFull())
+        {
+            splitChild(currentKeyInd + 1); // Переполнения не будет, потому что родитель не фул
+
+            // Рассплитили и вставили элемент, переходим на него
+            currentKey = getKey(++currentKeyInd);
+            if (c->compare(currentKey, k, _tree->getRecSize()))
+            {
+                // Переходим в ссылку слева
+                childRight.readPage(currentKeyInd);
+                childRight.insertNonFull(k);
+            }
+            else
+            {
+                // Переходим в ссылку справа
+                childRight.readPage(++currentKeyInd);
+                childRight.insertNonFull(k);
+            }
+        }
+        else
+        {
+            // Переходим в ссылку справа
+            childRight.readPage(++currentKeyInd);
+            childRight.insertNonFull(k);
+        }
+    }
 }
 
 
