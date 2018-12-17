@@ -135,7 +135,7 @@ Byte* BaseBTree::search(const Byte* k)
 {
     IComparator* c = _comparator;
     if (!c)
-        throw std::runtime_error("Comparator not set. Can't insert");
+        throw std::runtime_error("Comparator not set. Can't search");
 
     // Танцы (со звездами) с бубном
     PageWrapper currentPage(this);
@@ -682,7 +682,7 @@ void BaseBTree::PageWrapper::splitChild(UShort iChild)
 
     // Читаем ребенка
     PageWrapper childPage(_tree);
-    childPage.readPage(iChild);
+    childPage.readPage(getCursor(iChild));
 
     if (!childPage.isFull())
         throw std::domain_error("Child is not full! Can't split!");
@@ -695,7 +695,7 @@ void BaseBTree::PageWrapper::splitChild(UShort iChild)
 
     // Ноды ночами делают новых нодееей (так Сплин пел)
     PageWrapper newChildRight(_tree);
-    childPage.allocPage(halfKeysNum, childPage.isLeaf());
+    newChildRight.allocPage(halfKeysNum, childPage.isLeaf());
 
     // Копируем ключи
     newChildRight.copyKeys(newChildRight.getKey(0), childPage.getKey(halfKeysNum + 1), halfKeysNum);
@@ -704,7 +704,21 @@ void BaseBTree::PageWrapper::splitChild(UShort iChild)
     newChildRight.copyCursors(newChildRight.getCursorPtr(0), childPage.getCursorPtr(halfKeysNum + 1), halfKeysNum + 1);
 
     // Вставляем центральный элемент в родителя
-    insertNonFull(middleKey);
+
+    UShort numOfKeysToMove = getKeysNum() - iChild;
+
+    // Обновляем кол-во ключей
+    setKeyNum(getKeysNum() + 1);
+
+    if (numOfKeysToMove)
+    {
+        copyKeys(getKey(iChild + 1), getKey(iChild), numOfKeysToMove);
+
+        copyCursors(getCursorPtr(iChild + 2), getCursorPtr(iChild + 1), numOfKeysToMove);
+    }
+
+    // Вставляем ключ
+    copyKey(getKey(iChild), middleKey);
 
     // Устанавливаем большее поддерево вставленного элемента
     setCursor(iChild + 1, newChildRight.getPageNum());
@@ -742,7 +756,7 @@ void BaseBTree::insert(const Byte* k)
 
         // Делаем новый корень
         PageWrapper newRoot(this);
-        currentPage.allocPage(1, false);
+        newRoot.allocPage(1, false);
 
         // Создаём правого потомка
         PageWrapper newChildRight(this);
@@ -779,16 +793,13 @@ void BaseBTree::insert(const Byte* k)
 void BaseBTree::PageWrapper::insertNonFull(const Byte* k)
 {
     if (isFull())
-        throw std::domain_error("Node is full. Can't insert");
+        throw std::domain_error("Node is full, can't insert");
 
     IComparator* c = _tree->getComparator();
     if (!c)
         throw std::runtime_error("Comparator not set. Can't insert");
 
     UShort oldKeysNum = getKeysNum();
-
-    // Увеличиваем кол-во ключей
-    setKeyNum(oldKeysNum + 1);
 
     UShort currentKeyInd = 0;
     Byte* currentKey = getKey(currentKeyInd);
@@ -800,10 +811,13 @@ void BaseBTree::PageWrapper::insertNonFull(const Byte* k)
     // Если мы уже в листе - вставляем
     if (isLeaf())
     {
+        setKeyNum(oldKeysNum + 1);
+
         // Сдвигаем, если currentKeyInd - не последний ключ из существующих
         if (currentKeyInd < oldKeysNum)
         {
             UShort numOfKeysToMove = oldKeysNum - currentKeyInd;
+
             copyKeys(getKey(currentKeyInd + 1), currentKey, numOfKeysToMove);
 
             // numOfKeysToMove + 1 - потому что курсоров на 1 больше, чем ключей (капец, я чуть не умерла,
@@ -811,15 +825,20 @@ void BaseBTree::PageWrapper::insertNonFull(const Byte* k)
             copyCursors(getCursorPtr(currentKeyInd + 1), getCursorPtr(currentKeyInd), numOfKeysToMove + 1);
         }
 
+        // Если лист был пустым, надо достать место, на которое будем ставить ключ
+        if (!currentKey)
+            currentKey = getKey(currentKeyInd);
+
         // Вставляем ключ и (пере)записываем изменения
         copyKey(currentKey, k);
         writePage();
+
     }
     else // Иначе идем рекурсивно вниз (и сплитим, если ннада)
     {
         // Костыль
         PageWrapper childRight(_tree);
-        childRight.readPage(getCursor(currentKeyInd));
+        childRight.readPage(getCursor(currentKeyInd + 1));
 
         // Если ребенок заполнен - сплитим его и идем в него
         if (childRight.isFull())
@@ -831,20 +850,20 @@ void BaseBTree::PageWrapper::insertNonFull(const Byte* k)
             if (c->compare(currentKey, k, _tree->getRecSize()))
             {
                 // Переходим в ссылку слева
-                childRight.readPage(currentKeyInd);
+                childRight.readPage(getCursor(currentKeyInd));
                 childRight.insertNonFull(k);
             }
             else
             {
                 // Переходим в ссылку справа
-                childRight.readPage(++currentKeyInd);
+                childRight.readPage(getCursor(currentKeyInd + 1));
                 childRight.insertNonFull(k);
             }
         }
         else
         {
             // Переходим в ссылку справа
-            childRight.readPage(++currentKeyInd);
+            childRight.readPage(getCursor(currentKeyInd + 1));
             childRight.insertNonFull(k);
         }
     }
